@@ -1,4 +1,6 @@
 <script>
+  import { text } from "@sveltejs/kit";
+
 
 const config = `
   [r.DynamicRes.MinScreenPercentage]
@@ -232,6 +234,9 @@ const config = `
   640F0000 00000000 00000000
   `
 
+  /**
+   * @param {string} text
+   */
   function processConfigFile(text) {
   const sections = text.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean);
   let offsets = [];
@@ -285,9 +290,6 @@ const config = `
       output += `[Disable Vsync]\n${entry.value[0]}\n${firstpart} ${disable}\n\n`
       output += `[Enable Vsync]\n${entry.value[0]}\n${firstpart} 00000001 00000001\n\n` 
         break;
-      case "t.MaxFPS":
-        // Logic for handling t.MaxFPS`
-        break;
       case "r.SceneColorFringeQuality":
         // Logic for handling r.SceneColorFringeQuality
         break;
@@ -311,12 +313,6 @@ const config = `
         break;
       case "r.SSGI.Quality":
         // Logic for handling r.SSGI.Quality
-        break;
-      case "r.TemporalAA.Algorithm":
-        // Logic for handling r.TemporalAA.Algorithm
-        break;
-      case "r.TemporalAACatmullRom":
-        // Logic for handling r.TemporalAACatmullRom
         break;
       case "r.SkyLightingQuality":
         // Logic for handling r.SkyLightingQuality
@@ -399,14 +395,8 @@ const config = `
       case "r.BloomQuality":
         // Logic for handling r.BloomQuality
         break;
-      case "rhi.SyncInterval":
-        // Logic for handling rhi.SyncInterval
-        break;
       case "r.ScreenPercentage":
         // Logic for handling r.ScreenPercentage
-        break;
-      case "r.GTSyncType":
-        // Logic for handling r.GTSyncType
         break;
       case "r.DepthOfFieldQuality":
         // Logic for handling r.DepthOfFieldQuality
@@ -420,15 +410,9 @@ const config = `
       case "r.SSS.Scale":
         // Logic for handling r.SSS.Scale
         break;
-      case "FixedFrameRate":
-        // Logic for handling FixedFrameRate
-        break;
-      case "CustomTimeStep":
-        // Logic for handling CustomTimeStep
-        break;
       default:
         // Optional: Default case for handling any unknown section names
-        console.warn("Unknown section:", section.name);
+        console.warn("Don't forget about:", entry.name);
         break;
     }
   })
@@ -437,5 +421,10 @@ const config = `
 }
 
 const cheat = processConfigFile(config)
-console.log(cheat)
+
 </script>
+<h1> UE4cheatcreator </h1>
+<p>Game: Placeholder</p>
+<p>Bid: Placeholder</p>
+<h2> Cheats </h2>
+<p> {cheat} </p>

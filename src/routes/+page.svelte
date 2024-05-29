@@ -1,6 +1,4 @@
 <script>
-  import { text } from "@sveltejs/kit";
-
 
 const config = `
   [r.DynamicRes.MinScreenPercentage]
@@ -233,7 +231,6 @@ const config = `
   780F0000 000007C8
   640F0000 00000000 00000000
   `
-
   /**
    * @param {string} text
    */
@@ -250,172 +247,98 @@ const config = `
   }
 
   let output = "";
-  let disable = '00000000 00000000'
-  let enable = '3F800000 3F800000'
+  let options = [
+    {
+      name: 'Enable',
+      value: '3F800000 3F800000'
+     },
+     {
+      name: 'Disable',
+      value: '00000000 00000000'
+     }
+  ]
 
-  offsets.forEach((entry) => {
-    let firstpart = '680F0000';
-    
-    switch(entry.name){
-      case 'r.DynamicRes.OperationMode':
-        output += `[DRS Enable]\n${entry.value[0]}\n${entry.value[1]}\n\n`
-        output += `[DRS Disable]\n${entry.value[0]}\n${firstpart} ${disable}\n\n` 
-        break;
-      case "r.DynamicRes.FrameTimeBudget":
-        output += `[DR Target 60 FPS]\n${entry.value[0]}\n${firstpart} 41855555 41855555\n\n`
-        output += `[DR Target 30 FPS]\n${entry.value[0]}\n${firstpart} 420551EC 420551EC\n\n`
-      break;
-      case "r.DynamicRes.MinScreenPercentage":
-        
-        break;
-      case "r.DynamicRes.MaxScreenPercentage":
-        // Logic for handling r.DynamicRes.MaxScreenPercentage
-        break;
-      case "r.TonemapperFilm":
-        // Logic for handling r.TonemapperFilm
-        break;
-      case "r.TemporalAA.HistoryScreenPercentage":
-        // Logic for handling r.TemporalAA.HistoryScreenPercentage
-        break;
-      case "r.TemporalAA.R11G11B10History":
-        // Logic for handling r.TemporalAA.R11G11B10History
-        break;
-      case "r.Mobile.ShadingPath":
-        // Logic for handling r.Mobile.ShadingPath
-        break;
-      case "r.SSGI.Enable":
-        // Logic for handling r.SSGI.Enable
-        break;
-      case "r.VSync":
-      output += `[Disable Vsync]\n${entry.value[0]}\n${firstpart} ${disable}\n\n`
-      output += `[Enable Vsync]\n${entry.value[0]}\n${firstpart} 00000001 00000001\n\n` 
-        break;
-      case "r.SceneColorFringeQuality":
-        // Logic for handling r.SceneColorFringeQuality
-        break;
-      case "foliage.LODDistanceScale":
-        // Logic for handling foliage.LODDistanceScale
-        break;
-      case "r.Streaming.FullyLoadUsedTextures":
-        // Logic for handling r.Streaming.FullyLoadUsedTextures
-        break;
-      case "r.TemporalAASamples":
-        // Logic for handling r.TemporalAASamples
-        break;
-      case "r.TemporalAAFilterSize":
-        // Logic for handling r.TemporalAAFilterSize
-        break;
-      case "r.AmbientOcclusionRadiusScale":
-        // Logic for handling r.AmbientOcclusionRadiusScale
-        break;
-      case "r.DisableDistortion":
-        // Logic for handling r.DisableDistortion
-        break;
-      case "r.SSGI.Quality":
-        // Logic for handling r.SSGI.Quality
-        break;
-      case "r.SkyLightingQuality":
-        // Logic for handling r.SkyLightingQuality
-        break;
-      case "r.MaxQualityMode":
-        // Logic for handling r.MaxQualityMode
-        break;
-      case "r.TemporalAAPauseCorrect":
-        // Logic for handling r.TemporalAAPauseCorrect
-        break;
-      case "r.Tonemapper.GrainQuantization":
-        // Logic for handling r.Tonemapper.GrainQuantization
-        break;
-      case "r.LensFlareQuality":
-        // Logic for handling r.LensFlareQuality
-        break;
-      case "r.ShadowQuality":
-        // Logic for handling r.ShadowQuality
-        break;
-      case "r.MotionBlurQuality":
-        // Logic for handling r.MotionBlurQuality
-        break;
-      case "r.TemporalAACurrentFrameWeight":
-        // Logic for handling r.TemporalAACurrentFrameWeight
-        break;
-      case "r.MaxAnisotropy":
-        // Logic for handling r.MaxAnisotropy
-        break;
-      case "r.TemporalAA.AllowDownsampling":
-        // Logic for handling r.TemporalAA.AllowDownsampling
-        break;
-      case "r.TemporalAAUpsampleFiltered":
-        // Logic for handling r.TemporalAAUpsampleFiltered
-        break;
-      case "r.ViewDistanceScale":
-        // Logic for handling r.ViewDistanceScale
-        break;
-      case "r.Tonemapper.Sharpen":
-        // Logic for handling r.Tonemapper.Sharpen
-        break;
-      case "r.MobileMSAA":
-        // Logic for handling r.MobileMSAA
-        break;
-      case "r.Shadow.DistanceScale":
-        // Logic for handling r.Shadow.DistanceScale
-        break;
-      case "r.SecondaryScreenPercentage.GameViewport":
-        // Logic for handling r.SecondaryScreenPercentage.GameViewport
-        break;
-      case "r.PostProcessAAQuality":
-        // Logic for handling r.PostProcessAAQuality
-        break;
-      case "r.MSAACount":
-        // Logic for handling r.MSAACount
-        break;
-      case "r.TemporalAA.Upsampling":
-        // Logic for handling r.TemporalAA.Upsampling
-        break;
-      case "r.SSS.Quality":
-        // Logic for handling r.SSS.Quality
-        break;
-      case "r.RefractionQuality":
-        // Logic for handling r.RefractionQuality
-        break;
-      case "r.MSAA.CompositingSampleCount":
-        // Logic for handling r.MSAA.CompositingSampleCount
-        break;
-      case "r.EyeAdaptationQuality":
-        // Logic for handling r.EyeAdaptationQuality
-        break;
-      case "r.Tonemapper.Quality":
-        // Logic for handling r.Tonemapper.Quality
-        break;
-      case "r.LightFunctionQuality":
-        // Logic for handling r.LightFunctionQuality
-        break;
-      case "r.DefaultFeature.AntiAliasing":
-        // Logic for handling r.DefaultFeature.AntiAliasing
-        break;
-      case "r.BloomQuality":
-        // Logic for handling r.BloomQuality
-        break;
-      case "r.ScreenPercentage":
-        // Logic for handling r.ScreenPercentage
-        break;
-      case "r.DepthOfFieldQuality":
-        // Logic for handling r.DepthOfFieldQuality
-        break;
-      case "r.SSR.Quality":
-        // Logic for handling r.SSR.Quality
-        break;
-      case "r.Upscale.Quality":
-        output += `[Filtering Type-0 (Nearest)]\n${entry.value[0]}\n${entry.value[1].split(' ')[0]} 00000000 00000000\n\n`
-        break;
-      case "r.SSS.Scale":
-        // Logic for handling r.SSS.Scale
-        break;
-      default:
-        // Optional: Default case for handling any unknown section names
-        console.warn("Don't forget about:", entry.name);
-        break;
+  const cheatNames = [
+  // --- DYNAMIC RESOLUTION ---
+  { cvar: "r.DynamicRes.OperationMode", name: "Dynamic Resolution", options: options},
+  { cvar: "r.DynamicRes.FrameTimeBudget", name: "Dynamic Resolution Target FPS", option: [""]},
+
+  // --- ANTI ALIASING ---
+  { cvar: "r.PostProcessAAQuality", name: "Anti Aliasing", type: "selector", default: 4, options: ["Off", "Very Low", "Low", "Medium", "High", "Very High", "Max"] },
+  { cvar: "r.TemporalAA.Upsampling", name: "TAAU", type: "selector", default: 0, options: ["Spatial upscale", "TAAU"] },
+
+  // --- RENDER RESOLUTION SCALE ---
+  { cvar: "r.ScreenPercentage", name: "Render Resolution Scale", type: "integer", default: 100, min: 1, max: 100 },
+  { cvar: "r.SecondaryScreenPercentage.GameViewport", name: "2nd RRS", type: "integer", default: 0, min: 0, max: 100 },
+
+  // --- UPSACLE ---
+  { cvar: "r.Upscale.Quality", name: "Upscale Quality", type: "selector", default: 3, options: ["Nearest", "Bilinear", "Blur", "Catmull-Rom", "Lanczos 3", "Gaussian"] },
+
+  // --- FIDELITYFX SUPER RESOLUTION ---
+  { cvar: "r.FidelityFX.FSR.PrimaryUpscale", name: "FSR Primary Upscale", type: "boolean", default: false },
+  { cvar: "r.FidelityFX.FSR.SecondaryUpscale", name: "FSR Secondary Upscale", type: "boolean", default: false },
+  
+  // --- MSAA ---
+  { cvar: "r.MSAACount", name: "MSAA Count", type: "selector", default: 0, options: ["Disabled", "1x", "2x", "4x", "8x"] },
+  { cvar: "r.MobileMSAA", name: "Mobile MSAA", type: "selector", default: 1, options: ["Temporal AA", "2x MSAA", "4x MSAA", "8x MSAA"] },
+  { cvar: "r.MSAA.CompositingSampleCount", name: "MSAA Sample Count", type: "selector", default: 1, options: ["1x", "2x", "4x", "8x"] },
+
+  // --- VIEW DISTANCE ---
+  { cvar: "r.ViewDistanceScale", name: "View Distance Scale", type: "float", default: 1.0, min: 0.1, max: 10.0 },
+  { cvar: "foliage.LODDistanceScale", name: "Foliage", type: "float", default: 1.0, min: 0.1, max: 10.0 },
+
+
+  // --- EFFECTS ---
+  { cvar: "r.AmbientOcclusionRadiusScale", name: "SSAO", type: "float", default: 1.0, min: 0, max: 10.0 },
+  { cvar: "r.ShadowQuality", name: "Shadow", type: "selector", default: 5, options: ["Off", "Low (Unfiltered)", "Low", "Medium", "High", "Max"] },
+  { cvar: "r.Shadow.DistanceScale", name: "Shadow Distance", type: "float", default: 1.0, min: 0.1, max: 10.0 },
+  { cvar: "r.MotionBlurQuality", name: "Motion Blur", type: "selector", default: 3, options: ["Off", "Low", "Medium", "High", "Very High"] },
+  { cvar: "r.LensFlareQuality", name: "Lens Flare", type: "selector", default: 2, options: ["Off", "Low", "Good", "Very Good"] },
+  { cvar: "r.BloomQuality", name: "Bloom", type: "selector", default: 5, options: ["Off", "Low", "Average", "Good", "Best", "Experimental"] },
+  { cvar: "r.SceneColorFringeQuality", name: "Chromatic Aberration", type: "selector", default: 1, options: ["Off", "3 Texture Samples"] },
+  { cvar: "r.DepthOfFieldQuality", name: "Depth of Field", type: "selector", default: 2, options: ["Off", "Low", "High", "Very High", "Extremely High"] },
+  { cvar: "r.SSR.Quality", name: "SSR Quality", type: "selector", default: 0, options: ["Off", "Low", "Medium", "High", "Very High"] },
+
+  // --- LIGHTING ---
+  { cvar: "r.SkyLightingQuality", name: "Sky Lighting Quality", type: "boolean", default: true },
+  { cvar: "r.LightFunctionQuality", name: "Light Function Quality", type: "selector", default: 2, options: ["Off", "Low", "Normal", "High"] },
+
+  // --- POST PROCESSING ---
+  { cvar: "r.Tonemapper.GrainQuantization", name: "Film Grain", type: "selector", default: 1, options: ["Low", "High"] },
+  { cvar: "r.Tonemapper.Sharpen", name: "Image Sharpening", type: "float", default: 0, min: 0, max: 10.0 },
+  { cvar: "r.TonemapperFilm", name: "Filmic Tonemapper", options: options},
+  { cvar: "r.Tonemapper.Quality", name: "Vignette", type: "selector", default: 5, options: ["Basic", "+ Film Contrast", "+ Vignette", "+ Film Shadow Tint", "+ Grain", "Full Quality"] },
+  { cvar: "r.EyeAdaptationQuality", name: "Adaptive Exposure", type: "selector", default: 2, options: ["Off", "Low", "Normal", "High"] },
+
+  // --- OTHER ---
+  { cvar: "r.MaxAnisotropy", name: "Anisotropic Filtering", type: "selector", default: 4, options: ["1", "2", "4", "8", "16"] },
+  { cvar: "r.Fog", name: "Fog", type: "boolean", default: true },
+  { cvar: "r.SSGI.Enable", name: "SSGI Enable", type: "boolean", default: false },
+  { cvar: "r.SSGI.Quality", name: "SSGI Quality", type: "integer", default: 4, min: 1, max: 4 },
+  { cvar: "r.DisableDistortion", name: "Distortion", type: "boolean", default: false },
+  { cvar: "r.PostProcessOutline", name: "Outlines", type: "boolean", default: false },
+  { cvar: "r.VSync", name: "VSync", type: "boolean", default: false },
+  { cvar: "t.MaxFPS", name: "Max FPS", type: "integer", default: 60, min: 30, max: 240 },
+  { cvar: "r.Streaming.FullyLoadUsedTextures", name: "Fully Load Textures ASAP", type: "boolean", default: false },
+  { cvar: "r.RefractionQuality", name: "Refraction Quality", type: "selector", default: 2, options: ["Off", "Low", "Normal", "High"] },
+  { cvar: "r.MaxQualityMode", name: "Max Quality Override", type: "boolean", default: false },
+  { cvar: "r.Mobile.ShadingPath", name: "Mobile Shading Path", type: "selector", default: 0, options: ["Forward", "Deferred"] },
+  { cvar: "r.GTSyncType", name: ""}
+]
+
+
+  for(const cheat of offsets){
+    try{
+      for (const item of cheatNames.find(({ cvar }) => cvar === cheat.name)?.options){
+        console.log(item)
+          let offset = cheat.value[0];
+          // @ts-ignore
+          output += `[${item.name} ${cheatNames.find(({ cvar }) => cvar === cheat.name)?.name}]\n\n`;
+      }
+    } catch(err){
+      console.log('SKipped brrr')
     }
-  })
+  }
 
   return output;
 }

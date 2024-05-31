@@ -1,6 +1,6 @@
 import {levels, levelOptions, toggleOptions, fpsTargetOptions, resPercentageOptions, upscaleOptions} from '$lib/options'
 
-export const cheatNames = [
+export let cheatNames = [
   // --- DYNAMIC RESOLUTION ---
   { cvar: "r.DynamicRes.OperationMode", name: "Dynamic Resolution", options: toggleOptions},
   { cvar: "r.DynamicRes.FrameTimeBudget", name: "Dynamic Resolution Target FPS", option: fpsTargetOptions},

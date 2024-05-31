@@ -1,6 +1,17 @@
 export const toggleOptions = [
   {
     name: 'Enable',
+    value: '00000001 00000001'
+   },
+   {
+    name: 'Disable',
+    value: '00000000 00000000'
+   }
+]
+
+export const toggleOptionsFlt = [
+  {
+    name: 'Enable',
     value: '3F800000 3F800000'
    },
    {
@@ -12,11 +23,11 @@ export const toggleOptions = [
 export const fpsTargetOptions = [
   {
   name: '60 FPS',
-  value: '41855555 41855555'
+  value: '41855555 41855555' // 16.66ms
   },
   {
     name: '30 FPS',
-    value: '420551EC 420551EC'
+    value: '420551EC 420551EC' // 33.33ms
   }
 ]
 
@@ -48,6 +59,37 @@ export const levels = [
   {
     name: 'Max',
     value: '00000006 00000006'
+  }
+]
+
+export const levelsFlt = [
+  {
+    name: 'Off',
+    value: `${toggleOptions[1].value}`,
+  },
+  {
+    name: 'Very Low',
+    value: '3F800000 3F800000'
+  },
+  {
+    name: 'Low',
+    value: '40000000 40000000'
+  },
+  {
+    name: 'Medium',
+    value: `40400000 40400000`
+  },
+  {
+    name: 'High',
+    value: '40800000 40800000'
+  },
+  {
+    name: 'Very High',
+    value: '40A00000 40A00000'
+  },
+  {
+    name: 'Max',
+    value: '40C00000 40C00000'
   }
 ]
 

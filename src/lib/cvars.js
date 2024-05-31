@@ -1,4 +1,4 @@
-import {levels, levelOptions, toggleOptions, fpsTargetOptions, resPercentageOptions, upscaleOptions} from '$lib/options'
+import {levels, levelsFlt, levelOptions, toggleOptions, toggleOptionsFlt, fpsTargetOptions, resPercentageOptions, upscaleOptions} from '$lib/options'
 
 export let cheatNames = [
   // --- DYNAMIC RESOLUTION ---
@@ -47,7 +47,7 @@ export let cheatNames = [
 
   // --- POST PROCESSING ---
   { cvar: "r.Tonemapper.GrainQuantization", name: "Film Grain", options: toggleOptions },
-  { cvar: "r.Tonemapper.Sharpen", name: "Image Sharpening", options: toggleOptions},
+  { cvar: "r.Tonemapper.Sharpen", name: "Image Sharpening", options: toggleOptionsFlt},
   { cvar: "r.TonemapperFilm", name: "Filmic Tonemapper", options: toggleOptions},
   { cvar: "r.Tonemapper.Quality", name: "Vignette", options: toggleOptions },
   { cvar: "r.EyeAdaptationQuality", name: "Adaptive Exposure", options: toggleOptions },

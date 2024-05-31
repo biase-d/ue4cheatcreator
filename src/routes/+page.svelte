@@ -55,7 +55,7 @@
     {#if !loading}
     <button class="btn btn-primary max-w-sm" type='submit'> Get Cheats </button>
     {:else}
-    <button class="btn btn-primary max-w-sm" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
+    <button class="btn btn-primary max-w-sm cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
     {/if}
   </form>
 

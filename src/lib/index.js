@@ -1,13 +1,3 @@
-// Download cheats text file 
-const createTextFile = (cheat) => {
-  const link = document.createElement("a");
-  const file = new Blob([cheat], {type: 'text/plain'});
-  link.href=URL.createObjectURL(file)
-  link.download = `gameID.txt`;
-  link.click()
-  URL.
-  revokeObjectURL(link.href)
-}
 
 
 // Upload cheats txt file 

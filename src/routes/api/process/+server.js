@@ -8,6 +8,14 @@ export async function POST({ request }){
 
   const cheatOffsets = await cfg.text()
 
+  if (cfg.size > 20000){
+    return new Response('File too big to be a cheat', {status: 500})
+  }
+
+  if (!cfg){
+    return new Response('No file was uploaded', {status: 500})
+  }
+
   const sections = await cheatOffsets.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean);
   let offsets = [];
   

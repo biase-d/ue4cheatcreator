@@ -3,9 +3,9 @@ This Project heavily relies on [`UE4cfgdumper`](https://github.com/masagrator/UE
 Why? Well it takes a really long time to configure for both fps and gfx and this will try to reduce that time
 
 To Do:
-- [ ] Creating the usual gfx cheats and their different levels
+- [x] Creating the usual gfx cheats and their different levels
 - [ ] Option for fps only and gfx only (_and both ofc_)
 - [ ] Toggles for cheats before creation of txt
 - [ ] Mark the default option
 - [ ] Scaffold a UI
-- [ ] Uploading of .txt files
+- [x] Uploading of .txt files

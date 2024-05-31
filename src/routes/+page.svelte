@@ -37,7 +37,7 @@
 
 </script>
 
-<h1 class="p-8 font-bold lowercase text-xl"> ue4cheatscreator </h1>
+<h1 class="p-8 font-bold lowercase text-xl"> <a href="/">ue4cheatscreator</a> </h1>
 
 {#if cheats === ""}
   <form on:submit|preventDefault= {handleCFGfile} class="grid px-8 gap-2.5 items-center justify-center">

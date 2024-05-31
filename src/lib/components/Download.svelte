@@ -1,6 +1,7 @@
 <script>
-  export let cheat; 
+  export let cheats; 
   export let name;
+  export let size
 
   const downloadTextFile = (cheat) => {
     const link = document.createElement("a");
@@ -14,4 +15,4 @@
 
 </script>
 
-<button on:click={() => downloadTextFile(cheat)}> Download</button>
+<button class="btn btn-primary" on:click={() => downloadTextFile(cheats)}> {name} ({size/1000}KB)</button>

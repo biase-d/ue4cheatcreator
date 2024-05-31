@@ -93,29 +93,6 @@ export const levelsFlt = [
   }
 ]
 
-export const resPercentageOptions = [
-  {
-    name: '50%',
-    value: '42480000 42480000'
-  },
-  {
-    name: '66.66%',
-    value: '42855555 42855555'
-  },
-  {
-    name: '75%',
-    value: '42960000 42960000'
-  },
-  {
-    name: '85%',
-    value: '42AA0000 42AA0000'
-  },
-  {
-    name: '100%',
-    value: '42C80000 42C80000'
-  }
-]
-
 export const levelOptions = [
   {
     name: 'x0.5',
@@ -136,6 +113,37 @@ export const levelOptions = [
   {
     name: 'x2',
     value: '40000000 40000000'
+  }
+]
+
+export const resPercentageOptions = [
+  {
+    name: '50%',
+    value: '42480000 42480000'
+  },
+  {
+    name: '66.66%',
+    value: '42855555 42855555'
+  },
+  {
+    name: '75%',
+    value: '42960000 42960000'
+  },
+  {
+    name: '85%',
+    value: '42AA0000 42AA0000'
+  },
+  {
+    name: '100%',
+    value: '42C80000 42C80000'
+  },
+  {
+    name: '125%',
+    value: '42FA0000 42FA0000'
+  },
+  {
+    name: '150%',
+    value: '43160000 43160000'
   }
 ]
 

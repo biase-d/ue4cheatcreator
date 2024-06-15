@@ -1,16 +1,18 @@
 Why? Well it takes a really long time to configure for both fps and gfx and this will try to reduce that time
 
-# To Do
-- [x] Create the usual gfx cheats and their different levels
+# Progress Tracker
+## In-Progress 
 - [ ] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
 - [ ] Option for fps only and gfx only (_and both ofc_)
 - [ ] Toggles for cheats before creation of txt
 - [ ] Order cheats according to usefulness
 - [ ] Preview cheats before downloading
 - [ ] Show which one was the default option
+- [ ] Download with txt in the directory atmosphere/content/[GameID]/cheats/
+## Done 
+- [x] Create the usual gfx cheats and their different levels
 - [x] Scaffold a UI
 - [x] Uploading of .txt files
-- [ ] Download with txt in the directory atmosphere/content/[GameID]/cheats/
 
 # Supported Cheats
 - Dynamic Resolution 
@@ -49,7 +51,7 @@ And the following need more work to function well:
 - [ ] SSGI
 - [ ] SSR
 - [ ] MSAA
-- [ ] Temporal AA Upsampling
+- [x] Temporal AA Upsampling
 
 # How to use 
 1. Create cfg dump using [UE4cfgdumper](https://github.com/masagrator/UE4cfgdumper)

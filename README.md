@@ -7,7 +7,8 @@ To Do:
 - [ ] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
 - [ ] Option for fps only and gfx only (_and both ofc_)
 - [ ] Toggles for cheats before creation of txt
-- [ ] Show which one was the default option
+- [ ] Order cheats according to usefulness
 - [ ] Preview cheats before downloading
+- [ ] Show which one was the default option
 - [x] Scaffold a UI
 - [x] Uploading of .txt files

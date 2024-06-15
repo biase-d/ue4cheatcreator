@@ -9,7 +9,7 @@ export async function POST({ request }){
   const cheatOffsets = await cfg.text()
 
   if (cfg.size > 20000){
-    return new Response('File too big to be a cheat', {status: 500})
+    return new Response('File is too big to be a cheat', {status: 500})
   }
 
   if (!cfg){

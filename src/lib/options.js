@@ -147,6 +147,34 @@ export const resPercentageOptions = [
   }
 ]
 
+export const AnisotropicFilteringLevels = [
+  {
+    name: 'Off',
+    value: `${toggleOptions[1].value}`,
+  },
+  {
+    name: '1x',
+    value: '00000001 00000001'
+  },
+  {
+    name: '2x',
+    value: '00000002 00000002'
+  },
+  {
+    name: '4x',
+    value: '00000004 00000004'
+  },
+  {
+    name: '8x',
+    value: '00000008 00000008'
+  },
+  {
+    name: '16x',
+    value: '00000016 00000016'
+  },
+  
+]
+
 /**
  * @type {{ name: string; value: string; }[]}
  */

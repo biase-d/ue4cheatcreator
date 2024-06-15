@@ -39,6 +39,11 @@
     }
   }
 
+  function recreate() {
+    loading = false
+    cheats = ""
+  }
+
 </script>
 
 <h1 class="p-8 font-bold lowercase text-xl flex items-center">
@@ -58,10 +63,9 @@
     <button class="btn btn-primary max-w-sm cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
     {/if}
   </form>
-
 {:else}
 <div class="grid items-center justify-center gap-2.5">
   <Download {cheats} {name} {size}/>
+  <button on:click={recreate} class="text-sm font-bold text-primary"> Create for another game </button>
 </div>
-
 {/if}

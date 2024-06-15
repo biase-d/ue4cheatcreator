@@ -47,7 +47,6 @@ export async function POST({ request }){
   return json(
     {
       name: await cfg.name,
-      size: await cfg.size,
       cheats: output
     }
   )

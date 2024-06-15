@@ -172,7 +172,6 @@ export const AnisotropicFilteringLevels = [
     name: '16x',
     value: '00000016 00000016'
   },
-  
 ]
 
 /**

@@ -1,7 +1,12 @@
+<head>
+  <title> UE4cheatcreator for NX </title>
+  <meta name="description" content="A tool to create cheats based on dumps from UE4cfgdumper">
+  <meta name="og:description" content="A tool to create cheats based on dumps from UE4cfgdumper">
+</head>
+
 <script>
   import Icon from "@iconify/svelte";
-import "../app.css"
-
+  import "../app.css"
 </script>
 
 <slot />

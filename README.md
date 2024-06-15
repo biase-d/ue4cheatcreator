@@ -45,13 +45,14 @@ Why? Well it takes a really long time to configure for both fps and gfx and this
 - Refraction Quality 
 - Max Quality Override 
 - Mobile Shading Path 
+- TAAU
 
 And the following need more work to function well: 
 - [ ] FPS 
 - [ ] SSGI
 - [ ] SSR
 - [ ] MSAA
-- [x] Temporal AA Upsampling
+- [ ] MIN/MAX/DEFAULT GFX Settings
 
 # How to use 
 1. Create cfg dump using [UE4cfgdumper](https://github.com/masagrator/UE4cfgdumper)

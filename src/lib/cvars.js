@@ -13,6 +13,11 @@ export let cheatNames = [
     option: fpsTargetOptions
   },
   // ANTI ALIASING
+  {
+    cvar: "r.DefaultFeature.AntiAliasing",
+    name: "Default Anti-Aliasing",
+    options: levels
+  },
   { 
     cvar: "r.PostProcessAAQuality", 
     name: "Anti-Aliasing", 

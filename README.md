@@ -52,12 +52,14 @@ And the following need more work to function well:
 - [ ] Temporal AA Upsampling
 
 # How to use 
-1. Create cfg dump using [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper)
+1. Create cfg dump using [UE4cfgdumper](https://github.com/masagrator/UE4cfgdumper)
 2. Copy the .txt file from folder with the game ID in ue4cfgdumper's directory 
-3. Visit ['UE4cheatcreator'](https://ue4cheatcreator.vercel.app)
+3. Visit [UE4cheatcreator](https://ue4cheatcreator.vercel.app)
 4. Upload .txt file from step 2 
 5. Download
 6. Copy to Switch and Enjoy 
+
+After all the work has been done I might begin work on creating an overlay for this for Ultrahand 
 
 # Special Thanks
 This project wouldn't be possible without:

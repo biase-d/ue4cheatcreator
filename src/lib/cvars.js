@@ -1,4 +1,4 @@
-import {levels, levelsFlt, levelOptions, toggleOptions, toggleOptionsFlt, fpsTargetOptions, resPercentageOptions, upscaleOptions} from '$lib/options'
+import {levels, levelsFlt, levelOptions, toggleOptions, toggleOptionsFlt, fpsTargetOptions, resPercentageOptions, upscaleOptions, AnisotropicFilteringLevels} from '$lib/options'
 
 export let cheatNames = [
   // --- DYNAMIC RESOLUTION ---
@@ -26,8 +26,8 @@ export let cheatNames = [
   //{ cvar: "r.MSAA.CompositingSampleCount", name: "MSAA Sample Count", options: ["1x", "2x", "4x", "8x"] },
 
   // --- VIEW DISTANCE ---
-  { cvar: "r.ViewDistanceScale", name: "View Distance Scale", options: levels.slice(0, -2)},
-  { cvar: "foliage.LODDistanceScale", name: "Foliage", option: levels},
+  { cvar: "r.ViewDistanceScale", name: "View Distance Scale", options: levelOptions.slice(0, -2)},
+  { cvar: "foliage.LODDistanceScale", name: "Foliage", option: levelOptions},
 
 
   // --- EFFECTS ---
@@ -53,7 +53,7 @@ export let cheatNames = [
   { cvar: "r.EyeAdaptationQuality", name: "Adaptive Exposure", options: toggleOptions },
 
   // --- OTHER ---
-  //{ cvar: "r.MaxAnisotropy", name: "Anisotropic Filtering", options: ["1", "2", "4", "8", "16"] },
+  { cvar: "r.MaxAnisotropy", name: "Anisotropic Filtering", options: AnisotropicFilteringLevels },
   { cvar: "r.Fog", name: "Fog", options: toggleOptions},
   //{ cvar: "r.SSGI.Enable", name: "SSGI Enable"},
   //{ cvar: "r.SSGI.Quality", name: "SSGI Quality"},

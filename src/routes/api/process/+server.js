@@ -40,7 +40,7 @@ export async function POST({ request }){
           output += `[${cheatName} - ${item.name}]\n${offset}\n680F0000 ${item.value}\n\n`;
       }
     } catch(err){
-      console.log('Skipped: ', err)
+      console.log('Skipped: ', cheat.name)
     }
   }
 

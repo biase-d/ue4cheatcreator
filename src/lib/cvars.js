@@ -23,11 +23,13 @@ export let cheatNames = [
     name: "Anti-Aliasing", 
     options: levels 
   },
+  /*
   { 
     cvar: "r.TemporalAA.Upsampling", 
     name: "TAAU", 
-    options: toggleOptions 
+    options: toggleOptions
   },
+  */
   // RENDER RESOLUTION SCALE
   { 
     cvar: "r.ScreenPercentage", 

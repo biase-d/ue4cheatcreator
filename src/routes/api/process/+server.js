@@ -17,6 +17,7 @@ export async function POST({ request }){
   }
 
   const sections = await cheatOffsets.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean);
+  
   let offsets = [];
   
   for (let i = 0; i < sections.length; i += 2) {

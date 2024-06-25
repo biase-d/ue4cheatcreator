@@ -31,6 +31,25 @@ export const fpsTargetOptions = [
   }
 ]
 
+export const AALevels = [
+  {
+    name: 'OFF',
+    value: `${toggleOptions[1].value}`
+  },
+  {
+    name: 'FXAA',
+    value: '00000001 00000001'
+  },
+  {
+    name: 'TAA',
+    value: '00000002 00000002'
+  },
+  {
+    name: 'MSAA (Forward Only)',
+    value: '00000003 00000003'
+  }
+]
+
 export const levels = [
   {
     name: 'Off',

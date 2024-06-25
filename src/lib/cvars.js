@@ -1,4 +1,4 @@
-import {levels, levelsFlt, levelOptions, toggleOptions, toggleOptionsFlt, fpsTargetOptions, resPercentageOptions, upscaleOptions, AnisotropicFilteringLevels} from '$lib/options'
+import {levels, levelOptions, toggleOptions, toggleOptionsFlt, fpsTargetOptions, resPercentageOptions, upscaleOptions, AnisotropicFilteringLevels, AALevels} from '$lib/options'
 
 export let cheatNames = [
   // DYNAMIC RESOLUTION
@@ -15,13 +15,13 @@ export let cheatNames = [
   // ANTI ALIASING
   {
     cvar: "r.DefaultFeature.AntiAliasing",
-    name: "Default Anti-Aliasing",
-    options: levels
+    name: "Anti-Aliasing Method",
+    options: AALevels
   },
   { 
     cvar: "r.PostProcessAAQuality", 
     name: "Anti-Aliasing", 
-    options: levels 
+    options: levels
   },
   /*
   { 

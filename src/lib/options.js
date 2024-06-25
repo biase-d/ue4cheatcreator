@@ -22,12 +22,12 @@ export const toggleOptionsFlt = [
 
 export const fpsTargetOptions = [
   {
-  name: '60 FPS',
-  value: '41855555 41855555' // 16.66ms
-  },
-  {
     name: '30 FPS',
     value: '420551EC 420551EC' // 33.33ms
+  },
+  {
+    name: '60 FPS',
+    value: '41855555 41855555' // 16.66ms
   }
 ]
 

@@ -15,7 +15,7 @@ export let cheatNames = [
   // ANTI ALIASING
   {
     cvar: "r.DefaultFeature.AntiAliasing",
-    name: "Anti-Aliasing",
+    name: "Anti-Aliasing Method",
     options: AALevels
   },
   { 

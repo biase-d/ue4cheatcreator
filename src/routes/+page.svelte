@@ -17,7 +17,7 @@
     // @ts-ignore
     formData.append('cfg', file.files[0])
 
-    const response  = await fetch('/api/process', {
+    const response  = await fetch('/api/fps', {
       method: 'POST',
       body: formData
     })

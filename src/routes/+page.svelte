@@ -49,7 +49,7 @@
 <h1 class="p-8 font-bold lowercase text-xl flex items-center">
   <div class="grid items-center justify-center w-[32px] h-[32px]">
     <Icon icon='pixelarticons:chevrons-horizontal'width=auto/></div>
-    <a href="/">ue4cheatscreator</a>
+    <a href="/">ue4cheatscreator </a>
 </h1>
 
 {#if cheats === ""}
@@ -69,3 +69,5 @@
   <button on:click={recreate} class="text-sm font-bold text-primary"> Create for another game </button>
 </div>
 {/if}
+
+<p class="text-center bold text-sm mt-2">Work in progress</p>

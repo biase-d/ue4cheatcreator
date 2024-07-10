@@ -26,7 +26,7 @@ export async function POST({ request }){
   })
 
   let cheats = ""
-  let FPS = ['rhi.SyncInterval', 'r.VSync', 'Customtimestep', 't.MaxFPS']
+  let FPS = ['rhi.SyncInterval', 'r.VSync', 'Customtimestep', 't.MaxFPS', 'r.DynamicRes.FrameTimeBudget']
   let FPSOptions = [
     {
       name: '[30 FPS]',
@@ -45,7 +45,6 @@ export async function POST({ request }){
     r.TemporalAA.Algorithm to 1 (this is not needed and not all games have it, but it make TAAU Gen5 that give  better quality, at 0 it's Gen4
   */
   let TAAU = ['r.DefaultFeature.AntiAliasing', 'r.TemporalAA.Upsampling','r.PostProcessAAQuality', 'r.TemporalAA.Algorithm']
-
   let SSGI = ['r.SSGI.Quality', 'r.SSGI.Enable']
 
   // Test for specific configs
@@ -56,7 +55,6 @@ export async function POST({ request }){
   for(const frameRate of FPSOptions){
     test += `${frameRate.name}\n`
     for(const item of fps){
-      console.log(item.name)
       // 30 FPS
       if (frameRate.name === "[30 FPS]"){
         if (item.name == '[rhi.SyncInterval]'){
@@ -65,6 +63,9 @@ export async function POST({ request }){
 
         if (item.name == '[r.VSync]'){
           test += `${item.offset[0]}\n680F0000 00000001 00000001\n`
+        }
+        if (item.name == '[r.DynamicRes.FrameTimeBudget]'){
+          test += `${item.offset[0]}\n${frameRate.value}\n`
         }
 
         if (item.name == '[t.MaxFPS]'){
@@ -83,6 +84,9 @@ export async function POST({ request }){
         if (item.name == '[t.MaxFPS]'){
           test += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
+        if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
+          test += `${item.offset[0]}\n${frameRate.value}\n`
+        }
       }
     }
     test += `\n`
@@ -91,10 +95,8 @@ export async function POST({ request }){
   console.log(test)
 
   const taau = sections.filter(entry => TAAU.some(keyword => entry.name.includes(keyword)))
-  console.log(taau)
 
   const ssgi = sections.filter(entry => SSGI.some(keyword => entry.name.includes(keyword)))
-  console.log(ssgi)
   
   for(const cheat of sections){
     const cheatName = cheat.name.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean)[0]

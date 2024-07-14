@@ -15,12 +15,12 @@ export let cheatNames = [
   // ANTI ALIASING
   {
     cvar: "r.DefaultFeature.AntiAliasing",
-    name: "Anti-Aliasing Method",
+    name: "AA Method",
     options: AALevels
   },
   { 
     cvar: "r.PostProcessAAQuality", 
-    name: "Anti-Aliasing", 
+    name: "AA", 
     options: levels
   },
   // RENDER RESOLUTION SCALE

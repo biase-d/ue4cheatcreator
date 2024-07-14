@@ -1,20 +1,5 @@
-Why? Well it takes a really long time to configure for both fps and gfx and this will try to reduce that time
-
-# Progress Tracker
-## In-Progress 
-- [ ] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
-- [ ] Option for fps only and gfx only (_and both ofc_)
-- [ ] Toggles for cheats before creation of txt
-- [ ] Order cheats according to usefulness
-- [ ] Preview cheats before downloading
-- [ ] Show which one was the default option
-- [ ] Download with txt in the directory atmosphere/content/[GameID]/cheats/
-## Done 
-- [x] Create the usual gfx cheats and their different levels
-- [x] Scaffold a UI
-- [x] Uploading of .txt files
-
 # Supported Cheats
+- FPS
 - Dynamic Resolution 
 - Dynamic Resolution Target FPS
 - Anti Aliasing 
@@ -46,10 +31,9 @@ Why? Well it takes a really long time to configure for both fps and gfx and this
 - Max Quality Override 
 - Mobile Shading Path 
 - TAAU
+- SSGI
 
 And the following need more work to function well: 
-- [ ] FPS 
-- [ ] SSGI
 - [ ] SSR
 - [ ] MSAA
 - [ ] MIN/MAX/DEFAULT GFX Settings
@@ -61,6 +45,20 @@ And the following need more work to function well:
 4. Upload .txt file from step 2 
 5. Download
 6. Copy to Switch and Enjoy 
+
+# Progress Tracker
+## In-Progress 
+- [ ] Option for fps only and gfx only (_and both ofc_)
+- [ ] Toggles for cheats before creation of txt
+- [ ] Order cheats according to usefulness
+- [ ] Preview cheats before downloading
+- [ ] Show which one was the default option
+- [ ] Download with txt in the directory atmosphere/content/[GameID]/cheats/
+## Done 
+- [x] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
+- [x] Create the usual gfx cheats and their different levels
+- [x] Scaffold a UI
+- [x] Uploading of .txt files
 
 After all the work has been done I might begin work on creating an overlay for this for Ultrahand 
 

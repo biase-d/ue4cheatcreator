@@ -194,13 +194,18 @@ export async function POST({ request }){
     cheats += '\n'
   }
 
-  console.log(cheats)
   for(const cheat of sections){
     const cheatName = cheat.name.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean)[0]
-
+    
     try {
-      let test = cheatNames.find(({ cvar }) => cvar === cheatName)?.name
-
+      let test = cheatNames.find(({ cvar }) => cvar === cheatName)
+      for (const option of test?.options){
+        cheats += `[${test?.name} ${option.name}]\n`
+        cheats += `${cheat.offset[0]}\n`
+        cheats += `680F0000 ${option.value}\n`
+        cheats += '\n'
+      }
+      
       if (test == undefined){
         throw Error
       }
@@ -208,7 +213,9 @@ export async function POST({ request }){
       console.log('Skipped: ', cheatName)
     }
   }
-  
+
+  console.log(cheats)
+
   return json(
     {
       name: await dumpContent.name,

@@ -22,12 +22,35 @@ export const toggleOptionsFlt = [
 
 export const fpsTargetOptions = [
   {
-  name: '60 FPS',
-  value: '41855555 41855555' // 16.66ms
-  },
-  {
     name: '30 FPS',
     value: '420551EC 420551EC' // 33.33ms
+  },
+  {
+    name: '45 FPS',
+    value: '41B1C28F'
+  },
+  {
+    name: '60 FPS',
+    value: '41855555 41855555' // 16.66ms
+  }
+]
+
+export const AALevels = [
+  {
+    name: 'OFF',
+    value: `${toggleOptions[1].value}`
+  },
+  {
+    name: 'FXAA',
+    value: '00000001 00000001'
+  },
+  {
+    name: 'TAA',
+    value: '00000002 00000002'
+  },
+  {
+    name: 'MSAA (Forward Only)',
+    value: '00000003 00000003'
   }
 ]
 
@@ -94,6 +117,10 @@ export const levelsFlt = [
 ]
 
 export const levelOptions = [
+  {
+    name: 'Off',
+    value: `${toggleOptions[1].value}`
+  },
   {
     name: 'x0.5',
     value: '3F000000 3F000000'

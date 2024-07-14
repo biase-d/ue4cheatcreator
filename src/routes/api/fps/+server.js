@@ -26,6 +26,7 @@ export async function POST({ request }){
   })
 
   let cheats = ""
+
   let FPS = ['rhi.SyncInterval', 'r.VSync', 'Customtimestep', 't.MaxFPS', 'r.DynamicRes.FrameTimeBudget']
   let FPSOptions = [
     {
@@ -33,7 +34,7 @@ export async function POST({ request }){
       value: '680F0000 420551EC 420551EC' // 33.33ms
     },
     {
-      name: '45 FPS',
+      name: '[45 FPS]',
       value: '680F0000 41B1C28F 41B1C28F' // 22.22ms
     },
     {
@@ -41,13 +42,7 @@ export async function POST({ request }){
       value: '680F0000 41855555 41855555' // 16.66ms
     }
   ]
-  /*
-    For TAAU to work, you need to change:
-    r.DefaultFeature.AntiAliasing to 2 (1 is for FXAA and 2 is for TAA)
-    r.TemporalAA.Upsampling to 1
-    r.PostProcessAAQuality to at least 3, but better to 4 if it don't crash (TAAU with this on 4 crash in some games)
-    r.TemporalAA.Algorithm to 1 (this is not needed and not all games have it, but it make TAAU Gen5 that give  better quality, at 0 it's Gen4
-  */
+
   let TAAU = ['r.DefaultFeature.AntiAliasing', 'r.TemporalAA.Upsampling','r.PostProcessAAQuality', 'r.TemporalAA.Algorithm']
   let TAAUOptions = [
     {
@@ -88,11 +83,9 @@ export async function POST({ request }){
         if (item.name == '[rhi.SyncInterval]'){
           cheats += `${item.offset[0]}\n680F0000 00000002 00000002\n`
         }
-
         if (item.name == '[r.VSync]'){
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
-
         if (item.name == '[r.DynamicRes.FrameTimeBudget]'){
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
@@ -104,15 +97,12 @@ export async function POST({ request }){
         if (item.name == '[rhi.SyncInterval]'){
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
-
         if (item.name == '[r.VSync]'){
           cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
-
         if (item.name == '[t.MaxFPS]'){
           cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
-
         if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
@@ -182,8 +172,28 @@ export async function POST({ request }){
   }
 
   const ssgi = sections.filter(entry => SSGI.some(keyword => entry.name.includes(keyword)))
-  
-  
+  for (const options of SSGIOptions){
+    cheats += `${options.name}\n`
+    for (const item of ssgi){
+      if (options.name == '[Enable SSGI]'){
+        if (item.name == '[r.SSGI.Quality]'){
+          cheats += `${item.offset[0]}\n680F0000 ${options.SSGIQuality}\n`
+        }
+        if (item.name == '[r.SSGI.Enable'){
+          cheats += `${item.offset[0]}\n680F0000 ${options.SSGIEnable}\n`
+        }
+      } else if (options.name == '[Disable SSGI]'){
+        if (item.name == '[r.SSGI.Quality]'){
+          cheats += `${item.offset[0]}\n680F0000 ${options.SSGIQuality}\n`
+        }
+        if (item.name == '[r.SSGI.Enable'){
+          cheats += `${item.offset[0]}\n680F0000 ${options.SSGIEnable}\n`
+        }
+      }
+    }
+    cheats += '\n'
+  }
+
   console.log(cheats)
   for(const cheat of sections){
     const cheatName = cheat.name.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean)[0]
@@ -198,6 +208,7 @@ export async function POST({ request }){
       console.log('Skipped: ', cheatName)
     }
   }
+  
   return json(
     {
       name: await dumpContent.name,

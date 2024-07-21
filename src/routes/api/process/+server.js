@@ -89,9 +89,8 @@ export async function POST({ request }){
         if (item.name == '[r.DynamicRes.FrameTimeBudget]'){
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
-
         if (item.name == '[t.MaxFPS]'){
-          cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
+          cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
       } else if (frameRate.name === '[45 FPS]'){
         if (item.name == '[rhi.SyncInterval]'){

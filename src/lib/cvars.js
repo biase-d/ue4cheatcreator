@@ -26,7 +26,7 @@ export let cheatNames = [
   // RENDER RESOLUTION SCALE
   { 
     cvar: "r.ScreenPercentage", 
-    name: "Render Resolution", 
+    name: "RRS", 
     options: resPercentageOptions
   },
   { 

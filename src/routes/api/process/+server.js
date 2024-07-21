@@ -31,14 +31,17 @@ export async function POST({ request }){
   let FPSOptions = [
     {
       name: '[30 FPS]',
+      fps: '680F0000 41F00000 41F00000',
       value: '680F0000 420551EC 420551EC' // 33.33ms
     },
     {
       name: '[45 FPS]',
+      fps: '680F0000 42340000 42340000',
       value: '680F0000 41B1C28F 41B1C28F' // 22.22ms
     },
     {
       name: '[60 FPS]',
+      fps: '680F0000 00000000 00000000',
       value: '680F0000 41855555 41855555' // 16.66ms
     }
   ]
@@ -90,20 +93,20 @@ export async function POST({ request }){
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
         if (item.name == '[t.MaxFPS]'){
-          cheats += `${item.offset[0]}\n${frameRate.value}\n`
+          cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
       } else if (frameRate.name === '[45 FPS]'){
         if (item.name == '[rhi.SyncInterval]'){
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
         if (item.name == '[r.VSync]'){
-          cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
+          cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
         if (item.name == '[t.MaxFPS]'){
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
         if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
-          cheats += `${item.offset[0]}\n${frameRate.value}\n`
+          cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
       } else if (frameRate.name === "[60 FPS]"){
         if (item.name == '[rhi.SyncInterval]'){
@@ -113,9 +116,8 @@ export async function POST({ request }){
         if (item.name == '[r.VSync]'){
           cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
-
         if (item.name == '[t.MaxFPS]'){
-          cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
+          cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
         if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`

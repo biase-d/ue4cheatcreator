@@ -115,7 +115,7 @@ export let cheatNames = [
 
   // OTHER
   { cvar: "r.MaxAnisotropy", name: "Anisotropic Filtering", options: AnisotropicFilteringLevels },
-  { cvar: "r.Fog", name: "Fog", options: toggleOptions},
+  { cvar: "r.Fog", name: "Foggy Scene", options: toggleOptions},
   //{ cvar: "r.SSGI.Enable", name: "SSGI Enable"},
   //{ cvar: "r.SSGI.Quality", name: "SSGI Quality"},
   //{ cvar: "r.DisableDistortion", name: "Distortion"},

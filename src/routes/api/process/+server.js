@@ -102,10 +102,10 @@ export async function POST({ request }){
         if (item.name == '[r.VSync]'){
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
-        if (item.name == '[t.MaxFPS]'){
+        if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
-        if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
+        if (item.name == '[t.MaxFPS]'){
           cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
       } else if (frameRate.name === "[60 FPS]"){
@@ -116,11 +116,11 @@ export async function POST({ request }){
         if (item.name == '[r.VSync]'){
           cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
-        if (item.name == '[t.MaxFPS]'){
-          cheats += `${item.offset[0]}\n${frameRate.value}\n`
-        }
         if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
+        }
+        if (item.name == '[t.MaxFPS]'){
+          cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
       }
     }

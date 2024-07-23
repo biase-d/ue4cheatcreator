@@ -100,7 +100,7 @@ export async function POST({ request }){
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
         if (item.name == '[r.VSync]'){
-          cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
+          cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
         if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`

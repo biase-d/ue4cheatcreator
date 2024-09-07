@@ -1,34 +1,46 @@
 import { json } from '@sveltejs/kit'
-import {cheatNames} from '$lib/cvars'
+import { cheatNames } from '$lib/cvars'
 
-export async function POST({ request }){
-
+export async function POST ({ request }) {
   const data = await request.formData()
-  const dumpContent = data.get('cfg') 
+  const cfg = data.get('cfg')
 
-  const cheatOffsets = await dumpContent.text()
+  let dumpContent
 
-  if (dumpContent.size > 20000){
-    return new Response('File is too big to be a cheat', {status: 500})
+  if (cfg instanceof File && cfg.type === 'text/plain') {
+    dumpContent = {
+      name: cfg.name,
+      type: cfg.type,
+      size: cfg.size,
+      content: await cfg.text()
+    }
+  } else {
+    return new Response('File is type is not supported', { status: 500 })
   }
 
-  if (!dumpContent){
-    return new Response('No file was uploaded', {status: 500})
+  const cheatOffsets = dumpContent.content
+
+  if (dumpContent.size > 20000) {
+    return new Response('File is too big to be a cheat', { status: 500 })
+  }
+
+  if (!dumpContent) {
+    return new Response('No file was uploaded', { status: 500 })
   }
 
   const sections = cheatOffsets.split(/\n\n/)
-  .filter((/** @type {string} */ section) => section.trim() !== "") // Remove empty sections
-  .map((/** @type {string} */ section) => {
-    const lines = section.trim().split('\n');
-    const name = lines.shift(); // Extract the name
-    const offset = lines; // Extract the offset
-    return { name, offset };
-  })
+    .filter((/** @type {string} */ section) => section.trim() !== '') // Remove empty sections
+    .map((/** @type {string} */ section) => {
+      const lines = section.trim().split('\n')
+      const name = lines.shift() // Extract the name
+      const offset = lines // Extract the offset
+      return { name, offset }
+    })
 
-  let cheats = ""
+  let cheats = ''
 
-  let FPS = ['rhi.SyncInterval', 'r.VSync', 'Customtimestep', 't.MaxFPS', 'r.DynamicRes.FrameTimeBudget']
-  let FPSOptions = [
+  const FPS = ['rhi.SyncInterval', 'r.VSync', 'Customtimestep', 't.MaxFPS', 'r.DynamicRes.FrameTimeBudget']
+  const FPSOptions = [
     {
       name: '[30 FPS]',
       fps: '680F0000 41F00000 41F00000',
@@ -46,14 +58,14 @@ export async function POST({ request }){
     }
   ]
 
-  let TAAU = ['r.DefaultFeature.AntiAliasing', 'r.TemporalAA.Upsampling','r.PostProcessAAQuality', 'r.TemporalAA.Algorithm']
-  let TAAUOptions = [
+  const TAAU = ['r.DefaultFeature.AntiAliasing', 'r.TemporalAA.Upsampling', 'r.PostProcessAAQuality', 'r.TemporalAA.Algorithm']
+  const TAAUOptions = [
     {
       name: '[Enable TAAU]',
       AAFeature: '00000002 00000002',
       AAQuality: '00000003 00000003', // Setting to 3 to prevent crashes in some games
       AAAlgorithm: '00000001 00000001',
-      upsampling: '00000001 00000001',
+      upsampling: '00000001 00000001'
     },
     {
       name: '[Disable TAAU]',
@@ -64,8 +76,8 @@ export async function POST({ request }){
     }
   ]
 
-  let SSGI = ['r.SSGI.Quality', 'r.SSGI.Enable']
-  let SSGIOptions = [
+  const SSGI = ['r.SSGI.Quality', 'r.SSGI.Enable']
+  const SSGIOptions = [
     {
       name: '[Enable SSGI]',
       SSGIEnable: '00000001 00000001',
@@ -78,92 +90,92 @@ export async function POST({ request }){
     }
   ]
 
-  const fps = sections.filter(entry => FPS.some(keyword => entry.name.includes(keyword)))
-  for(const frameRate of FPSOptions){
+  const fps = sections.filter(entry => FPS.some(keyword => entry.name && entry.name.includes(keyword)))
+  for (const frameRate of FPSOptions) {
     cheats += `${frameRate.name}\n`
-    for(const item of fps){
-      if (frameRate.name === "[30 FPS]"){
-        if (item.name == '[rhi.SyncInterval]'){
+    for (const item of fps) {
+      if (frameRate.name === '[30 FPS]') {
+        if (item.name === '[rhi.SyncInterval]') {
           cheats += `${item.offset[0]}\n680F0000 00000002 00000002\n`
         }
-        if (item.name == '[r.VSync]'){
+        if (item.name === '[r.VSync]') {
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
-        if (item.name == '[r.DynamicRes.FrameTimeBudget]'){
+        if (item.name === '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
-        if (item.name == '[t.MaxFPS]'){
+        if (item.name === '[t.MaxFPS]') {
           cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
-      } else if (frameRate.name === '[45 FPS]'){
-        if (item.name == '[rhi.SyncInterval]'){
+      } else if (frameRate.name === '[45 FPS]') {
+        if (item.name === '[rhi.SyncInterval]') {
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
-        if (item.name == '[r.VSync]'){
+        if (item.name === '[r.VSync]') {
           cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
-        if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
+        if (item.name === '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
-        if (item.name == '[t.MaxFPS]'){
+        if (item.name === '[t.MaxFPS]') {
           cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
-      } else if (frameRate.name === "[60 FPS]"){
-        if (item.name == '[rhi.SyncInterval]'){
+      } else if (frameRate.name === '[60 FPS]') {
+        if (item.name === '[rhi.SyncInterval]') {
           cheats += `${item.offset[0]}\n680F0000 00000001 00000001\n`
         }
 
-        if (item.name == '[r.VSync]'){
+        if (item.name === '[r.VSync]') {
           cheats += `${item.offset[0]}\n680F0000 00000000 00000000\n`
         }
-        if (item.name == '[r.DynamicRes.FrameTimeBudget]') {
+        if (item.name === '[r.DynamicRes.FrameTimeBudget]') {
           cheats += `${item.offset[0]}\n${frameRate.value}\n`
         }
-        if (item.name == '[t.MaxFPS]'){
+        if (item.name === '[t.MaxFPS]') {
           cheats += `${item.offset[0]}\n${frameRate.fps}\n`
         }
       }
     }
-    cheats += `\n`
+    cheats += '\n'
   }
 
-  const taau = sections.filter(entry => TAAU.some(keyword => entry.name.includes(keyword)))
-  if (taau){
-    for(const temporalUpsampling of TAAUOptions){
+  const taau = sections.filter(entry => TAAU.some(keyword => entry.name && entry.name.includes(keyword)))
+  if (taau) {
+    for (const temporalUpsampling of TAAUOptions) {
       cheats += `${temporalUpsampling.name}\n`
-      for(const item of taau){
-        if (temporalUpsampling.name == '[Enable TAAU]') {
+      for (const item of taau) {
+        if (temporalUpsampling.name === '[Enable TAAU]') {
           // Enable TAAU
-          if (item.name == '[r.DefaultFeature.AntiAliasing]'){
+          if (item.name === '[r.DefaultFeature.AntiAliasing]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.AAFeature}\n`
           }
-  
-          if (item.name == '[r.TemporalAA.Upsampling]'){
+
+          if (item.name === '[r.TemporalAA.Upsampling]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.upsampling}\n`
           }
-  
-          if (item.name == '[r.PostProcessAAQuality]'){
+
+          if (item.name === '[r.PostProcessAAQuality]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.AAQuality}\n`
           }
-  
-          if (item.name == '[r.TemporalAA.Algorithm]'){
+
+          if (item.name === '[r.TemporalAA.Algorithm]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.AAAlgorithm}\n`
           }
-        } else if (temporalUpsampling.name == '[Disable TAAU]'){
-          //Disabled TAAU
-          if (item.name == '[r.DefaultFeature.AntiAliasing]'){
+        } else if (temporalUpsampling.name === '[Disable TAAU]') {
+          // Disabled TAAU
+          if (item.name === '[r.DefaultFeature.AntiAliasing]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.AAFeature}\n`
           }
-  
-          if (item.name == '[r.TemporalAA.Upsampling]'){
+
+          if (item.name === '[r.TemporalAA.Upsampling]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.upsampling}\n`
           }
-  
-          if (item.name == '[r.PostProcessAAQuality]'){
+
+          if (item.name === '[r.PostProcessAAQuality]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.AAQuality}\n`
           }
-  
-          if (item.name == '[r.TemporalAA.Algorithm]'){
+
+          if (item.name === '[r.TemporalAA.Algorithm]') {
             cheats += `${item.offset[0]}\n680F0000 ${temporalUpsampling.AAAlgorithm}\n`
           }
         }
@@ -172,22 +184,22 @@ export async function POST({ request }){
     }
   }
 
-  const ssgi = sections.filter(entry => SSGI.some(keyword => entry.name.includes(keyword)))
-  for (const options of SSGIOptions){
+  const ssgi = sections.filter(entry => SSGI.some(keyword => entry.name && entry.name.includes(keyword)))
+  for (const options of SSGIOptions) {
     cheats += `${options.name}\n`
-    for (const item of ssgi){
-      if (options.name == '[Enable SSGI]'){
-        if (item.name == '[r.SSGI.Quality]'){
+    for (const item of ssgi) {
+      if (options.name === '[Enable SSGI]') {
+        if (item.name === '[r.SSGI.Quality]') {
           cheats += `${item.offset[0]}\n680F0000 ${options.SSGIQuality}\n`
         }
-        if (item.name == '[r.SSGI.Enable'){
+        if (item.name === '[r.SSGI.Enable') {
           cheats += `${item.offset[0]}\n680F0000 ${options.SSGIEnable}\n`
         }
-      } else if (options.name == '[Disable SSGI]'){
-        if (item.name == '[r.SSGI.Quality]'){
+      } else if (options.name === '[Disable SSGI]') {
+        if (item.name === '[r.SSGI.Quality]') {
           cheats += `${item.offset[0]}\n680F0000 ${options.SSGIQuality}\n`
         }
-        if (item.name == '[r.SSGI.Enable'){
+        if (item.name === '[r.SSGI.Enable') {
           cheats += `${item.offset[0]}\n680F0000 ${options.SSGIEnable}\n`
         }
       }
@@ -195,32 +207,32 @@ export async function POST({ request }){
     cheats += '\n'
   }
 
-  for(const cheat of sections){
-    const cheatName = cheat.name.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean)[0]
-    
-    try {
-      let test = cheatNames.find(({ cvar }) => cvar === cheatName)
-      for (const option of test?.options){
-        cheats += `[${test?.name} ${option.name}]\n`
-        cheats += `${cheat.offset[0]}\n`
-        cheats += `680F0000 ${option.value}\n`
-        cheats += '\n'
+  for (const cheat of sections) {
+    if (cheat && cheat.name) {
+      const cheatName = cheat.name.split(/\[\s*([^\]]+)\s*\]\s*/).filter(Boolean)[0]
+
+      try {
+        const test = cheatNames.find(({ cvar }) => cvar === cheatName)
+        if (test && test.options) {
+          for (const option of test?.options) {
+            cheats += `[${test?.name} ${option.name}]\n`
+            cheats += `${cheat.offset[0]}\n`
+            cheats += `680F0000 ${option.value}\n`
+            cheats += '\n'
+          }
+        } else if (test === undefined) {
+          throw Error
+        }
+      } catch (err) {
+        console.log('Skipped: ', cheatName)
       }
-      
-      if (test == undefined){
-        throw Error
-      }
-    } catch(err) {
-      console.log('Skipped: ', cheatName)
     }
   }
 
-  console.log(cheats)
-
   return json(
     {
-      name: await dumpContent.name,
-      cheats: cheats
+      name: dumpContent.name,
+      cheats
     }
   )
 }

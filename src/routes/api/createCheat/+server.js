@@ -7,7 +7,7 @@ export async function POST ({ request }) {
   const cfgFormData = await request.formData()
   const cfg = cfgFormData.get('cfg')
 
-  const data = yaml.load(await read('/src/routes/api/createCheat/config.yaml').text())
+  const data = yaml.load(await read('../src/routes/api/createCheat/config.yaml').text())
   const { CheatOptions } = data
 
   let content = ''

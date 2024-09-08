@@ -9,19 +9,24 @@
   import "../app.css"
 </script>
 
-<div>
-  <header class="sticky top-0">
-    <nav class="p-8 font-bold lowercase text-xl flex items-center">
-      <div class="grid items-center justify-center w-[32px] h-[32px]">
-        <Icon icon='pixelarticons:chevrons-horizontal'width=auto/>
+<div class="grid items-center justify-center gap-2.5">
+  <header class="flex justify-center">
+    <nav class="flex gap-2.5 p-8 font-bold lowercase text-xl">
+      <div class="w-[32px] h-[32px]">
+        <Icon icon="icon-park-twotone:game" width=32/>
       </div>
-      <h1><a href="/">ue4cheatscreator </a></h1>
+      <h1><a href="/">ue4cheatscreator</a></h1>
     </nav>
   </header>
-  <main>
+  <main class='bg-primary/5 p-5 py-10 rounded-md w-96 transition-all'>
     <slot />
   </main>
-  <footer class="grid justify-center mt-10">
-    <a href="https://github.com/biase-d/ue4cheatcreator" class="flex font-bold lowercase hover:text-secondary"> <Icon icon='pixelarticons:github' width=auto/></a>
-  </footer>
 </div>
+<footer class="flex flex-col mt-10 justify-center items-center w-full gap-5">
+  <div>
+    <p>Work in progress</p>
+  </div>
+  <div>
+    <a href="https://github.com/biase-d/ue4cheatcreator" class="flex font-bold lowercase hover:text-secondary transition-all"> <Icon icon='pixelarticons:github' width=auto/></a>
+  </div>
+</footer>

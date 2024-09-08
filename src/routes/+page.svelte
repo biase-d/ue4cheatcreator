@@ -18,10 +18,10 @@
     if (file.files){
       formData.append('cfg', file.files[0])
     } else {
-      alert('There is no file to process')
+      alert('Select a file to start')
     }
 
-    const response  = await fetch('/api/process', {
+    const response  = await fetch('/api/createCheat', {
       method: 'POST',
       body: formData
     })
@@ -34,7 +34,8 @@
       name = "";
 
       name = data.name
-      cheats += data.cheats
+      cheats += data.content
+      size = data.size
     } else if (response.status === 500){
       alert('File is too big. Make sure you are selecting the correct .txt file')
     } else {
@@ -46,24 +47,26 @@
     loading = false
     cheats = ""
   }
+  
 </script>
 
 {#if cheats === ""}
   <form on:submit|preventDefault= {handleCFGfile} class="grid px-8 gap-2.5 items-center justify-center">
-    <!-- svelte-ignore a11y-label-has-associated-control -->
-    <label class="text-xs">Max Size: 20KB</label>
+    <div class="flex items-center justify-center w-[96] h-[96] animate-pulse">
+      <Icon icon="pixelarticons:article" width=96/>
+    </div>
     <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
     {#if !loading}
       <button class="btn btn-primary max-w-sm" type='submit'> Get Cheats </button>
     {:else}
       <button class="btn btn-primary max-w-sm cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
     {/if}
+
   </form>
 {:else}
-  <div class="grid items-center justify-center gap-2.5">
-    <Download { cheats } { name } />
+  <div class="flex flex-col items-center justify-center gap-2.5">
+    <span class="h-[96] w-[96] text-green-700"><Icon icon="pixelarticons:check" width=96/></span>
+    <Download { cheats } { name } {size}/>
     <button on:click={recreate} class="text-sm font-bold text-primary"> Create for another game </button>
   </div>
 {/if}
-
-<p class="text-center bold text-sm mt-2">Work in progress</p>

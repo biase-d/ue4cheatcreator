@@ -1,5 +1,5 @@
 <script>
-  import Download from '$lib/components/Download.svelte';
+  import Download from './Download.svelte';
   import Icon from '@iconify/svelte';
 
   /**

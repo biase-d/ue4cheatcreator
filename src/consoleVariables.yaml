@@ -1,0 +1,28 @@
+CheatOptions:
+  - name: '30 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
+      - 'rhi.SyncInterval': '00000001 00000001'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '41F00000 41F00000'
+      - 'r.GTSyncType': '00000001 00000001'
+  - name: '45 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '41B1C28F 41B1C28F'
+      - 'rhi.SyncInterval': '00000001 00000001'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '42340000 42340000'
+      - 'r.GTSyncType': '00000001 00000001' 
+  - name: '60 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
+      - 'rhi.SyncInterval': '00000001 00000001'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '42700000 42700000'
+      - 'r.GTSyncType': '00000001 00000001' 
+  - name: 'Enable DRS'
+    options: 
+      - 'r.DynamicRes.OperationMode': '00000001 00000001'
+  - name: 'Disable DRS'
+    options: 
+      - 'r.DynamicRes.OperationMode': '00000000 00000000'

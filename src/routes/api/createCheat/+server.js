@@ -1,14 +1,17 @@
-// @ts-ignore
-import fs from 'fs'
 import yaml from 'js-yaml'
+import { parseData } from './parse.js'
+import { read } from '$app/server'
 import { json } from '@sveltejs/kit'
 
 export async function POST ({ request }) {
   const cfgFormData = await request.formData()
   const cfg = cfgFormData.get('cfg')
 
-  let dump
+  const data = yaml.load(await read('/src/routes/api/createCheat/config.yaml').text())
+  const { CheatOptions } = data
+
   let content = ''
+  let dump
 
   if (cfg instanceof File && cfg.type === 'text/plain') {
     dump = {
@@ -20,11 +23,6 @@ export async function POST ({ request }) {
   } else {
     return new Response('Please make sure you are using the correct file', { status: 500 })
   }
-
-  // @ts-ignore
-  const data = yaml.load(fs.readFileSync('src/consoleVariables.yaml', 'utf8'))
-
-  const { CheatOptions } = data
 
   const cheat = parseData(dump.content)
 
@@ -41,26 +39,6 @@ export async function POST ({ request }) {
       }
     })
     content += '\n'
-  }
-
-  function parseData (data) {
-    const result = {}
-    const sections = data.trim().split(/\n\n+/) // Split into sections by double newlines
-
-    sections.forEach(section => {
-      const lines = section.split('\n') // Split section into lines
-      const name = lines[0].match(/\[(.*)\]/)[1] // Extract name from square brackets
-      const offset = lines[1]
-      const value = lines[2]
-
-      // Store the parsed data in an object
-      result[name] = {
-        offset,
-        value
-      }
-    })
-
-    return result
   }
 
   return json(

@@ -12,11 +12,11 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 # Supported Cheats
 - [x] FPS - 30, 45, 60
 - [x] Dynamic Resolution 
-- [ ] Dynamic Resolution Target FPS
+- [x] Dynamic Resolution Target FPS
 - [ ] Anti Aliasing 
-- [ ] Render Resolution
-- [ ] 2nd Render Resolution 
-- [ ] Upscale Quality 
+- [ ] Render Resolution Scale
+- [ ] 2nd Render Resolution Scale
+- [x] Upscale Quality 
 - [ ] View Distance Scale 
 - [ ] LOD Distance Scale 
 - [ ] SSAO 

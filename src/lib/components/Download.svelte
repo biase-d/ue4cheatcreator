@@ -15,10 +15,9 @@
     revokeObjectURL(link.href)
   }
 </script>
-<!--
-<ul class="">
-  <li class="flex gap-2.5 text-xl"><Icon icon="line-md:file-document" width=auto/> { name }</li>
-  <li class="flex gap-2.5 text-xl"><Icon icon="line-md:hash-small" width=auto/> {size} KB</li>
+<ul class="grid gap-2.5 w-full">
+  <li class="grid text-xl"><span class="label-text">Filename</span> <br>{ name }</li>
+  <li class="grid text-xl"><span class="label-text">Size</span><br>{size} KB</li>
 </ul>
--->
-<button class="btn btn-primary items-center" on:click={() => downloadCheat(cheats)}><span class="h-[32] w-[32]"><Icon icon="pixelarticons:download" width="auto"/></span>{name} ({size}KB) </button>
+
+<button class="btn btn-primary w-full mt-5 font-bold" on:click={() => downloadCheat(cheats)}>Download</button>

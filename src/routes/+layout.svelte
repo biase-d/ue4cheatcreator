@@ -18,13 +18,13 @@
       <h1><a href="/">ue4cheatscreator</a></h1>
     </nav>
   </header>
-  <main class='bg-primary/5 p-5 py-10 rounded-md w-96 transition-all'>
+  <main class='bg-primary/5 p-5 py-10 rounded-md w-96 transition-all border border-primary/15'>
     <slot />
   </main>
 </div>
 <footer class="flex flex-col mt-10 justify-center items-center w-full gap-5">
   <div>
-    <p>Work in progress</p>
+    <p>Cool updates on the way</p>
   </div>
   <div>
     <a href="https://github.com/biase-d/ue4cheatcreator" class="flex font-bold lowercase hover:text-secondary transition-all"> <Icon icon='pixelarticons:github' width=auto/></a>

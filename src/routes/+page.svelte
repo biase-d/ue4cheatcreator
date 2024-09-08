@@ -52,7 +52,7 @@
 
 {#if cheats === ""}
   <form on:submit|preventDefault= {handleCFGfile} class="grid px-8 gap-2.5 items-center justify-center">
-    <div class="flex items-center justify-center w-[96] h-[96] animate-pulse">
+    <div class="w-[96px] h-[96px] my-10 animate-pulse ml-auto mr-auto">
       <Icon icon="pixelarticons:article" width=96/>
     </div>
     <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
@@ -65,7 +65,7 @@
   </form>
 {:else}
   <div class="flex flex-col items-center justify-center gap-2.5">
-    <span class="h-[96] w-[96] text-green-700"><Icon icon="pixelarticons:check" width=96/></span>
+    <span class="h-[96px] w-[96px] bg-primary/10 rounded-full text-green-700 my-10"><Icon icon="pixelarticons:check" width=96/></span>
     <Download { cheats } { name } {size}/>
     <button on:click={recreate} class="text-sm font-bold text-primary"> Create for another game </button>
   </div>

@@ -27,7 +27,7 @@ export const fpsTargetOptions = [
   },
   {
     name: '45 FPS',
-    value: '41B1C28F'
+    value: '41B1C28F 41B1C28F'
   },
   {
     name: '60 FPS',

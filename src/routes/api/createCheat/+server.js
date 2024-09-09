@@ -15,27 +15,36 @@ export async function POST ({ request }) {
 
   // Initialize an array to collect content parts
   const contentParts = []
-
   for (const item of CheatOptions) {
-    // Add the cheat name
-    contentParts.push(`[${item.name}]`)
-
-    // Process each option
-    item.options.forEach(options => {
-      const [name, value] = Object.entries(options)[0]
-
-      // @ts-ignore
-      if (cheat[name]) {
+    if (item.options) {
+    // Filter out options that do not have corresponding values in the cheat object
+      const setting = item.options.filter(options => {
+        const [name] = Object.entries(options)[0]
         // @ts-ignore
-        contentParts.push(`${cheat[name].offset}`)
-        contentParts.push(INSTRUCTION + value)
-      } else {
-        console.warn('Skipped: ', name)
-      }
-    })
+        return cheat[name] // Only keep the option if it exists in the cheat data
+      })
 
-    // Add a newline after each section
-    contentParts.push('')
+      // Only add the section if there are valid options
+      if (setting.length > 0) {
+      // Add the cheat name
+        contentParts.push(`[${item.name}]`)
+
+        // Process each valid option
+        setting.forEach(options => {
+          const [name, value] = Object.entries(options)[0]
+          // @ts-ignore
+          contentParts.push(`${cheat[name].offset}`)
+          contentParts.push(INSTRUCTION + value)
+        })
+
+        // Add a newline after each section
+        contentParts.push('')
+      } else {
+        console.warn('No valid options for:', item.name)
+      }
+    } else {
+      console.warn('Skipped', item.name)
+    }
   }
 
   // Join all content parts with newlines

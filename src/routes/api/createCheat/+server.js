@@ -34,7 +34,7 @@ export async function POST ({ request }) {
           const [name, value] = Object.entries(options)[0]
           // @ts-ignore
           contentParts.push(`${cheat[name].offset}`)
-          contentParts.push(INSTRUCTION + value)
+          contentParts.push(INSTRUCTION + ' ' + value)
         })
 
         // Add a newline after each section

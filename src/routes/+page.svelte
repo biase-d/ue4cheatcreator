@@ -57,9 +57,9 @@
     </div>
     <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
     {#if !loading}
-      <button class="btn btn-primary max-w-sm" type='submit'> Get Cheats </button>
+      <button class="btn btn-primary font-bold" type='submit'> Create Cheats </button>
     {:else}
-      <button class="btn btn-primary max-w-sm cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
+      <button class="btn btn-primary cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
     {/if}
 
   </form>

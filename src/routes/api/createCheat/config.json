@@ -295,18 +295,18 @@
             ]
         },
         {
-            "name": "Adaptive Exposure On",
-            "options": [
-                {
-                    "r.EyeAdaptationQuality": "00000001 00000001"
-                }
-            ]
-        },
-        {
             "name": "Adaptive Exposure Off",
             "options": [
                 {
                     "r.EyeAdaptationQuality": "00000000 00000000"
+                }
+            ]
+        },
+        {
+            "name": "Adaptive Exposure On",
+            "options": [
+                {
+                    "r.EyeAdaptationQuality": "00000001 00000001"
                 }
             ]
         },

@@ -2,22 +2,22 @@ export const toggleOptions = [
   {
     name: 'Enable',
     value: '00000001 00000001'
-   },
-   {
+  },
+  {
     name: 'Disable',
     value: '00000000 00000000'
-   }
+  }
 ]
 
 export const toggleOptionsFlt = [
   {
     name: 'Enable',
     value: '3F800000 3F800000'
-   },
-   {
+  },
+  {
     name: 'Disable',
     value: '00000000 00000000'
-   }
+  }
 ]
 
 export const fpsTargetOptions = [
@@ -27,7 +27,7 @@ export const fpsTargetOptions = [
   },
   {
     name: '45 FPS',
-    value: '41B1C28F'
+    value: '41B1C28F 41B1C28F'
   },
   {
     name: '60 FPS',
@@ -57,7 +57,7 @@ export const AALevels = [
 export const levels = [
   {
     name: 'Off',
-    value: `${toggleOptions[1].value}`,
+    value: `${toggleOptions[1].value}`
   },
   {
     name: 'Very Low',
@@ -69,7 +69,7 @@ export const levels = [
   },
   {
     name: 'Medium',
-    value: `00000003 00000003`
+    value: '00000003 00000003'
   },
   {
     name: 'High',
@@ -88,7 +88,7 @@ export const levels = [
 export const levelsFlt = [
   {
     name: 'Off',
-    value: `${toggleOptions[1].value}`,
+    value: `${toggleOptions[1].value}`
   },
   {
     name: 'Very Low',
@@ -100,7 +100,7 @@ export const levelsFlt = [
   },
   {
     name: 'Medium',
-    value: `40400000 40400000`
+    value: '40400000 40400000'
   },
   {
     name: 'High',
@@ -177,7 +177,7 @@ export const resPercentageOptions = [
 export const AnisotropicFilteringLevels = [
   {
     name: 'Off',
-    value: `${toggleOptions[1].value}`,
+    value: `${toggleOptions[1].value}`
   },
   {
     name: '1x',
@@ -198,14 +198,14 @@ export const AnisotropicFilteringLevels = [
   {
     name: '16x',
     value: '00000016 00000016'
-  },
+  }
 ]
 
 /**
  * @type {{ name: string; value: string; }[]}
  */
-export let upscaleOptions = []
-let upscaleNames = ["Nearest", "Bilinear", "Blur", "Catmull-Rom", "Lanczos 3", "Gaussian"]
-for (let i = 0; i < upscaleNames.length; i++){
-  upscaleOptions.push({name: upscaleNames[i], value: levels[i].value})
+export const upscaleOptions = []
+const upscaleNames = ['Nearest', 'Bilinear', 'Blur', 'Catmull-Rom', 'Lanczos 3', 'Gaussian']
+for (let i = 0; i < upscaleNames.length; i++) {
+  upscaleOptions.push({ name: upscaleNames[i], value: levels[i].value })
 }

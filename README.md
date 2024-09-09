@@ -14,7 +14,7 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 - [x] Dynamic Resolution 
 - [x] Dynamic Resolution Target FPS
 - [ ] Anti Aliasing 
-- [ ] Render Resolution Scale
+- [x] Render Resolution Scale - 50%, 66.66%, 70%, 71.11%, 75%, 83.33%, 85%, 90%, 100%
 - [ ] 2nd Render Resolution Scale
 - [x] Upscale Quality 
 - [ ] View Distance Scale 
@@ -29,13 +29,13 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 - [ ] Depth of Field 
 - [ ] Sky Lighting Quality 
 - [ ] Light Function Quality 
-- [ ] Film Grain 
-- [ ] Image Sharpening 
-- [ ] Filmic Tonemapper
-- [ ] Vignette 
+- [x] Film Grain 
+- [x] Image Sharpening 
+- [x] Filmic Tonemapper
+- [x] Vignette 
 - [ ] Adaptive Exposure
 - [ ] Anisotropic Filtering 
-- [ ] Fog 
+- [x] Fog 
 - [ ] Outlines 
 - [ ] Fully Load Textures ASAP
 - [ ] Refraction Quality 

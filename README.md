@@ -1,7 +1,7 @@
 # ue4cheatcreator
 Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 
-# How to use 
+## How to use 
 1. Create cfg dump using [UE4cfgdumper](https://github.com/masagrator/UE4cfgdumper)
 2. Copy the .txt file from folder with the game ID in ue4cfgdumper's directory 
 3. Visit [UE4cheatcreator](https://ue4cheatcreator.vercel.app)
@@ -9,46 +9,45 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 5. Download
 6. Copy to console and Enjoy 
 
-# Supported Cheats
+## Supported Cheats
 - [x] FPS - 30, 45, 60
 - [x] Dynamic Resolution 
 - [x] Dynamic Resolution Target FPS
-- [ ] Anti Aliasing 
+- [x] Anti Aliasing 
 - [x] Render Resolution Scale - 50%, 66.66%, 70%, 71.11%, 75%, 83.33%, 85%, 90%, 100%
-- [ ] 2nd Render Resolution Scale
+- [x] 2nd Render Resolution Scale - 50%, 75%, 100%
 - [x] Upscale Quality 
-- [ ] View Distance Scale 
-- [ ] LOD Distance Scale 
-- [ ] SSAO 
-- [ ] Shadow Quality 
-- [ ] Shadow Distance
-- [ ] Motion Blur Quality 
-- [ ] Lens Flare Quality 
-- [ ] Bloom
-- [ ] Chromatic Aberration 
-- [ ] Depth of Field 
-- [ ] Sky Lighting Quality 
+- [x] View Distance Scale 
+- [x] Foliage 
+- [x] SSAO 
+- [x] Shadow Quality 
+- [x] Shadow Distance
+- [x] Motion Blur
+- [x] Lens Flare Quality 
+- [x] Bloom
+- [x] Chromatic Aberration 
+- [x] Depth of Field 
+- [x] Sky Lighting Quality 
 - [ ] Light Function Quality 
 - [x] Film Grain 
 - [x] Image Sharpening 
 - [x] Filmic Tonemapper
 - [x] Vignette 
-- [ ] Adaptive Exposure
-- [ ] Anisotropic Filtering 
+- [x] Adaptive Exposure
+- [x] Anisotropic Filtering 
 - [x] Fog 
-- [ ] Outlines 
-- [ ] Fully Load Textures ASAP
-- [ ] Refraction Quality 
-- [ ] Max Quality Override 
-- [ ] Mobile Shading Path 
-- [ ] TAAU
+- [x] Outlines 
+- [x] Fully Load Textures ASAP
+- [x] Refraction Quality 
+- [x] Max Quality Override 
+- [x] Mobile Shading Path 
+- [?] TAAU
 - [ ] SSGI
 - [ ] SSR
 - [ ] MSAA
 - [ ] MIN/MAX/DEFAULT GFX Settings
 
-# Progress Tracker
-## In-Progress 
+## Progress Tracker
 - [ ]  Download fps or gfx only (_or both ofc_)
 - [ ]  Toggles for cheats before creation of txt
 - [ ]  Order cheats according to usefulness
@@ -62,7 +61,7 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 
 After all the work has been done I might begin work on creating an overlay for this for Ultrahand 
 
-# Special Thanks
+## Special Thanks
 This project wouldn't be possible without:
 - The tutorials and documentation of UE4 cheats on the switch by Hazerou 
-- [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper) by Masagrator 
+- [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper) by Masagrator

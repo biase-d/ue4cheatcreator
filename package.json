@@ -26,6 +26,7 @@
   "type": "module",
   "dependencies": {
     "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.5.4",
     "js-yaml": "^4.1.0"
   }
 }

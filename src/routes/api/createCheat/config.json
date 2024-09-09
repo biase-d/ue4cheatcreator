@@ -855,14 +855,6 @@
             ]
         },
         {
-            "name": "Fully Load Textures ASAP On",
-            "options": [
-                {
-                    "r.Streaming.FullyLoadUsedTextures": "00000001 00000001"
-                }
-            ]
-        },
-        {
             "name": "Fully Load Textures ASAP Off",
             "options": [
                 {
@@ -871,10 +863,10 @@
             ]
         },
         {
-            "name": "Refraction Quality On",
+            "name": "Fully Load Textures ASAP On",
             "options": [
                 {
-                    "r.RefractionQuality": "00000001 00000001"
+                    "r.Streaming.FullyLoadUsedTextures": "00000001 00000001"
                 }
             ]
         },
@@ -887,10 +879,10 @@
             ]
         },
         {
-            "name": "Max Quality Override On",
+            "name": "Refraction Quality On",
             "options": [
                 {
-                    "r.MaxQualityMode": "00000001 00000001"
+                    "r.RefractionQuality": "00000001 00000001"
                 }
             ]
         },
@@ -903,10 +895,10 @@
             ]
         },
         {
-            "name": "Mobile Shading Path On",
+            "name": "Max Quality Override On",
             "options": [
                 {
-                    "r.Mobile.ShadingPath": "00000001 00000001"
+                    "r.MaxQualityMode": "00000001 00000001"
                 }
             ]
         },
@@ -915,6 +907,14 @@
             "options": [
                 {
                     "r.Mobile.ShadingPath": "00000000 00000000"
+                }
+            ]
+        },
+        {
+            "name": "Mobile Shading Path On",
+            "options": [
+                {
+                    "r.Mobile.ShadingPath": "00000001 00000001"
                 }
             ]
         }

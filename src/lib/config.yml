@@ -373,33 +373,34 @@ CheatOptions:
       - 'r.MaxAnisotropy': '00000016 00000016'
 
   # Fully Load Used Textures
-  - name: 'Fully Load Textures ASAP On'
-    options:
-      - 'r.Streaming.FullyLoadUsedTextures': '00000001 00000001'
   - name: 'Fully Load Textures ASAP Off'
     options:
       - 'r.Streaming.FullyLoadUsedTextures': '00000000 00000000'
+  - name: 'Fully Load Textures ASAP On'
+    options:
+      - 'r.Streaming.FullyLoadUsedTextures': '00000001 00000001'
 
   # Refraction Quality
-  - name: 'Refraction Quality On'
-    options:
-      - 'r.RefractionQuality': '00000001 00000001'
   - name: 'Refraction Quality Off'
     options:
       - 'r.RefractionQuality': '00000000 00000000'
+  - name: 'Refraction Quality On'
+    options:
+      - 'r.RefractionQuality': '00000001 00000001'
 
   # Max Quality Override
-  - name: 'Max Quality Override On'
-    options:
-      - 'r.MaxQualityMode': '00000001 00000001'
   - name: 'Max Quality Override Off'
     options:
       - 'r.MaxQualityMode': '00000000 00000000'
+  - name: 'Max Quality Override On'
+    options:
+      - 'r.MaxQualityMode': '00000001 00000001'
+
 
   # Mobile Shading Path
-  - name: 'Mobile Shading Path On'
-    options:
-      - 'r.Mobile.ShadingPath': '00000001 00000001'
   - name: 'Mobile Shading Path Off'
     options:
       - 'r.Mobile.ShadingPath': '00000000 00000000'
+  - name: 'Mobile Shading Path On'
+    options:
+      - 'r.Mobile.ShadingPath': '00000001 00000001'

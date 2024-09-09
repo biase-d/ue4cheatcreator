@@ -1,5 +1,5 @@
 CheatOptions:
-    # FPS
+  # FPS
   - name: '30 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
@@ -21,6 +21,7 @@ CheatOptions:
       - 'r.VSync': '00000000 00000000'
       - 't.MaxFPS': '42700000 42700000'
       - 'r.GTSyncType': '00000001 00000001' 
+
   # Filtering
   - name: 'Filtering Type-0 (Nearest)'
     options:
@@ -40,10 +41,11 @@ CheatOptions:
   - name: 'Filtering Type-5 (Gaussian)'
     options:
       - 'r.Upscale.Quality': '00000005 00000005'
-    # Dynamic Resolution Scale
+
+  # Dynamic Resolution Scale
   - name: 'Enable DRS'
     options: 
-      - 'r.DynamicRes.OperationMode': '00000001 00000001'
+      - 'r.DynamicRes.OperationMode': '00000002 00000002'
   - name: 'Disable DRS'
     options: 
       - 'r.DynamicRes.OperationMode': '00000000 00000000'
@@ -56,4 +58,88 @@ CheatOptions:
   - name: 'DR Target 60 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
-    # Resolution Scale
+
+  # Resolution Scale
+  - name: 'RRS 50%'
+    options:
+      - 'r.ScreenPercentage': '42480000 42480000'
+  - name: 'RRS 66.66%'
+    options:
+      - 'r.ScreenPercentage': '42855555 42855555'
+  - name: 'RRS 70%'
+    options:
+      - 'r.ScreenPercentage': '428E38E4 428E38E4'
+  - name: 'RRS 71.11%'
+    options:
+      - 'r.ScreenPercentage': '428E38E4 428E38E4'
+  - name: 'RRS 75%'
+    options:
+      - 'r.ScreenPercentage': '42960000 42960000'
+  - name: 'RRS 83.33%'
+    options:
+      - 'r.ScreenPercentage': '42A6A8F6 42A6A8F6'
+  - name: 'RRS 85%'
+    options:
+      - 'r.ScreenPercentage': '42AA0000 42AA0000'
+  - name: 'RRS 90%'
+    options:
+      - 'r.ScreenPercentage': '42B40000 42B40000'
+  - name: 'RRS 100%'
+    options:
+      - 'r.ScreenPercentage': '42C80000 42C80000'
+
+  # Film Grain
+  - name: 'Film Grain On'
+    options:
+      - 'r.Tonemapper.GrainQuantization': '00000001 00000001'
+  - name: 'Film Grain Off'
+    options:
+      - 'r.Tonemapper.GrainQuantization': '00000000 00000000'
+
+  # Vignette
+  - name: 'Vignette On'
+    options:
+      - 'r.Tonemapper.Quality': '00000000 00000000'
+  - name: 'Vignette Off'
+    options:
+      - 'r.Tonemapper.Quality': '00000001 00000001'
+
+  # Foggy Scene
+  - name: 'Foggy Scene On'
+    options:
+      - 'r.Fog' : '00000001 00000001'
+  - name: 'Foggy Scene Off'
+    options:
+      - 'r.Fog' : '00000000 00000000'
+  
+  # Chromatic Aberration
+  - name: 'Chromatic Aberration On'
+    options:
+      - 'r.SceneColorFringeQuality' : '00000001 00000001'
+  - name: 'Chromatic Aberration Off'
+
+  # Lens Flare
+  - name: 'Lens Flare Off'
+  - name: 'Lens Flare On'
+
+  # Sky Lighting Quality
+  - name: 'Sky Lighting Quality Off'
+  - name: 'Sky Lighting Quality On'
+
+  # Film Tone Mapper
+  - name: "Don't Use New Film Tone Mapper"
+  - name: 'Use New Film Tone Mapper'
+
+  # Image Sharpening
+  - name: 'Image Sharpening Off'
+    options:
+      - 'r.Tonemapper.Sharpen': '00000000 00000000'
+  - name: 'Image Sharpening On'
+    options:
+      - 'r.Tonemapper.Sharpen': '00000001 00000001'
+
+  # Motion Blur
+  - name: 'Motion Blur Off'
+  - name: 'Motion Blur On x0.2'
+  - name: 'Motion Blur On x0.5'
+  - name: 'Motion Blur On x1.0'

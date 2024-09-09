@@ -1,49 +1,49 @@
-import yaml from 'js-yaml'
-import { parseData } from './parse.js'
-import { read } from '$app/server'
+import config from './config.json'
+import { parseData } from '$lib/parse.js'
 import { json } from '@sveltejs/kit'
 
 export async function POST ({ request }) {
-  const cfgFormData = await request.formData()
-  const cfg = cfgFormData.get('cfg')
+  const INSTRUCTION = '680F0000'
+  const cfg = (await request.formData()).get('cfg')
+  const { CheatOptions } = config
 
-  const data = yaml.load(await read('../src/routes/api/createCheat/config.yaml').text())
-  const { CheatOptions } = data
-
-  let content = ''
-  let dump
-
-  if (cfg instanceof File && cfg.type === 'text/plain') {
-    dump = {
-      name: cfg.name,
-      type: cfg.type,
-      size: cfg.size,
-      content: await cfg.text()
-    }
-  } else {
+  if (!(cfg instanceof File && cfg.type === 'text/plain')) {
     return new Response('Please make sure you are using the correct file', { status: 500 })
   }
 
-  const cheat = parseData(dump.content)
+  const cheat = parseData(await cfg.text())
+
+  // Initialize an array to collect content parts
+  const contentParts = []
 
   for (const item of CheatOptions) {
-    content += `[${item.name}]\n`
+    // Add the cheat name
+    contentParts.push(`[${item.name}]`)
+
+    // Process each option
     item.options.forEach(options => {
       const [name, value] = Object.entries(options)[0]
+
+      // @ts-ignore
       if (cheat[name]) {
-        content += `${cheat[name].offset}\n`
-        content += '680F0000 '
-        content += `${value}\n`
+        // @ts-ignore
+        contentParts.push(`${cheat[name].offset}`)
+        contentParts.push(INSTRUCTION + value)
       } else {
         console.warn('Skipped: ', name)
       }
     })
-    content += '\n'
+
+    // Add a newline after each section
+    contentParts.push('')
   }
+
+  // Join all content parts with newlines
+  const content = contentParts.join('\n')
 
   return json(
     {
-      name: dump.name,
+      name: cfg.name,
       content,
       size: Buffer.byteLength(content, 'utf8') / 1000
     }

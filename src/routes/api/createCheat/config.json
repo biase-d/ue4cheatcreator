@@ -1,0 +1,152 @@
+{
+  "CheatOptions": [
+    {
+      "name": "30 FPS",
+      "options": [
+        {
+          "r.DynamicRes.FrameTimeBudget": "420551EC 420551EC"
+        },
+        {
+          "rhi.SyncInterval": "00000001 00000001"
+        },
+        {
+          "r.VSync": "00000000 00000000"
+        },
+        {
+          "t.MaxFPS": "41F00000 41F00000"
+        },
+        {
+          "r.GTSyncType": "00000001 00000001"
+        }
+      ]
+    },
+    {
+      "name": "45 FPS",
+      "options": [
+        {
+          "r.DynamicRes.FrameTimeBudget": "41B1C28F 41B1C28F"
+        },
+        {
+          "rhi.SyncInterval": "00000001 00000001"
+        },
+        {
+          "r.VSync": "00000000 00000000"
+        },
+        {
+          "t.MaxFPS": "42340000 42340000"
+        },
+        {
+          "r.GTSyncType": "00000001 00000001"
+        }
+      ]
+    },
+    {
+      "name": "60 FPS",
+      "options": [
+        {
+          "r.DynamicRes.FrameTimeBudget": "41855555 41855555"
+        },
+        {
+          "rhi.SyncInterval": "00000001 00000001"
+        },
+        {
+          "r.VSync": "00000000 00000000"
+        },
+        {
+          "t.MaxFPS": "42700000 42700000"
+        },
+        {
+          "r.GTSyncType": "00000001 00000001"
+        }
+      ]
+    },
+    {
+      "name": "Filtering Type-0 (Nearest)",
+      "options": [
+        {
+          "r.Upscale.Quality": "00000000 00000000"
+        }
+      ]
+    },
+    {
+      "name": "Filtering Type-1 (Simple Bilinear)",
+      "options": [
+        {
+          "r.Upscale.Quality": "00000001 00000001"
+        }
+      ]
+    },
+    {
+      "name": "Filtering Type-2 (Directional Blur)",
+      "options": [
+        {
+          "r.Upscale.Quality": "00000002 00000002"
+        }
+      ]
+    },
+    {
+      "name": "Filtering Type-3 (Catmull-Rom)",
+      "options": [
+        {
+          "r.Upscale.Quality": "00000003 00000003"
+        }
+      ]
+    },
+    {
+      "name": "Filtering Type-4 (Lanczos 3)",
+      "options": [
+        {
+          "r.Upscale.Quality": "00000004 00000004"
+        }
+      ]
+    },
+    {
+      "name": "Filtering Type-5 (Gaussian)",
+      "options": [
+        {
+          "r.Upscale.Quality": "00000005 00000005"
+        }
+      ]
+    },
+    {
+      "name": "Enable DRS",
+      "options": [
+        {
+          "r.DynamicRes.OperationMode": "00000001 00000001"
+        }
+      ]
+    },
+    {
+      "name": "Disable DRS",
+      "options": [
+        {
+          "r.DynamicRes.OperationMode": "00000000 00000000"
+        }
+      ]
+    },
+    {
+      "name": "DR Target 30 FPS",
+      "options": [
+        {
+          "r.DynamicRes.FrameTimeBudget": "420551EC 420551EC"
+        }
+      ]
+    },
+    {
+      "name": "DR Target 45 FPS",
+      "options": [
+        {
+          "r.DynamicRes.FrameTimeBudget": "41B1C28F 41B1C28F"
+        }
+      ]
+    },
+    {
+      "name": "DR Target 60 FPS",
+      "options": [
+        {
+          "r.DynamicRes.FrameTimeBudget": "41855555 41855555"
+        }
+      ]
+    }
+  ]
+}

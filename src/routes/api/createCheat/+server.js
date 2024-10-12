@@ -40,10 +40,10 @@ export async function POST ({ request }) {
         // Add a newline after each section
         contentParts.push('')
       } else {
-        console.warn('No valid options for:', item.name)
+        console.warn('No offsets for:', item.name)
       }
     } else {
-      console.warn('Skipped', item.name)
+      console.warn('Not Implemented: Skipped', item.name)
     }
   }
 

@@ -245,8 +245,7 @@ CheatOptions:
       - 'r.TemporalAA.Upsampling' : '00000000 00000000'
       - 'r.PostProcessAAQuality': '00000002 00000002'
       - 'r.TemporalAA.Algorithm': '00000000 00000000'
-      - 'r.DynamicRes.MaxScreenPercentage': '42B40000 42B40000
-
+      - 'r.DynamicRes.MaxScreenPercentage': '42B40000 42B40000'
 
   # Anti-Aliasing
   - name: 'AA Off'

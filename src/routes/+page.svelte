@@ -55,6 +55,7 @@
     <div class="w-[96px] h-[96px] my-10 animate-pulse ml-auto mr-auto">
       <Icon icon="pixelarticons:article" width=96/>
     </div>
+    <span class="label-text">Max Size: 5KB</span>
     <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
     {#if !loading}
       <button class="btn btn-primary font-bold" type='submit'> Create Cheats </button>

@@ -7,7 +7,7 @@ export async function POST ({ request }) {
   const cfg = (await request.formData()).get('cfg')
   const { CheatOptions } = config
 
-  if (!(cfg instanceof File && cfg.type === 'text/plain')) {
+  if (!(cfg instanceof File && cfg.type === 'text/plain' && cfg.size < 5000)) {
     return new Response('Please make sure you are using the correct file', { status: 500 })
   }
 

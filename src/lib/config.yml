@@ -19,7 +19,7 @@ CheatOptions:
       - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
       - 'rhi.SyncInterval': '00000001 00000001'
       - 'r.VSync': '00000000 00000000'
-      - 't.MaxFPS': '42700000 42700000'
+      - 't.MaxFPS': '00000000 00000000'
       - 'r.GTSyncType': '00000001 00000001' 
 
   # Filtering
@@ -87,6 +87,9 @@ CheatOptions:
   - name: 'RRS 100%'
     options:
       - 'r.ScreenPercentage': '42C80000 42C80000'
+  - name: 'RRS 125%'
+    options:
+      - 'r.ScreenPercentage': '42FA0000 42FA0000'
 
   # 2nd Render Resolution
   - name: '2nd Render Resolution 50%'
@@ -98,20 +101,6 @@ CheatOptions:
   - name: '2nd Render Resolution 100%'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '42C80000 42C80000'
-
-  # TAAU 
-  - name: 'Enable TAAU'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
-      - 'r.TemporalAA.Upsampling' : '00000001 00000001'
-      - 'r.PostProcessAAQuality': '00000003 00000003'
-      - 'r.TemporalAA.Algorithm': '00000001 00000001'
-  - name: 'Disable TAAU'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
-      - 'r.TemporalAA.Upsampling' : '00000000 00000000'
-      - 'r.PostProcessAAQuality': '00000002 00000002'
-      - 'r.TemporalAA.Algorithm': '00000000 00000000'
 
   # Outlines 
   - name: 'Outlines Off'
@@ -222,15 +211,41 @@ CheatOptions:
   - name: 'AA Method OFF'
     options:
       - 'r.DefaultFeature.AntiAliasing': '00000000 00000000'
+      - 'r.AntiAliasingMethod': '00000000 00000000'
   - name: 'AA Method FXAA'
     options:
       - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
+      - 'r.AntiAliasingMethod': '00000001 00000001'
   - name: 'AA Method TAA'
     options:
       - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
+      - 'r.AntiAliasingMethod': '00000002 00000002'
   - name: 'AA Method MSAA (Forward Only)'
     options:
       - 'r.DefaultFeature.AntiAliasing': '00000003 00000003'
+      - 'r.AntiAliasingMethod': '00000003 00000003'
+  - name: 'TSR - Temporal Super-Resolution'
+    options:
+      - 'r.DefaultFeature.AntiAliasing': '00000004 00000004'
+      - 'r.AntiAliasingMethod': '00000004 00000004'
+
+  # TAAU 
+  - name: 'Enable TAAU'
+    options:
+      - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
+      - 'r.AntiAliasingMethod': '00000002 00000002'
+      - 'r.TemporalAA.Upsampling' : '00000001 00000001'
+      - 'r.PostProcessAAQuality': '00000003 00000003'
+      - 'r.TemporalAA.Algorithm': '00000001 00000001'
+      - 'r.DynamicRes.MaxScreenPercentage': '428E38E4 428E38E4'
+  - name: 'Disable TAAU'
+    options:
+      - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
+      - 'r.AntiAliasingMethod': '00000001 00000001'
+      - 'r.TemporalAA.Upsampling' : '00000000 00000000'
+      - 'r.PostProcessAAQuality': '00000002 00000002'
+      - 'r.TemporalAA.Algorithm': '00000000 00000000'
+      - 'r.DynamicRes.MaxScreenPercentage': '42B40000 42B40000'
 
   # Anti-Aliasing
   - name: 'AA Off'

@@ -7,13 +7,6 @@ CheatOptions:
       - 'r.VSync': '00000000 00000000'
       - 't.MaxFPS': '41F00000 41F00000'
       - 'r.GTSyncType': '00000001 00000001'
-  #- name: '45 FPS'
-  #  options:
-  #    - 'r.DynamicRes.FrameTimeBudget': '41B1C28F 41B1C28F'
-  #    - 'rhi.SyncInterval': '00000001 00000001'
-  #    - 'r.VSync': '00000000 00000000'
-  #    - 't.MaxFPS': '42340000 42340000'
-  #   - 'r.GTSyncType': '00000001 00000001' 
   - name: '60 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
@@ -23,12 +16,12 @@ CheatOptions:
       - 'r.GTSyncType': '00000001 00000001' 
 
   # Dynamic Resolution Scale
-  - name: 'Enable DRS'
-    options: 
-      - 'r.DynamicRes.OperationMode': '00000002 00000002'
   - name: 'Disable DRS'
     options: 
       - 'r.DynamicRes.OperationMode': '00000000 00000000'
+  - name: 'Enable DRS'
+    options: 
+      - 'r.DynamicRes.OperationMode': '00000002 00000002'
   - name: 'DR Target 30 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
@@ -219,24 +212,8 @@ CheatOptions:
     options:
       - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
       - 'r.AntiAliasingMethod': '00000002 00000002'
-  - name: 'AA Method MSAA (Forward Only)'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000003 00000003'
-      - 'r.AntiAliasingMethod': '00000003 00000003'
-  - name: 'TSR - Temporal Super-Resolution'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000004 00000004'
-      - 'r.AntiAliasingMethod': '00000004 00000004'
 
-  # TAAU 
-  - name: 'Enable TAAU'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
-      - 'r.AntiAliasingMethod': '00000002 00000002'
-      - 'r.TemporalAA.Upsampling' : '00000001 00000001'
-      - 'r.PostProcessAAQuality': '00000003 00000003'
-      - 'r.TemporalAA.Algorithm': '00000001 00000001'
-      - 'r.DynamicRes.MaxScreenPercentage': '428E38E4 428E38E4'
+  # TAAU
   - name: 'Disable TAAU'
     options:
       - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
@@ -245,6 +222,14 @@ CheatOptions:
       - 'r.PostProcessAAQuality': '00000002 00000002'
       - 'r.TemporalAA.Algorithm': '00000000 00000000'
       - 'r.DynamicRes.MaxScreenPercentage': '42C80000 42C80000'
+  - name: 'Enable TAAU'
+    options:
+      - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
+      - 'r.AntiAliasingMethod': '00000002 00000002'
+      - 'r.TemporalAA.Upsampling' : '00000001 00000001'
+      - 'r.PostProcessAAQuality': '00000003 00000003'
+      - 'r.TemporalAA.Algorithm': '00000001 00000001'
+      - 'r.DynamicRes.MaxScreenPercentage': '428E38E4 428E38E4'
 
   # Anti-Aliasing
   - name: 'AA Off'
@@ -305,6 +290,15 @@ CheatOptions:
   - name: 'Shadow Distance x2'
     options:
       - 'r.Shadow.DistanceScale': '40000000 40000000'
+
+  # SSGI 
+  - name: 'Disable SSGI'
+    options:
+      - 'r.SSGI.Enable': '00000000 00000000'
+  - name: 'Enable SSGI'
+    options:
+      - 'r.SSGI.Enable': '00000001 00000001'
+      - 'r.SSGI.Quality': '00000004 00000004'
 
   # SSAO
   - name: 'SSAO Off'
@@ -393,27 +387,20 @@ CheatOptions:
   - name: 'Fully Load Textures ASAP On'
     options:
       - 'r.Streaming.FullyLoadUsedTextures': '00000001 00000001'
-
-  # Refraction Quality
-  - name: 'Refraction Quality Off'
-    options:
-      - 'r.RefractionQuality': '00000000 00000000'
-  - name: 'Refraction Quality On'
-    options:
-      - 'r.RefractionQuality': '00000001 00000001'
-
+  
   # Max Quality Override
-  - name: 'Max Quality Override Off'
+  - name: 'Max Quality Mode Off'
     options:
       - 'r.MaxQualityMode': '00000000 00000000'
-  - name: 'Max Quality Override On'
+  - name: 'Max Quality Mode On'
     options:
       - 'r.MaxQualityMode': '00000001 00000001'
 
-  # Mobile Shading Path
-  - name: 'Mobile Shading Path Off'
-    options:
-      - 'r.Mobile.ShadingPath': '00000000 00000000'
-  - name: 'Mobile Shading Path On'
-    options:
-      - 'r.Mobile.ShadingPath': '00000001 00000001'
+  # Distortion Effects 
+  - name: 'Disable Distortion Effects'
+    options: 
+      - 'r.DisableDistortion': '00000001 00000001'
+  - name: 'Enable Distortion Effects'
+    options: 
+      - 'r.DisableDistortion': '00000000 00000000'
+

@@ -3,17 +3,17 @@ CheatOptions:
   - name: '30 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
-      - 'rhi.SyncInterval': '00000001 00000001'
+      - 'rhi.SyncInterval': '00000002 00000002'
       - 'r.VSync': '00000000 00000000'
       - 't.MaxFPS': '41F00000 41F00000'
       - 'r.GTSyncType': '00000001 00000001'
-  - name: '45 FPS'
-    options:
-      - 'r.DynamicRes.FrameTimeBudget': '41B1C28F 41B1C28F'
-      - 'rhi.SyncInterval': '00000001 00000001'
-      - 'r.VSync': '00000000 00000000'
-      - 't.MaxFPS': '42340000 42340000'
-      - 'r.GTSyncType': '00000001 00000001' 
+  #- name: '45 FPS'
+  #  options:
+  #    - 'r.DynamicRes.FrameTimeBudget': '41B1C28F 41B1C28F'
+  #    - 'rhi.SyncInterval': '00000001 00000001'
+  #    - 'r.VSync': '00000000 00000000'
+  #    - 't.MaxFPS': '42340000 42340000'
+  #   - 'r.GTSyncType': '00000001 00000001' 
   - name: '60 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
@@ -21,26 +21,6 @@ CheatOptions:
       - 'r.VSync': '00000000 00000000'
       - 't.MaxFPS': '00000000 00000000'
       - 'r.GTSyncType': '00000001 00000001' 
-
-  # Filtering
-  - name: 'Filtering Type-0 (Nearest)'
-    options:
-      - 'r.Upscale.Quality': '00000000 00000000'
-  - name: 'Filtering Type-1 (Simple Bilinear)'
-    options:
-      - 'r.Upscale.Quality': '00000001 00000001'
-  - name: 'Filtering Type-2 (Directional Blur)'
-    options:
-      - 'r.Upscale.Quality': '00000002 00000002'
-  - name: 'Filtering Type-3 (Catmull-Rom)'
-    options:
-      - 'r.Upscale.Quality': '00000003 00000003'
-  - name: 'Filtering Type-4 (Lanczos 3)'
-    options:
-      - 'r.Upscale.Quality': '00000004 00000004'
-  - name: 'Filtering Type-5 (Gaussian)'
-    options:
-      - 'r.Upscale.Quality': '00000005 00000005'
 
   # Dynamic Resolution Scale
   - name: 'Enable DRS'
@@ -98,9 +78,29 @@ CheatOptions:
   - name: '2nd Render Resolution 75%'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '42960000 42960000'
-  - name: '2nd Render Resolution 100%'
+  - name: '2nd Render Resolution MAX'
     options:
-      - 'r.SecondaryScreenPercentage.GameViewport': '42C80000 42C80000'
+      - 'r.SecondaryScreenPercentage.GameViewport': '00000000 00000000'
+
+  # Filtering
+  - name: 'Filtering Type-0 (Nearest)'
+    options:
+      - 'r.Upscale.Quality': '00000000 00000000'
+  - name: 'Filtering Type-1 (Simple Bilinear)'
+    options:
+      - 'r.Upscale.Quality': '00000001 00000001'
+  - name: 'Filtering Type-2 (Directional Blur)'
+    options:
+      - 'r.Upscale.Quality': '00000002 00000002'
+  - name: 'Filtering Type-3 (Catmull-Rom)'
+    options:
+      - 'r.Upscale.Quality': '00000003 00000003'
+  - name: 'Filtering Type-4 (Lanczos 3)'
+    options:
+      - 'r.Upscale.Quality': '00000004 00000004'
+  - name: 'Filtering Type-5 (Gaussian)'
+    options:
+      - 'r.Upscale.Quality': '00000005 00000005'
 
   # Outlines 
   - name: 'Outlines Off'
@@ -174,7 +174,6 @@ CheatOptions:
     options:
       - 'r.SkyLightingQuality': '00000001 00000001'
 
-
   # Film Tone Mapper
   - name: 'Filmic Tonemapper Off'
     options:
@@ -245,7 +244,7 @@ CheatOptions:
       - 'r.TemporalAA.Upsampling' : '00000000 00000000'
       - 'r.PostProcessAAQuality': '00000002 00000002'
       - 'r.TemporalAA.Algorithm': '00000000 00000000'
-      - 'r.DynamicRes.MaxScreenPercentage': '42B40000 42B40000'
+      - 'r.DynamicRes.MaxScreenPercentage': '42C80000 42C80000'
 
   # Anti-Aliasing
   - name: 'AA Off'
@@ -410,7 +409,6 @@ CheatOptions:
   - name: 'Max Quality Override On'
     options:
       - 'r.MaxQualityMode': '00000001 00000001'
-
 
   # Mobile Shading Path
   - name: 'Mobile Shading Path Off'

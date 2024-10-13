@@ -41,7 +41,7 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 - [x] Max Quality Override 
 - [x] TAAU
 - [x] SSGI
-- [ ] SSR
+- [x] SSR
 - [ ] MSAA
 - [ ] MIN/MAX/DEFAULT GFX Settings
 

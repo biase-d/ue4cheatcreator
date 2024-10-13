@@ -122,10 +122,10 @@ CheatOptions:
   # Vignette
   - name: 'Vignette Off'
     options:
-      - 'r.Tonemapper.Quality': '00000001 00000001'
+      - 'r.Tonemapper.Quality': '00000000 00000000'
   - name: 'Vignette On'
     options:
-      - 'r.Tonemapper.Quality': '00000000 00000000'
+      - 'r.Tonemapper.Quality': '00000002 00000002'
 
   # Foggy Scene
   - name: 'Foggy Scene Off'
@@ -299,6 +299,14 @@ CheatOptions:
     options:
       - 'r.SSGI.Enable': '00000001 00000001'
       - 'r.SSGI.Quality': '00000004 00000004'
+
+  # SSR
+  - name: 'Disable SSR'
+    options: 
+      - 'r.SSR.Quality': '00000000 00000000'
+  - name: 'Enable SSR'
+    options: 
+      - 'r.SSR.Quality': '00000001 00000001'
 
   # SSAO
   - name: 'SSAO Off'

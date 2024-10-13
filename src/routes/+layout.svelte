@@ -23,6 +23,7 @@
   </main>
 </div>
 <footer class="flex flex-col mt-10 justify-center items-center w-full gap-5">
+  <span class='text-center label'> Added SSR, TAAU and some fixes </span>
   <div>
     <a href="https://github.com/biase-d/ue4cheatcreator" class="flex font-bold lowercase hover:text-secondary transition-all"> <Icon icon='pixelarticons:github' width=auto/></a>
   </div>

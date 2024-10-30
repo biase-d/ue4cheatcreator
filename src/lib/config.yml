@@ -291,10 +291,11 @@ CheatOptions:
     options:
       - 'r.Shadow.DistanceScale': '40000000 40000000'
 
-  # SSGI 
+  # SSGI
   - name: 'Disable SSGI'
     options:
       - 'r.SSGI.Enable': '00000000 00000000'
+      - 'r.SSGI.Quality': '00000000 00000000'
   - name: 'Enable SSGI'
     options:
       - 'r.SSGI.Enable': '00000001 00000001'

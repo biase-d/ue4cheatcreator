@@ -20,7 +20,6 @@ export async function POST ({ request }) {
     // Filter out options that do not have corresponding values in the cheat object
       const setting = item.options.filter(options => {
         const [name] = Object.entries(options)[0]
-        // @ts-ignore
         return cheat[name] // Only keep the option if it exists in the cheat data
       })
 
@@ -32,7 +31,6 @@ export async function POST ({ request }) {
         // Process each valid option
         setting.forEach(options => {
           const [name, value] = Object.entries(options)[0]
-          // @ts-ignore
           contentParts.push(`${cheat[name].offset}`)
           contentParts.push(INSTRUCTION + ' ' + value)
         })

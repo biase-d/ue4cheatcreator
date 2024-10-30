@@ -1,6 +1,4 @@
 <script>
-  import Icon from '@iconify/svelte';
-
   export let cheats; 
   export let name;
   export let size
@@ -15,9 +13,9 @@
     revokeObjectURL(link.href)
   }
 </script>
-<ul class="grid gap-2.5 w-full">
-  <li class="grid text-xl"><span class="label-text">Filename</span> <br>{ name }</li>
-  <li class="grid text-xl"><span class="label-text">Size</span><br>{size} KB</li>
+<ul>
+  <li><span>Filename</span> <br>{ name }</li>
+  <li><span>Size</span><br>{size} KB</li>
 </ul>
 
-<button class="btn btn-primary w-full mt-5 font-bold" on:click={() => downloadCheat(cheats)}>Download</button>
+<button on:click={() => downloadCheat(cheats)}>Download</button>

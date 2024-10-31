@@ -10,7 +10,7 @@
   <form id="createCheat">
     <hgroup>
       <h1>ue4cheatcreator</h1>
-      <span>Create cheats <s>and fpslocker configs</s> based on ue4cfgdumper cheats</span>
+      <span>Create cheats <s>and fpslocker configs</s> based on ue4cfgdumper dumps</span>
     </hgroup>
     <input type="file" accept=".txt" id='cfg' required>
     <button id="submitCheats" disabled>Create & Download Cheats</button>
@@ -47,73 +47,68 @@
   }
 
   async function handleCFGfile(fileArray, config) {
-    const formData = new FormData()
-
     if (fileArray){
-      formData.append('cfg', fileArray[0])
-    } else {
-      alert('Select a file to start')
-    }
+      const INSTRUCTION = '680F0000'
+      const { CheatOptions } = config
 
-    const INSTRUCTION = '680F0000'
-    const { CheatOptions } = config
+      let cfg = fileArray[0]
 
-    let cfg = formData.get('cfg')
+      if (!(cfg instanceof File && cfg.type === 'text/plain' && cfg.size < 5000)) {
+        let message = 'Please make sure that you are using the correct file'
+        console.warn(message)
+        alert(message)
+      } else {
+        const cheat = parseData(await cfg.text());
 
-    if (!(cfg instanceof File && cfg.type === 'text/plain' && cfg.size < 5000)) {
-      return new Response('Please make sure you are using the correct file', { status: 500 })
-    }
+        const contentParts = []
+        for (const item of CheatOptions) {
+          if (item.options) {
+            const setting = item.options.filter(options => {
+              const [name] = Object.entries(options)[0]
+              return cheat[name]
+            })
 
-    const cheat = parseData(await cfg.text())
+            if (setting.length > 0) {
+              contentParts.push(`[${item.name}]`)
 
-    const contentParts = []
-    for (const item of CheatOptions) {
-      if (item.options) {
-        const setting = item.options.filter(options => {
-          const [name] = Object.entries(options)[0]
-          return cheat[name]
-        })
+              setting.forEach(options => {
+                const [name, value] = Object.entries(options)[0]
+                contentParts.push(`${cheat[name].offset}`)
+                contentParts.push(INSTRUCTION + ' ' + value)
+              })
 
-        if (setting.length > 0) {
-          contentParts.push(`[${item.name}]`)
+              contentParts.push('')
+            } else {
+              console.warn('No offsets for:', item.name)
+            }
+          } else {
+            console.warn('Not Implemented: Skipped', item.name)
+          }
+        }
 
-          setting.forEach(options => {
-            const [name, value] = Object.entries(options)[0]
-            contentParts.push(`${cheat[name].offset}`)
-            contentParts.push(INSTRUCTION + ' ' + value)
+        const content = contentParts.join('\n');
+
+        if (content){
+          cheats = "";
+          size = "";
+          name = "";
+
+          name = cfg.name
+          cheats += content
+
+          downloadCheat({
+            name: name,
+            cheats: content
           })
 
-          contentParts.push('')
-        } else {
-          console.warn('No offsets for:', item.name)
+        } else if (!content){
+          console.warn('Could not process file', content)
+          alert('Something went wrong. Make sure you are selecting the correct .txt file')
         }
-      } else {
-        console.warn('Not Implemented: Skipped', item.name)
       }
-    }
-
-    const content = contentParts.join('\n')
-
-    if (content){
-      cheats = "";
-      size = "";
-      name = "";
-
-      name = cfg.name
-      cheats += content
-
-      downloadCheat({
-        name: name,
-        cheats: content
-      })
-      /*
-      return {
-        name: name,
-        cheats: content,
-      }
-        */
-    } else if (!content){
-      alert('Something went wrong. Make sure you are selecting the correct .txt file')
+    } else {
+      console.warn('No file was detected');
+      alert('Please select a file to start');
     }
   }
 
@@ -131,7 +126,6 @@
 
     handleCFGfile(cfg, configJson)
   });
-
 </script>
 </html>
 <style>
@@ -158,7 +152,7 @@
   }
   input {
     padding: 15px;
-    border: 0.5px solid gray;
+    background-color: #d4d4d4;
     border-radius: 4px;
   }
   button[disabled]{

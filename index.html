@@ -41,74 +41,80 @@
         offset,
         value
       }
+      
     })
     
     return result
   }
 
   async function handleCFGfile(fileArray, config) {
-    if (fileArray){
-      const INSTRUCTION = '680F0000'
-      const { CheatOptions } = config
-
-      let cfg = fileArray[0]
-
-      if (!(cfg instanceof File && cfg.type === 'text/plain' && cfg.size < 5000)) {
-        let message = 'Please make sure that you are using the correct file'
-        console.warn(message)
-        alert(message)
-      } else {
-        const cheat = parseData(await cfg.text());
-
-        const contentParts = []
-        for (const item of CheatOptions) {
-          if (item.options) {
-            const setting = item.options.filter(options => {
-              const [name] = Object.entries(options)[0]
-              return cheat[name]
-            })
-
-            if (setting.length > 0) {
-              contentParts.push(`[${item.name}]`)
-
-              setting.forEach(options => {
-                const [name, value] = Object.entries(options)[0]
-                contentParts.push(`${cheat[name].offset}`)
-                contentParts.push(INSTRUCTION + ' ' + value)
-              })
-
-              contentParts.push('')
-            } else {
-              console.warn('No offsets for:', item.name)
-            }
-          } else {
-            console.warn('Not Implemented: Skipped', item.name)
-          }
-        }
-
-        const content = contentParts.join('\n');
-
-        if (content){
-          cheats = "";
-          size = "";
-          name = "";
-
-          name = cfg.name
-          cheats += content
-
-          downloadCheat({
-            name: name,
-            cheats: content
-          })
-
-        } else if (!content){
-          console.warn('Could not process file', content)
-          alert('Something went wrong. Make sure you are selecting the correct .txt file')
-        }
-      }
-    } else {
+    if (!fileArray) {
       console.warn('No file was detected');
       alert('Please select a file to start');
+      return;
+    }
+
+    const INSTRUCTION = '680F0000';
+    const { CheatOptions } = config;
+    const cfg = fileArray[0];
+
+    if (!(cfg instanceof File && cfg.type === 'text/plain' && cfg.size < 5000)) {
+      const message = 'Please make sure that you are using the correct file';
+      console.warn(message);
+      alert(message);
+      return;
+    }
+
+    const cheat = parseData(await cfg.text());
+
+    const contentParts = [];
+    for (const item of CheatOptions) {
+      if (item.options) {
+        const setting = item.options.filter(options => {
+          const [name] = Object.entries(options)[0];
+          return cheat[name]; // Retain only options with corresponding entries in cheat
+        });
+
+        if (setting.length > 0) {
+          // Check if this item should be marked as default based on a match
+          const isDefault = setting.some(option => {
+            const [name, value] = Object.entries(option)[0];
+            return cheat[name] && cheat[name].value === `680F0000 ${value}`;
+          });
+
+          // If default, add [Default] marker to the name
+          const sectionName = isDefault ? `[Default ${item.name}]` : `[${item.name}]`;
+          contentParts.push(sectionName);
+
+          // Append each valid option’s offset and value
+          setting.forEach(options => {
+            const [name, value] = Object.entries(options)[0];
+            if (cheat[name] && cheat[name].offset) {
+              contentParts.push(cheat[name].offset);
+              contentParts.push(`${INSTRUCTION} ${value}`);
+            } else {
+              console.warn(`Missing offset or data for option: ${name}`);
+            }
+          });
+
+          contentParts.push(''); // Add newline after each section
+        } else {
+          console.warn('No offsets for:', item.name);
+        }
+      } else {
+        console.warn('Not Implemented: Skipped', item.name);
+      }
+    }
+
+    const content = contentParts.join('\n');
+    if (content) {
+      downloadCheat({
+        name: cfg.name,
+        cheats: content
+      });
+    } else {
+      console.warn('Could not process file', content);
+      alert('Something went wrong. Make sure you are selecting the correct .txt file');
     }
   }
 

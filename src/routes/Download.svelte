@@ -16,8 +16,8 @@
   }
 </script>
 <ul class="grid gap-2.5 w-full">
-  <li class="grid text-xl"><span class="label-text">Filename</span> <br>{ name }</li>
-  <li class="grid text-xl"><span class="label-text">Size</span><br>{size} KB</li>
+  <li><span class="label-text">Filename</span> <br>{ name }</li>
+  <li><span class="label-text">Size</span><br>{size} KB</li>
 </ul>
 
 <button class="btn btn-primary w-full mt-5 font-bold" on:click={() => downloadCheat(cheats)}>Download</button>

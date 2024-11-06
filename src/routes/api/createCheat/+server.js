@@ -3,15 +3,21 @@ import { parseData } from '$lib/parse.js'
 import { json } from '@sveltejs/kit'
 
 export async function POST ({ request }) {
-  const INSTRUCTION = '680F0000'
-  const cfg = (await request.formData()).get('cfg')
-  const { CheatOptions } = config
+  const file = (await request.formData()).get('cfg')
 
-  if (!(cfg instanceof File && cfg.type === 'text/plain' && cfg.size < 5000)) {
-    return new Response('Please make sure you are using the correct file', { status: 500 })
+  if (!file) {
+    console.warn("No file was detected: User didn't upload a file ")
+    return new Response('Please select a file to start', { status: 400, message: 'No file was detected' })
   }
 
-  const cheat = parseData(await cfg.text())
+  const INSTRUCTION = '680F0000'
+  const { CheatOptions } = config
+
+  if (!(file instanceof File && file.type === 'text/plain' && file.size < 5000)) {
+    return new Response('Please make sure you are using the correct file', { status: 422 })
+  }
+
+  const cheat = parseData(await file.text())
 
   // Initialize an array to collect content parts
   const contentParts = []
@@ -20,30 +26,38 @@ export async function POST ({ request }) {
     // Filter out options that do not have corresponding values in the cheat object
       const setting = item.options.filter(options => {
         const [name] = Object.entries(options)[0]
-        // @ts-ignore
         return cheat[name] // Only keep the option if it exists in the cheat data
       })
 
       // Only add the section if there are valid options
       if (setting.length > 0) {
-      // Add the cheat name
-        contentParts.push(`[${item.name}]`)
+        // Check the default values
+        const isDefault = setting.some(option => {
+          const [name, value] = Object.entries(option)[0]
+          return cheat[name] && cheat[name].value === `680F0000 ${value}`
+        })
+
+        // Add the cheat name
+        const sectionName = isDefault ? `Default ${item.name}` : `${item.name}`
+        contentParts.push(`[${sectionName}]`)
 
         // Process each valid option
         setting.forEach(options => {
           const [name, value] = Object.entries(options)[0]
-          // @ts-ignore
-          contentParts.push(`${cheat[name].offset}`)
-          contentParts.push(INSTRUCTION + ' ' + value)
+          if (cheat[name] && cheat[name].offset) {
+            contentParts.push(cheat[name].offset)
+            contentParts.push(`${INSTRUCTION} ${value}`)
+          } else {
+            console.warn(`Missing offset or data for option: ${name}`)
+          }
         })
 
-        // Add a newline after each section
-        contentParts.push('')
+        contentParts.push('') // Add a newline after each section
       } else {
-        console.warn('No offsets for:', item.name)
+        console.warn('No offsets found for:', item.name)
       }
     } else {
-      console.warn('Not Implemented: Skipped', item.name)
+      console.warn('Skipped', item.name)
     }
   }
 
@@ -52,7 +66,7 @@ export async function POST ({ request }) {
 
   return json(
     {
-      name: cfg.name,
+      name: file.name,
       content,
       size: Buffer.byteLength(content, 'utf8') / 1000
     }

@@ -10,7 +10,7 @@
   let size = '';
   let name = ''
   let loading = false
-
+  
   const handleCFGfile = async () => {
     loading = true
     const formData = new FormData()
@@ -53,20 +53,19 @@
 {#if cheats === ""}
   <form on:submit|preventDefault= {handleCFGfile} class="grid px-8 gap-2.5 items-center justify-center">
     <div class="w-[96px] h-[96px] my-10 animate-pulse ml-auto mr-auto">
-      <Icon icon="pixelarticons:article" width=96/>
+      <Icon icon="pixelarticons:article" width=96 class='text-primary'/>
     </div>
-    <span class="label-text">Max Size: 5KB</span>
+    <span class="label-text-alt">Max Size: 5KB</span>
     <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
     {#if !loading}
       <button class="btn btn-primary font-bold" type='submit'> Create Cheats </button>
     {:else}
       <button class="btn btn-primary cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
     {/if}
-
   </form>
 {:else}
   <div class="flex flex-col items-center justify-center gap-2.5">
-    <span class="h-[96px] w-[96px] bg-primary/10 rounded-full text-green-700 my-10"><Icon icon="pixelarticons:check" width=96/></span>
+    <span class="h-[96px] w-[96px] rounded-full text-green-500 my-10"><Icon icon="pixelarticons:check" width=96/></span>
     <Download { cheats } { name } {size}/>
     <button on:click={recreate} class="text-sm font-bold text-primary"> Create for another game </button>
   </div>

@@ -58,12 +58,17 @@ Use the 60FPS option and then make DR Target 45 FPS and use FPSLocker to lock th
 Some combination of AA options will make the game crash
 
 ## Progress Tracker
+### In-Progress
 - [ ]  Download fps or gfx only (_or both ofc_)
+### Planned
 - [ ]  Toggles for cheats before creation of txt
 - [ ]  Order cheats according to usefulness
 - [ ]  Preview cheats before downloading
-- [ ]  Show which one was the default option
 - [ ]  Download with txt in the directory atmosphere/content/[GameID]/cheats/
+- [ ]  Add option for categories
+- [ ]  Make cheat creation page offline-friendly
+### Done
+- [x] Show which one was the default option
 - [x] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
 - [x] Create the usual gfx cheats and their different levels
 - [x] Scaffold a UI

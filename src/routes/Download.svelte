@@ -5,7 +5,7 @@
 
   const download = (/** @type {BlobPart} */ cheat) => {
     const link = document.createElement("a");
-    const text = new Blob([cheat.content], { type: 'text/pain' });
+    const text = new Blob([cheat.content], { type: 'text/plain' });
     link.href=URL.createObjectURL(text)
     link.download = cheat.name;
     link.click()

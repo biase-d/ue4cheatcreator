@@ -3,7 +3,7 @@
   export let FPSLockerPatch;
   export let isBeta;
 
-  const downloadCheat = (/** @type {BlobPart} */ cheat) => {
+  const download = (/** @type {BlobPart} */ cheat) => {
     const link = document.createElement("a");
     const text = new Blob([cheat.content], { type: 'text/pain' });
     link.href=URL.createObjectURL(text)
@@ -19,8 +19,8 @@
 </ul>
 
 <div>
-  <button class="btn btn-primary w-full mt-5 font-bold" on:click={() => downloadCheat(cheat, 'text/plain')}>Download Cheats ({cheat.size} KB)</button>
+  <button class="btn btn-primary w-full mt-5 font-bold" on:click={() => download(cheat)}>Download Cheats ({cheat.size} KB)</button>
   {#if isBeta}
-    <button class="btn btn-primary w-full mt-5 font-bold" on:click={() => downloadCheat(FPSLockerPatch)}>Download FPSLocker Patch ({FPSLockerPatch.size} KB)</button>
+    <button class="btn btn-primary w-full mt-5 font-bold" on:click={() => download(FPSLockerPatch)}>Download FPSLocker Patch ({FPSLockerPatch.size} KB)</button>
   {/if}
 </div>

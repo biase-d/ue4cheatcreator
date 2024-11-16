@@ -1,4 +1,4 @@
-CheatOptions:
+cheatOptions:
   # FPS
   - name: '30 FPS'
     options:

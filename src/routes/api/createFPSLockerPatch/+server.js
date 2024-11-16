@@ -8,7 +8,7 @@ const config = [
   { name: 'r.DynamicRes.OperationMode' }
 ]
 
-function checkForTruncDecVal (hex) {
+function checkTruncDecVal (hex) {
   const buffer = new ArrayBuffer(4)
   const view = new DataView(buffer)
 
@@ -44,7 +44,7 @@ export async function POST ({ request }) {
     }
   }
 
-  const truncDecVal = checkForTruncDecVal(cvars['r.DynamicRes.FrameTimeBudget'].value)
+  const truncDecVal = checkTruncDecVal(cvars['r.DynamicRes.FrameTimeBudget'].value)
 
   const content = ['# Add title and game version here']
   content.push(`# BID: ${file.name.split('.')[0]}\n`)

@@ -1,16 +1,13 @@
 <script>
   import { page } from '$app/stores'
+  import { onMount } from 'svelte';
   import Download from './Download.svelte';
   import Icon from '@iconify/svelte';
 
-  let isBeta = $page.url.searchParams.get('beta')
-
-  /**
-   * @type {HTMLInputElement}
-   */
-  let file;
-  let loading = false
-
+  let file
+  let isLoading = false
+  let isBeta = false
+  
   const cheat = {
     name: '',
     content: '',
@@ -24,7 +21,7 @@
   }
   
   const handleCFGfile = async () => {
-    loading = true
+    isLoading = true
     const formData = new FormData()
 
     if (file.files){
@@ -81,7 +78,7 @@
   }
 
   function recreate() {
-    loading = false
+    isLoading = false
     cheat.content = ''
     cheat.name = ''
     cheat.size = ''
@@ -89,7 +86,6 @@
     FPSLockerPatch.name = ''
     FPSLockerPatch.size = ''
   }
-  
 </script>
 
 {#if cheat.content === ""}
@@ -100,15 +96,19 @@
     <span class="label-text-alt">Max Size: 5KB</span>
     <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
     
-    {#if !loading}
+    {#if !isLoading}
       <button class="btn btn-primary font-bold" type='submit'> Create Cheats </button>
     {:else}
       <button class="btn btn-primary cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
     {/if}
     {#if !isBeta}
-      <p class='label-text-alt'> Test out FPSLocker patches <a href='/?beta=true' class='link text-primary'>here</a></p>
+      <p class='label-text-alt'> Test out FPSLocker patches <button on:click={() => {
+        isBeta=true
+        }} class='link text-primary'>here</button></p>
     {:else}
-      <p class='label-text-alt'> Go back to stable <a href='/' class='link text-primary'>here</a></p>
+      <p class='label-text-alt'> Go back to stable <button on:click={() => {
+        isBeta=false
+        }} class='link text-primary'>here</button></p>
     {/if}
   </form>
 {:else}

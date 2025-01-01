@@ -79,4 +79,4 @@ After all the work has been done I might begin work on creating an overlay for t
 This project wouldn't be possible without:
 - The tutorials and documentation of UE4 cheats on the switch by Hazerou 
 - [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper) by Masagrator
-- [`Unreal Engine 5.1 Console Variables and Commands`](Unreal Engine 5.1 Console Variables and Commands)
+- [Unreal Engine 5.1 Console Variables and Commands](https://framedsc.com/GeneralGuides/ue5_commands.htm)

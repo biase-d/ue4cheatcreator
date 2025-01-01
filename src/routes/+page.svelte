@@ -1,6 +1,4 @@
 <script>
-  import { page } from '$app/stores'
-  import { onMount } from 'svelte';
   import Download from './Download.svelte';
   import Icon from '@iconify/svelte';
 
@@ -18,6 +16,21 @@
     name: '',
     content: '',
     size: '',
+  }
+
+  const handleDumpFile = async (config) => {
+    isLoading = true
+
+    const formData = new FormData()
+
+    if (file.files()){
+      formData.append('dump', file.files[0])
+    } else {
+      console.warn('Select a file to start')
+      alert('Select a file to start')
+    }
+
+    isLoading = false
   }
   
   const handleCFGfile = async () => {
@@ -53,7 +66,6 @@
         console.log(err)
       }
     }
-
 
     const response  = await fetch('/api/createCheat', {
       method: 'POST',
@@ -94,7 +106,7 @@
       <Icon icon="pixelarticons:article" width=96 class='text-primary'/>
     </div>
     <span class="label-text-alt">Max Size: 5KB</span>
-    <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
+    <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt, .log' required/>
     
     {#if !isLoading}
       <button class="btn btn-primary font-bold" type='submit'> Create Cheats </button>

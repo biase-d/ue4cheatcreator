@@ -59,13 +59,12 @@ Some combination of AA options will make the game crash
 
 ## Progress Tracker
 ### In-Progress
-- [ ]  Download fps or gfx only (_or both ofc_)
+- [ ] Custom Configs (these will cover cheats order and generation of only fps or gfx options)
+- [ ] Toggle Categories
 ### Planned
 - [ ]  Toggles for cheats before creation of txt
-- [ ]  Order cheats according to usefulness
 - [ ]  Preview cheats before downloading
 - [ ]  Download with txt in the directory atmosphere/content/[GameID]/cheats/
-- [ ]  Add option for categories
 - [ ]  Make cheat creation page offline-friendly
 ### Done
 - [x] Show which one was the default option
@@ -74,9 +73,10 @@ Some combination of AA options will make the game crash
 - [x] Scaffold a UI
 - [x] Uploading of .txt files
 
-After all the work has been done I might begin work on creating an overlay for this for Ultrahand 
+After all the work has been done I might begin work on creating an overlay for this for Ultrahand
 
 ## Special Thanks
 This project wouldn't be possible without:
 - The tutorials and documentation of UE4 cheats on the switch by Hazerou 
 - [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper) by Masagrator
+- [`Unreal Engine 5.1 Console Variables and Commands`](Unreal Engine 5.1 Console Variables and Commands)

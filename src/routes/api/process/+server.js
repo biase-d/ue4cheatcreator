@@ -1,3 +1,4 @@
+import { json } from '@sveltejs/kit'
 import config from '../createCheat/config.json'
 
 const sampleData = `SDK MW+EpicGames+UnrealEngine-5_3_2
@@ -54,15 +55,14 @@ r.VelocityOutputPass, main_offset: 0xA082F48 + 0x0, type: int 0 / 0x0
 r.Velocity.EnableVertexDeformation, main_offset: 0xA0F7530 + 0x0, type: int 2 / 0x2
 r.AntiAliasingMethod, main_offset: 0xA0FC3F0 + 0x0, type: int 4 / 0x4
 `
+function parseLogFile (logFile) {
+  const processedLogFile = {}
 
-export async function POST ({ request }) {
-  const dump = sampleData.trim().split(/\n+/)
-  const { cheatOptions } = config
-  const instruction = '680F0000'
+  console.log('Generating via Log File')
+  processedLogFile.uploadedFile = 'log'
 
-  const dumpContent = {}
-
-  dump.forEach((data) => {
+  logFile = logFile.trim().split(/\n+/)
+  logFile.forEach((data) => {
     try {
       data = data.split(', ')
       const cvar = data[0]
@@ -73,31 +73,120 @@ export async function POST ({ request }) {
         value: data[2].split(': ')[1].split(' ')[1],
         hexValue: data[2].split(': ')[1].split(' ')[3]
       }
-      dumpContent[cvar] = data
+      processedLogFile[cvar] = data
     } catch (err) {
-      dumpContent.engineVersion = data
-      console.log('Could not parse: ', err)
+      processedLogFile.engineVersion = data
     }
   })
 
-  for (const i of cheatOptions) {
+  return processedLogFile
+}
+
+/*
+function parseTxtFile (txtFile) {
+  const processedTxtFile = {}
+  const sections = txtFile.trim().split(/\n\n+/) // Split into sections by double newlines
+
+  sections.forEach(section => {
+    const lines = section.split('\n') // Split section into lines
+    const name = lines[0].match(/\[(.*)\]/)[1] // Extract name from square brackets
+    const offset = lines[1]
+    const value = lines[2]
+
+    // Store the parsed data in an object
+    processedTxtFile[name] = {
+      offset,
+      value
+    }
+  })
+
+  return data
+}
+  */
+
+function generateCheats (parsedFile, config) {
+  const instruction = '680F0000'
+  let result = []
+  for (const i of config.cheatOptions) {
     if (i.options) {
-      const option = i.options.filter(option => {
+      const options = i.options.filter(option => {
         const [name] = Object.entries(option)[0]
-        return dumpContent[name]
+        return parsedFile[name]
       })
 
-      if (option.length > 0) {
-        const isDefault = option.some(option => {
+      if (options.length > 0) {
+        const isDefault = options.some(option => {
           const [name, value] = Object.entries(option)[0]
-          switch (dumpContent[name].type) {
-            case 'int':
-              return dumpContent[name] && dumpContent[name].value === value.slice(value.length - dumpContent[name].value.length, value.length)
-            case 'float':
-              return dumpContent[name] && dumpContent[name].hexValue === `0x${value.split(' ')[1]}`
+          if (parsedFile.uploadedFile === 'log') {
+            switch (parsedFile[name].type) {
+              case 'int':
+                return parsedFile[name] && parsedFile[name].value === value.slice(value.length - parsedFile[name].value.length, value.length)
+              case 'float':
+                return parsedFile[name] && parsedFile[name].hexValue === `0x${value.split(' ')[1]}`
+            }
+          }
+          return console.log('Something went wrong') // I just added this to hide errors
+        })
+        const cheatName = isDefault ? '* ' + i.name : i.name
+        result.push(`[${cheatName}]`)
+
+        options.forEach(option => {
+          const [name, value] = Object.entries(option)[0]
+          if (parsedFile[name] && parsedFile[name].main_offset) {
+            result.push(`580F0000 ${parsedFile[name].main_offset.split('x')[1]}`) // todo: create variable with proper name for 580F0000
+            result.push(`${instruction} ${value}`)
           }
         })
+        result.push('') // add newline after each section
+      } else {
+        console.warn('Offset not found in dump: ', i.name)
       }
+    } else {
+      console.log('Missing options in config: ', i.name)
     }
   }
+
+  result = result.join('\n')
+  return result
+}
+
+/*
+function generateFPSLockerPatch (parsedFile) {
+  function checkTruncDecVal (hex) {
+    const buffer = new ArrayBuffer(4)
+    const view = new DataView(buffer)
+
+    view.setUint32(0, parseInt(hex, 16))
+
+    let float = view.getFloat32(0)
+
+    float = float.toString().split('.')[1] || ''
+    float = float.indexOf('0') !== -1 ? float.slice(0, float.indexOf('0')) : float
+    float = float.length
+
+    return float
+  }
+}
+*/
+
+export async function POST ({ request }) {
+  const file = (await request.formData()).get('dump')
+
+  if (!file) {
+    console.warn('No file was uploaded')
+    return new Response('Please select a supported file to start', { status: 400, message: 'No file was uploaded' })
+  }
+
+  if (!(file instanceof File && file.size < 5000)) {
+    return new Response('Please make sure you are using the correct file', { status: 422 })
+  }
+
+  const dump = parseLogFile(sampleData)
+  const cheats = generateCheats(dump, config)
+
+  return json({
+    name: file.name,
+    cheats,
+    size: Buffer.byteLength(cheats, 'utf8') / 1000
+  })
 }

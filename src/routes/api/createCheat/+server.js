@@ -11,7 +11,7 @@ export async function POST ({ request }) {
   }
 
   const INSTRUCTION = '680F0000'
-  const { CheatOptions } = config
+  const { cheatOptions } = config
 
   if (!(file instanceof File && file.type === 'text/plain' && file.size < 5000)) {
     return new Response('Please make sure you are using the correct file', { status: 422 })
@@ -21,7 +21,7 @@ export async function POST ({ request }) {
 
   // Initialize an array to collect content parts
   const contentParts = []
-  for (const item of CheatOptions) {
+  for (const item of cheatOptions) {
     if (item.options) {
     // Filter out options that do not have corresponding values in the cheat object
       const setting = item.options.filter(options => {
@@ -34,6 +34,8 @@ export async function POST ({ request }) {
         // Check the default values
         const isDefault = setting.some(option => {
           const [name, value] = Object.entries(option)[0]
+          console.log(`${name} ${value}`)
+          console.log(cheat[name])
           return cheat[name] && cheat[name].value === `680F0000 ${value}`
         })
 

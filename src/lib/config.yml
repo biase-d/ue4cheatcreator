@@ -1,5 +1,7 @@
-CheatOptions:
-  # FPS
+config: 
+  - categories: true
+    defaultIndicator: 'Default'
+Framerate:
   - name: '30 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
@@ -13,26 +15,26 @@ CheatOptions:
       - 'rhi.SyncInterval': '00000001 00000001'
       - 'r.VSync': '00000000 00000000'
       - 't.MaxFPS': '00000000 00000000'
-      - 'r.GTSyncType': '00000001 00000001' 
+      - 'r.GTSyncType': '00000001 00000001'
 
-  # Dynamic Resolution Scale
+Dynamic Resolution Scale:
   - name: 'Disable DRS'
-    options: 
+    options:
       - 'r.DynamicRes.OperationMode': '00000000 00000000'
   - name: 'Enable DRS'
-    options: 
+    options:
       - 'r.DynamicRes.OperationMode': '00000002 00000002'
-  - name: 'DR Target 30 FPS'
+  - name: 'Target 30 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
-  - name: 'DR Target 45 FPS'
+  - name: 'Target 45 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41B1C28F 41B1C28F'
-  - name: 'DR Target 60 FPS'
+  - name: 'Target 60 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
 
-  # Resolution Scale
+Resolution Scale:
   - name: 'RRS 50%'
     options:
       - 'r.ScreenPercentage': '42480000 42480000'
@@ -64,18 +66,21 @@ CheatOptions:
     options:
       - 'r.ScreenPercentage': '42FA0000 42FA0000'
 
-  # 2nd Render Resolution
+Secondary Render Resolution:
   - name: '2nd Render Resolution 50%'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '42480000 42480000'
   - name: '2nd Render Resolution 75%'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '42960000 42960000'
-  - name: '2nd Render Resolution MAX'
+  - name: '2nd Render Resolution 100%'
+    options:
+      - 'r.SecondaryScreenPercentage.GameViewport': '42C80000 42C80000'
+  - name: '2nd Render Resolution MAX (May Cause Crashes)'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '00000000 00000000'
 
-  # Filtering
+Filtering:
   - name: 'Filtering Type-0 (Nearest)'
     options:
       - 'r.Upscale.Quality': '00000000 00000000'
@@ -95,7 +100,7 @@ CheatOptions:
     options:
       - 'r.Upscale.Quality': '00000005 00000005'
 
-  # Outlines 
+Outlines:
   - name: 'Outlines Off'
     options:
       - 'r.PostProcessOutline': '00000000 00000000'
@@ -103,7 +108,7 @@ CheatOptions:
     options:
       - 'r.PostProcessOutline': '00000001 00000001'
 
-  # Adaptive Exposure
+Adaptive Exposure:
   - name: 'Adaptive Exposure Off'
     options:
       - 'r.EyeAdaptationQuality': '00000000 00000000'
@@ -111,7 +116,7 @@ CheatOptions:
     options:
       - 'r.EyeAdaptationQuality': '00000001 00000001'
 
-  # Film Grain
+Film Grain:
   - name: 'Film Grain Off'
     options:
       - 'r.Tonemapper.GrainQuantization': '00000000 00000000'
@@ -119,7 +124,7 @@ CheatOptions:
     options:
       - 'r.Tonemapper.GrainQuantization': '00000001 00000001'
 
-  # Vignette
+Vignette:
   - name: 'Vignette Off'
     options:
       - 'r.Tonemapper.Quality': '00000000 00000000'
@@ -127,23 +132,23 @@ CheatOptions:
     options:
       - 'r.Tonemapper.Quality': '00000002 00000002'
 
-  # Foggy Scene
+Foggy Scene:
   - name: 'Foggy Scene Off'
     options:
-      - 'r.Fog' : '00000000 00000000'
+      - 'r.Fog': '00000000 00000000'
   - name: 'Foggy Scene On'
     options:
-      - 'r.Fog' : '00000001 00000001'
+      - 'r.Fog': '00000001 00000001'
 
-  # Depth of Field
+Depth Of Field:
   - name: 'Depth of Field Off'
     options:
       - 'r.DepthOfFieldQuality': '00000000 00000000'
   - name: 'Depth of Field On'
     options:
       - 'r.DepthOfFieldQuality': '00000001 00000001'
-  
-  # Chromatic Aberration
+
+Chromatic Aberration:
   - name: 'Chromatic Aberration Off'
     options:
       - 'r.SceneColorFringeQuality': '00000000 00000000'
@@ -151,7 +156,7 @@ CheatOptions:
     options:
       - 'r.SceneColorFringeQuality': '00000001 00000001'
 
-  # Lens Flare
+Lens Flare:
   - name: 'Lens Flare Off'
     options:
       - 'r.LensFlareQuality': '00000000 00000000'
@@ -159,257 +164,217 @@ CheatOptions:
     options:
       - 'r.LensFlareQuality': '00000001 00000001'
 
-  # Sky Lighting Quality
-  - name: 'Sky Lighting Quality Off'
-    options:
-      - 'r.SkyLightingQuality': '00000000 00000000'
-  - name: 'Sky Lighting Quality On'
-    options:
-      - 'r.SkyLightingQuality': '00000001 00000001'
+AA Method:
+- name: 'AA Method OFF'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000000 00000000'
+    - 'r.AntiAliasingMethod': '00000000 00000000'
+- name: 'AA Method FXAA'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
+    - 'r.AntiAliasingMethod': '00000001 00000001'
+- name: 'AA Method TAA'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
+    - 'r.AntiAliasingMethod': '00000002 00000002'
 
-  # Film Tone Mapper
-  - name: 'Filmic Tonemapper Off'
-    options:
-      - 'r.TonemapperFilm': '00000000 00000000'
-  - name: 'Filmic Tonemapper On'
-    options:
-      - 'r.TonemapperFilm': '00000001 00000001'
+TAAU:
+- name: 'Disable TAAU'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
+    - 'r.AntiAliasingMethod': '00000001 00000001'
+    - 'r.TemporalAA.Upsampling' : '00000000 00000000'
+    - 'r.PostProcessAAQuality': '00000002 00000002'
+    - 'r.TemporalAA.Algorithm': '00000000 00000000'
+    - 'r.DynamicRes.MaxScreenPercentage': '42C80000 42C80000'
+- name: 'Enable TAAU'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
+    - 'r.AntiAliasingMethod': '00000002 00000002'
+    - 'r.TemporalAA.Upsampling' : '00000001 00000001'
+    - 'r.PostProcessAAQuality': '00000003 00000003'
+    - 'r.TemporalAA.Algorithm': '00000001 00000001'
+    - 'r.DynamicRes.MaxScreenPercentage': '428E38E4 428E38E4'
 
-  # Image Sharpening
-  - name: 'Image Sharpening Off'
-    options:
-      - 'r.Tonemapper.Sharpen': '00000000 00000000'
-  - name: 'Image Sharpening On'
-    options:
-      - 'r.Tonemapper.Sharpen': '3F800000 3F800000'
+Anti-Aliasing:
+- name: 'AA Off'
+  options:
+    - 'r.PostProcessAAQuality': '00000000 00000000'
+- name: 'AA Very Low'
+  options:
+    - 'r.PostProcessAAQuality': '00000001 00000001'
+- name: 'AA Low'
+  options:
+    - 'r.PostProcessAAQuality': '00000002 00000002'
+- name: 'AA Medium'
+  options:
+    - 'r.PostProcessAAQuality': '00000003 00000003'
+- name: 'AA High'
+  options:
+    - 'r.PostProcessAAQuality': '00000004 00000004'
+- name: 'AA Very High'
+  options:
+    - 'r.PostProcessAAQuality': '00000005 00000005'
+- name: 'AA Max'
+  options:
+    - 'r.PostProcessAAQuality': '00000006 00000006'
 
-  # Foliage
-  - name: 'Foliage Off'
-    options:
-      - 'foliage.LODDistanceScale': '00000000 00000000'
-  - name: 'Foliage On'
-    options:
-      - 'foliage.LODDistanceScale': '3F800000 3F800000'
+Shadows: 
+- name: 'Shadows Off'
+  options:
+    - 'r.ShadowQuality': '00000000 00000000'
+- name: 'Shadows Very Low'
+  options:
+    - 'r.ShadowQuality': '00000001 00000001'
+- name: 'Shadows Low'
+  options:
+    - 'r.ShadowQuality': '00000002 00000002'
+- name: 'Shadows Medium'
+  options:
+    - 'r.ShadowQuality': '00000003 00000003'
+- name: 'Shadows High'
+  options:
+    - 'r.ShadowQuality': '00000004 00000004'
 
-  # Motion Blur
-  - name: 'Motion Blur Off'
-    options:
-      - 'r.MotionBlurQuality': '00000000 00000000'
-  - name: 'Motion Blur On'
-    options:
-      - 'r.MotionBlurQuality': '00000001 00000001'
-      
-  # AA Method
-  - name: 'AA Method OFF'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000000 00000000'
-      - 'r.AntiAliasingMethod': '00000000 00000000'
-  - name: 'AA Method FXAA'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
-      - 'r.AntiAliasingMethod': '00000001 00000001'
-  - name: 'AA Method TAA'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
-      - 'r.AntiAliasingMethod': '00000002 00000002'
+Shadow Distance: 
+- name: 'Shadow Distance Off'
+  options:
+    - 'r.Shadow.DistanceScale': '00000000 00000000'
+- name: 'Shadow Distance x0.5'
+  options:
+    - 'r.Shadow.DistanceScale': '3F000000 3F000000'
+- name: 'Shadow Distance x0.75'
+  options:
+    - 'r.Shadow.DistanceScale': '3F400000 3F400000'
+- name: 'Shadow Distance x1'
+  options:
+    - 'r.Shadow.DistanceScale': '3F800000 3F800000'
+- name: 'Shadow Distance x1.5'
+  options:
+    - 'r.Shadow.DistanceScale': '3FC00000 3FC00000'
+- name: 'Shadow Distance x2'
+  options:
+    - 'r.Shadow.DistanceScale': '40000000 40000000'
 
-  # TAAU
-  - name: 'Disable TAAU'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
-      - 'r.AntiAliasingMethod': '00000001 00000001'
-      - 'r.TemporalAA.Upsampling' : '00000000 00000000'
-      - 'r.PostProcessAAQuality': '00000002 00000002'
-      - 'r.TemporalAA.Algorithm': '00000000 00000000'
-      - 'r.DynamicRes.MaxScreenPercentage': '42C80000 42C80000'
-  - name: 'Enable TAAU'
-    options:
-      - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
-      - 'r.AntiAliasingMethod': '00000002 00000002'
-      - 'r.TemporalAA.Upsampling' : '00000001 00000001'
-      - 'r.PostProcessAAQuality': '00000003 00000003'
-      - 'r.TemporalAA.Algorithm': '00000001 00000001'
-      - 'r.DynamicRes.MaxScreenPercentage': '428E38E4 428E38E4'
+SSGI:
+- name: 'Disable SSGI'
+  options:
+    - 'r.SSGI.Enable': '00000000 00000000'
+    - 'r.SSGI.Quality': '00000000 00000000'
+- name: 'Enable SSGI'
+  options:
+    - 'r.SSGI.Enable': '00000001 00000001'
+    - 'r.SSGI.Quality': '00000004 00000004'
 
-  # Anti-Aliasing
-  - name: 'AA Off'
-    options:
-      - 'r.PostProcessAAQuality': '00000000 00000000'
-  - name: 'AA Very Low'
-    options:
-      - 'r.PostProcessAAQuality': '00000001 00000001'
-  - name: 'AA Low'
-    options:
-      - 'r.PostProcessAAQuality': '00000002 00000002'
-  - name: 'AA Medium'
-    options:
-      - 'r.PostProcessAAQuality': '00000003 00000003'
-  - name: 'AA High'
-    options:
-      - 'r.PostProcessAAQuality': '00000004 00000004'
-  - name: 'AA Very High'
-    options:
-      - 'r.PostProcessAAQuality': '00000005 00000005'
-  - name: 'AA Max'
-    options:
-      - 'r.PostProcessAAQuality': '00000006 00000006'
+SSR:
+- name: 'Disable SSR'
+  options: 
+    - 'r.SSR.Quality': '00000000 00000000'
+- name: 'Enable SSR'
+  options: 
+    - 'r.SSR.Quality': '00000001 00000001'
 
-  # Shadows 
-  - name: 'Shadows Off'
-    options:
-      - 'r.ShadowQuality': '00000000 00000000'
-  - name: 'Shadows Very Low'
-    options:
-      - 'r.ShadowQuality': '00000001 00000001'
-  - name: 'Shadows Low'
-    options:
-      - 'r.ShadowQuality': '00000002 00000002'
-  - name: 'Shadows Medium'
-    options:
-      - 'r.ShadowQuality': '00000003 00000003'
-  - name: 'Shadows High'
-    options:
-      - 'r.ShadowQuality': '00000004 00000004'
+SSAO:
+- name: 'SSAO Off'
+  options:
+    - 'r.AmbientOcclusionRadiusScale': '00000000 00000000'
+- name: 'SSAO x0.5'
+  options:
+    - 'r.AmbientOcclusionRadiusScale': '3F000000 3F000000'
+- name: 'SSAO x0.75'
+  options:
+    - 'r.AmbientOcclusionRadiusScale': '3F400000 3F400000'
+- name: 'SSAO x1'
+  options:
+    - 'r.AmbientOcclusionRadiusScale': '3F800000 3F800000'
+- name: 'SSAO x1.5'
+  options:
+    - 'r.AmbientOcclusionRadiusScale': '3FC00000 3FC00000'
+- name: 'SSAO x2'
+  options:
+    - 'r.AmbientOcclusionRadiusScale': '40000000 40000000'
 
-  # Shadows Distance 
-  - name: 'Shadow Distance Off'
-    options:
-      - 'r.Shadow.DistanceScale': '00000000 00000000'
-  - name: 'Shadow Distance x0.5'
-    options:
-      - 'r.Shadow.DistanceScale': '3F000000 3F000000'
-  - name: 'Shadow Distance x0.75'
-    options:
-      - 'r.Shadow.DistanceScale': '3F400000 3F400000'
-  - name: 'Shadow Distance x1'
-    options:
-      - 'r.Shadow.DistanceScale': '3F800000 3F800000'
-  - name: 'Shadow Distance x1.5'
-    options:
-      - 'r.Shadow.DistanceScale': '3FC00000 3FC00000'
-  - name: 'Shadow Distance x2'
-    options:
-      - 'r.Shadow.DistanceScale': '40000000 40000000'
+View Distance:
+- name: 'View Distance Scale Off'
+  options:
+    - 'r.ViewDistanceScale': '00000000 00000000'
+- name: 'View Distance Scale x0.5'
+  options:
+    - 'r.ViewDistanceScale': '3F000000 3F000000'
+- name: 'View Distance Scale x0.75'
+  options:
+    - 'r.ViewDistanceScale': '3F400000 3F400000'
+- name: 'View Distance Scale x1'
+  options:
+    - 'r.ViewDistanceScale': '3F800000 3F800000'
+- name: 'View Distance Scale x1.5'
+  options:
+    - 'r.ViewDistanceScale': '3FC00000 3FC00000'
 
-  # SSGI
-  - name: 'Disable SSGI'
-    options:
-      - 'r.SSGI.Enable': '00000000 00000000'
-      - 'r.SSGI.Quality': '00000000 00000000'
-  - name: 'Enable SSGI'
-    options:
-      - 'r.SSGI.Enable': '00000001 00000001'
-      - 'r.SSGI.Quality': '00000004 00000004'
+Bloom:
+- name: 'Bloom Off'
+  options:
+    - 'r.BloomQuality': '00000000 00000000'
+- name: 'Bloom Very Low'
+  options:
+    - 'r.BloomQuality': '00000001 00000001'
+- name: 'Bloom Low'
+  options:
+    - 'r.BloomQuality': '00000002 00000002'
+- name: 'Bloom Medium'
+  options:
+    - 'r.BloomQuality': '00000003 00000003'
+- name: 'Bloom High'
+  options:
+    - 'r.BloomQuality': '00000004 00000004'
+- name: 'Bloom Very High'
+  options:
+    - 'r.BloomQuality': '00000005 00000005'
+- name: 'Bloom Max'
+  options:
+    - 'r.BloomQuality': '00000006 00000006'
 
-  # SSR
-  - name: 'Disable SSR'
-    options: 
-      - 'r.SSR.Quality': '00000000 00000000'
-  - name: 'Enable SSR'
-    options: 
-      - 'r.SSR.Quality': '00000001 00000001'
+Anisotropic Filtering:
+- name: 'Anisotropic Filtering Off'
+  options:
+    - 'r.MaxAnisotropy': '00000000 00000000'
+- name: 'Anisotropic Filtering 1x'
+  options:
+    - 'r.MaxAnisotropy': '00000001 00000001'
+- name: 'Anisotropic Filtering 2x'
+  options:
+    - 'r.MaxAnisotropy': '00000002 00000002'
+- name: 'Anisotropic Filtering 4x'
+  options:
+    - 'r.MaxAnisotropy': '00000004 00000004'
+- name: 'Anisotropic Filtering 8x'
+  options:
+    - 'r.MaxAnisotropy': '00000008 00000008'
+- name: 'Anisotropic Filtering 16x'
+  options:
+    - 'r.MaxAnisotropy': '00000016 00000016'
 
-  # SSAO
-  - name: 'SSAO Off'
-    options:
-      - 'r.AmbientOcclusionRadiusScale': '00000000 00000000'
-  - name: 'SSAO x0.5'
-    options:
-      - 'r.AmbientOcclusionRadiusScale': '3F000000 3F000000'
-  - name: 'SSAO x0.75'
-    options:
-      - 'r.AmbientOcclusionRadiusScale': '3F400000 3F400000'
-  - name: 'SSAO x1'
-    options:
-      - 'r.AmbientOcclusionRadiusScale': '3F800000 3F800000'
-  - name: 'SSAO x1.5'
-    options:
-      - 'r.AmbientOcclusionRadiusScale': '3FC00000 3FC00000'
-  - name: 'SSAO x2'
-    options:
-      - 'r.AmbientOcclusionRadiusScale': '40000000 40000000'
+Fully Load Textures:
+- name: 'Fully Load Textures ASAP Off'
+  options:
+    - 'r.Streaming.FullyLoadUsedTextures': '00000000 00000000'
+- name: 'Fully Load Textures ASAP On'
+  options:
+    - 'r.Streaming.FullyLoadUsedTextures': '00000001 00000001'
 
-  # View Distance 
-  - name: 'View Distance Scale Off'
-    options:
-      - 'r.ViewDistanceScale': '00000000 00000000'
-  - name: 'View Distance Scale x0.5'
-    options:
-      - 'r.ViewDistanceScale': '3F000000 3F000000'
-  - name: 'View Distance Scale x0.75'
-    options:
-      - 'r.ViewDistanceScale': '3F400000 3F400000'
-  - name: 'View Distance Scale x1'
-    options:
-      - 'r.ViewDistanceScale': '3F800000 3F800000'
-  - name: 'View Distance Scale x1.5'
-    options:
-      - 'r.ViewDistanceScale': '3FC00000 3FC00000'
+Max Quality Override:
+- name: 'Max Quality Mode Off'
+  options:
+    - 'r.MaxQualityMode': '00000000 00000000'
+- name: 'Max Quality Mode On'
+  options:
+    - 'r.MaxQualityMode': '00000001 00000001'
 
-  # Bloom
-  - name: 'Bloom Off'
-    options:
-      - 'r.BloomQuality': '00000000 00000000'
-  - name: 'Bloom Very Low'
-    options:
-      - 'r.BloomQuality': '00000001 00000001'
-  - name: 'Bloom Low'
-    options:
-      - 'r.BloomQuality': '00000002 00000002'
-  - name: 'Bloom Medium'
-    options:
-      - 'r.BloomQuality': '00000003 00000003'
-  - name: 'Bloom High'
-    options:
-      - 'r.BloomQuality': '00000004 00000004'
-  - name: 'Bloom Very High'
-    options:
-      - 'r.BloomQuality': '00000005 00000005'
-  - name: 'Bloom Max'
-    options:
-      - 'r.BloomQuality': '00000006 00000006'
-
-  # Anisotropic Filtering 
-  - name: 'Anisotropic Filtering Off'
-    options:
-      - 'r.MaxAnisotropy': '00000000 00000000'
-  - name: 'Anisotropic Filtering 1x'
-    options:
-      - 'r.MaxAnisotropy': '00000001 00000001'
-  - name: 'Anisotropic Filtering 2x'
-    options:
-      - 'r.MaxAnisotropy': '00000002 00000002'
-  - name: 'Anisotropic Filtering 4x'
-    options:
-      - 'r.MaxAnisotropy': '00000004 00000004'
-  - name: 'Anisotropic Filtering 8x'
-    options:
-      - 'r.MaxAnisotropy': '00000008 00000008'
-  - name: 'Anisotropic Filtering 16x'
-    options:
-      - 'r.MaxAnisotropy': '00000016 00000016'
-
-  # Fully Load Used Textures
-  - name: 'Fully Load Textures ASAP Off'
-    options:
-      - 'r.Streaming.FullyLoadUsedTextures': '00000000 00000000'
-  - name: 'Fully Load Textures ASAP On'
-    options:
-      - 'r.Streaming.FullyLoadUsedTextures': '00000001 00000001'
-  
-  # Max Quality Override
-  - name: 'Max Quality Mode Off'
-    options:
-      - 'r.MaxQualityMode': '00000000 00000000'
-  - name: 'Max Quality Mode On'
-    options:
-      - 'r.MaxQualityMode': '00000001 00000001'
-
-  # Distortion Effects 
-  - name: 'Disable Distortion Effects'
-    options: 
-      - 'r.DisableDistortion': '00000001 00000001'
-  - name: 'Enable Distortion Effects'
-    options: 
-      - 'r.DisableDistortion': '00000000 00000000'
+Distortion Effects:
+- name: 'Disable Distortion Effects'
+  options: 
+    - 'r.DisableDistortion': '00000001 00000001'
+- name: 'Enable Distortion Effects'
+  options: 
+    - 'r.DisableDistortion': '00000000 00000000'
 

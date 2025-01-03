@@ -51,23 +51,24 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 - Refraction Quality 
 
 ## Notes
-### 45 FPS
-Use the 60FPS option and then make DR Target 45 FPS and use FPSLocker to lock the framerate  to 45
+### FPS 
+Use FPSLocker for unlocking Framerate
 
 ### TAAU 
 Some combination of AA options will make the game crash
 
 ## Progress Tracker
 ### In-Progress
-- [ ] Custom Configs (these will cover cheats order and generation of only fps or gfx options)
-- [ ] Toggle Categories
+- [ ] Updating UI to expose new functionality
 ### Planned
 - [ ]  Toggles for cheats before creation of txt
 - [ ]  Preview cheats before downloading
 - [ ]  Download with txt in the directory atmosphere/content/[GameID]/cheats/
 - [ ]  Make cheat creation page offline-friendly
 ### Done
-- [x] Show which one was the default option
+- [x] Custom Configs (these will cover cheats order and generation of only fps or gfx options) - 20250103
+- [x] Toggle Categories - 20250103
+- [x] Mark Default Values
 - [x] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
 - [x] Create the usual gfx cheats and their different levels
 - [x] Scaffold a UI

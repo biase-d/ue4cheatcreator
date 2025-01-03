@@ -24,13 +24,13 @@ Dynamic Resolution Scale:
   - name: 'Enable DRS'
     options:
       - 'r.DynamicRes.OperationMode': '00000002 00000002'
-  - name: 'Target 30 FPS'
+  - name: 'DR Target 30 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
-  - name: 'Target 45 FPS'
+  - name: 'DR Target 45 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41B1C28F 41B1C28F'
-  - name: 'Target 60 FPS'
+  - name: 'DR Target 60 FPS'
     options:
       - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
 
@@ -66,7 +66,7 @@ Resolution Scale:
     options:
       - 'r.ScreenPercentage': '42FA0000 42FA0000'
 
-Secondary Render Resolution:
+2nd Render Resolution:
   - name: '2nd Render Resolution 50%'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '42480000 42480000'
@@ -76,7 +76,7 @@ Secondary Render Resolution:
   - name: '2nd Render Resolution 100%'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '42C80000 42C80000'
-  - name: '2nd Render Resolution MAX (May Cause Crashes)'
+  - name: '2nd Render Resolution MAX'
     options:
       - 'r.SecondaryScreenPercentage.GameViewport': '00000000 00000000'
 
@@ -135,12 +135,12 @@ Vignette:
 Foggy Scene:
   - name: 'Foggy Scene Off'
     options:
-      - 'r.Fog': '00000000 00000000'
+      - 'r.Fog' : '00000000 00000000'
   - name: 'Foggy Scene On'
     options:
-      - 'r.Fog': '00000001 00000001'
+      - 'r.Fog' : '00000001 00000001'
 
-Depth Of Field:
+Depth of Field:
   - name: 'Depth of Field Off'
     options:
       - 'r.DepthOfFieldQuality': '00000000 00000000'
@@ -164,6 +164,46 @@ Lens Flare:
     options:
       - 'r.LensFlareQuality': '00000001 00000001'
 
+Sky Lighting Quality:
+  - name: 'Sky Lighting Quality Off'
+    options:
+      - 'r.SkyLightingQuality': '00000000 00000000'
+  - name: 'Sky Lighting Quality On'
+    options:
+      - 'r.SkyLightingQuality': '00000001 00000001'
+
+Film Tone Mapper:
+  - name: 'Filmic Tonemapper Off'
+    options:
+      - 'r.TonemapperFilm': '00000000 00000000'
+  - name: 'Filmic Tonemapper On'
+    options:
+      - 'r.TonemapperFilm': '00000001 00000001'
+
+Image Sharpening:
+  - name: 'Image Sharpening Off'
+    options:
+      - 'r.Tonemapper.Sharpen': '00000000 00000000'
+  - name: 'Image Sharpening On'
+    options:
+      - 'r.Tonemapper.Sharpen': '3F800000 3F800000'
+
+Foliage:
+  - name: 'Foliage Off'
+    options:
+      - 'foliage.LODDistanceScale': '00000000 00000000'
+  - name: 'Foliage On'
+    options:
+      - 'foliage.LODDistanceScale': '3F800000 3F800000'
+
+Motion Blur:
+  - name: 'Motion Blur Off'
+    options:
+      - 'r.MotionBlurQuality': '00000000 00000000'
+  - name: 'Motion Blur On'
+    options:
+      - 'r.MotionBlurQuality': '00000001 00000001'
+    
 AA Method:
 - name: 'AA Method OFF'
   options:
@@ -199,7 +239,7 @@ TAAU:
     - 'r.TemporalAA.Quality': '00000002 00000002'
     - 'r.TemporalAA.UseMobileConfig': '00000001 00000001'
 
-Anti-Aliasing:
+Anti-Aliasing Quality:
 - name: 'AA Off'
   options:
     - 'r.PostProcessAAQuality': '00000000 00000000'
@@ -239,7 +279,7 @@ Shadows:
   options:
     - 'r.ShadowQuality': '00000004 00000004'
 
-Shadow Distance: 
+Shadows Distance:
 - name: 'Shadow Distance Off'
   options:
     - 'r.Shadow.DistanceScale': '00000000 00000000'
@@ -357,7 +397,7 @@ Anisotropic Filtering:
   options:
     - 'r.MaxAnisotropy': '00000016 00000016'
 
-Fully Load Textures:
+Fully Load Used Textures:
 - name: 'Fully Load Textures ASAP Off'
   options:
     - 'r.Streaming.FullyLoadUsedTextures': '00000000 00000000'
@@ -373,7 +413,7 @@ Max Quality Override:
   options:
     - 'r.MaxQualityMode': '00000001 00000001'
 
-Distortion Effects:
+Distortion Effects: 
 - name: 'Disable Distortion Effects'
   options: 
     - 'r.DisableDistortion': '00000001 00000001'

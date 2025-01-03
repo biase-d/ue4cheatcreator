@@ -158,10 +158,7 @@ cheats:
 
 ## Progress Tracker
 ### In-Progress
-- [ ] Updating UI to expose new functionality
-- [ ] Allow setting custom indicator 
-- [ ] Downloading based on the custom settings 
-- [ ] Storing previous generations in sessionstorage?
+- [ ] 
 ### Planned
 - [ ]  Toggles for cheats before creation of txt
 - [ ]  Preview cheats before downloading
@@ -169,6 +166,9 @@ cheats:
 - [ ]  Make cheat creation page offline-friendly
 - [ ]  Mix Categories and other cheats
 ### Done
+- [x] Updating UI to expose new functionality - 20250103
+- [x] Allow setting custom indicator - 20250103
+- [x] Downloading based on custom settings set by the user 20250103
 - [x] Custom Configs (these will cover cheats order and generation of only fps or gfx options) - 20250103
 - [x] Toggle Categories - 20250103
 - [x] Mark Default Values

@@ -1,72 +1,85 @@
 <script>
-  import Download from './Download.svelte';
-  import Icon from '@iconify/svelte';
-
-  /**
-   * @type {HTMLInputElement}
-   */
-  let file;
-  let cheats = "";
-  let size = '';
-  let name = ''
-  let loading = false
+  import config from '$lib/config.yml'
+  import { parseLogFile, generateCheats } from '$lib/functions'
+  import yaml from 'js-yaml'
   
-  const handleCFGfile = async () => {
-    loading = true
-    const formData = new FormData()
+  let loaded = false
+  let show = false
+  let file = {}
+  let customConfig
+  let content
+  let name
+  let override = config.config[0]
+  let temp;
 
-    if (file.files){
-      formData.append('cfg', file.files[0])
-    } else {
-      alert('Select a file to start')
+  async function handleProcessing () {
+    file = {
+      name: await file.files[0].name,
+      content: (await (await file.files[0].text()))
     }
 
-    const response  = await fetch('/api/createCheat', {
-      method: 'POST',
-      body: formData
-    })
-
-    if (response.ok){
-      let data = await response.json()
-      // Prevent duplicate entries on multiple uploads
-      cheats = "";
-      size = "";
-      name = "";
-
-      name = data.name
-      cheats += data.content
-      size = data.size
-    } else if (response.status === 500){
-      alert('File is too big. Make sure you are selecting the correct .txt file')
-    } else {
-      alert('Something went wrong. Make sure you are selecting the correct .txt file')
+    if (customConfig.files[0]){
+      temp = yaml.load(await (await customConfig.files[0].text()))
     }
+
+    loaded = true
+    name = (file.name).split('.')[0]
+    content = file.content
   }
 
-  function recreate() {
-    loading = false
-    cheats = ""
+  async function generateAndDownload(){
+    const parsed = parseLogFile(content)
+    const {cheats, warning} = (generateCheats(parsed, (temp ? temp : config), override))
+
+    const link =document.createElement("a")
+    const txt = new Blob([cheats], { type: 'text/plain' })
+
+    link.href=URL.createObjectURL(txt)
+    link.download = name + '.txt'
+    link.click()
+    URL.revokeObjectURL(link.href)
   }
-  
+
 </script>
 
-{#if cheats === ""}
-  <form on:submit|preventDefault= {handleCFGfile} class="grid px-8 gap-2.5 items-center justify-center">
-    <div class="w-[96px] h-[96px] my-10 animate-pulse ml-auto mr-auto">
-      <Icon icon="pixelarticons:article" width=96 class='text-primary'/>
-    </div>
-    <span class="label-text-alt">Max Size: 5KB</span>
-    <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" bind:this={file} accept='.txt' required/>
-    {#if !loading}
-      <button class="btn btn-primary font-bold" type='submit'> Create Cheats </button>
-    {:else}
-      <button class="btn btn-primary cursor-not-allowed" disabled><span class='animate-spin'><Icon icon="pixelarticons:loader"/> </span></button>
+<form class="grid px-8 gap-2.5 items-center justify-center w-full">
+  {#if loaded == false}
+  <label class='flex flex-col gap-2.5'>
+    Upload .log file to start
+    <input type='file' class="file-input file-input-bordered file-input-primary w-full max-w-xs" on:change={handleProcessing} bind:this={file} accept='.log' required/>
+  </label>
+  <div>
+    <button class='link text-primary label-text-alt' on:click={() => {show = true}}>Use custom config</button>
+    {#if show}
+      <label class=grid>
+        <span>Upload the custom config file to be used for generation</span>
+        <input type='file' bind:this={customConfig} accept=".yml, yaml">
+      </label>
     {/if}
-  </form>
-{:else}
-  <div class="flex flex-col items-center justify-center gap-2.5">
-    <span class="h-[96px] w-[96px] rounded-full text-green-500 my-10"><Icon icon="pixelarticons:check" width=96/></span>
-    <Download { cheats } { name } {size}/>
-    <button on:click={recreate} class="text-sm font-bold text-primary"> Create for another game </button>
   </div>
-{/if}
+
+
+  {:else}
+  <div>
+    <p class='label-text-alt font-bold'>BID</p>
+    <p>{name}</p> 
+  </div>
+  {#if !show && temp}
+    <label class='grid label-text-alt gap-2.5'>
+      <span class='font-bold'>Group by Categories</span>
+      <select bind:value={override.categories} class='select select-bordered'>
+        <option disabled selected value={config.config[0].categories}>Set by Config ({config.config[0].categories ? 'Enabled' : 'Disabled'})</option>
+        <option value={true}>Enable</option>
+        <option value={false}>Disable</option>
+      </select>
+    </label>
+    <label class='grid label-text-alt gap-2.5'>
+      <span class='font-bold'>Default Option Marker</span>
+      <input type="text" bind:value={override.defaultIndicator} class='input input-bordered'>
+    </label>
+  {:else}
+    <p> Generated using custom config</p>
+  {/if}
+  <button class='btn btn-primary' on:click={generateAndDownload}>Generate & Download</button>
+  {/if}
+</form>

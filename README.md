@@ -45,6 +45,27 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 - [ ] MSAA
 - [ ] MIN/MAX/DEFAULT GFX Settings
 
+### Left to implement the following based on the dump from UE4cfgdumper
+``` 
+r.TemporalAA.HistoryScreenPercentage, main_offset: 0x113B53A0 + 0x0, type: float 100.00000 / 0x42C80000
+r.TemporalAA.R11G11B10History, main_offset: 0x113B53D0 + 0x0, type: int 1 / 0x1
+r.TemporalAAFilterSize, main_offset: 0x113B5328 + 0x0, type: float 1.00000 / 0x3F800000
+- [x]r.TemporalAASamples, main_offset: 0x113C13A8 + 0x0, type: int 8 / 0x8
+- [x]r.TemporalAACatmullRom, main_offset: 0x113B5340 + 0x0, type: int 0 / 0x0
+r.TemporalAAPauseCorrect, main_offset: 0x113B5358 + 0x0, type: int 1 / 0x1
+r.TemporalAACurrentFrameWeight, main_offset: 0x113B5370 + 0x0, type: float 0.04000 / 0x3D23D70A
+- [x] r.MSAACount, main_offset: 0x113C1298 + 0x0, type: int 4 / 0x4
+r.RefractionQuality, main_offset: 0x113BC2E8 + 0x0, type: int 0 / 0x0
+- [x] r.MSAA.CompositingSampleCount, main_offset: 0x10546280 + 0x0, type: int 4 / 0x4
+r.LightFunctionQuality, main_offset: 0x10546520 + 0x0, type: int 0 / 0x0
+r.SSS.Quality, main_offset: 0x113AEF28 + 0x0, type: int 0 / 0x0
+r.SSS.Scale, main_offset: 0x113AEEF8 + 0x0, type: float 0.00000 / 0x0
+r.Mobile.ShadingPath, main_offset: 0x10545EA8 + 0x0, type: int 1 / 0x1
+r.VelocityOutputPass, main_offset: 0x113D8F28 + 0x0, type: int 0 / 0x0
+r.Velocity.EnableVertexDeformation, main_offset: 0x11444448 + 0x0, type: int 0 / 0x0
+
+```
+
 ## How to Create Custom Configs
 All custom configs require a `config` key. This key controls global settings for the configuration and currently supports:
 

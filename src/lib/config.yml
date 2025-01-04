@@ -184,7 +184,10 @@ Image Sharpening:
   - name: 'Image Sharpening Off'
     options:
       - 'r.Tonemapper.Sharpen': '00000000 00000000'
-  - name: 'Image Sharpening On'
+  - name: 'Image Sharpening 0.5x'
+    options:
+      - 'r.Tonemapper.Sharpen': '3F000000 3F000000'
+  - name: 'Image Sharpening 1x'
     options:
       - 'r.Tonemapper.Sharpen': '3F800000 3F800000'
 
@@ -225,7 +228,6 @@ TAAU:
     - 'r.AntiAliasingMethod': '00000001 00000001'
     - 'r.TemporalAA.Upsampling' : '00000000 00000000'
     - 'r.PostProcessAAQuality': '00000002 00000002'
-    #'r.DynamicRes.MaxScreenPercentage': '42C80000 42C80000'
     - 'r.TemporalAA.Quality': '00000000 00000000'
     - 'r.TemporalAA.UseMobileConfig': '00000000 00000000'
 - name: 'Enable TAAU'
@@ -235,9 +237,51 @@ TAAU:
     - 'r.TemporalAA.Upsampling' : '00000001 00000001'
     - 'r.PostProcessAAQuality': '00000003 00000003'
     - 'r.TemporalAA.Algorithm': '00000001 00000001'
-    #- 'r.DynamicRes.MaxScreenPercentage': '42AA0000 42AA0000'
     - 'r.TemporalAA.Quality': '00000002 00000002'
     - 'r.TemporalAA.UseMobileConfig': '00000001 00000001'
+
+TAAU (Sharper Experimental):
+- name: 'Disable TAAU (Sharper Experimental)'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000001 00000001'
+    - 'r.AntiAliasingMethod': '00000001 00000001'
+    - 'r.TemporalAA.Upsampling' : '00000000 00000000'
+    - 'r.PostProcessAAQuality': '00000002 00000002'
+    - 'r.TemporalAA.Quality': '00000000 00000000'
+    - 'r.TemporalAA.UseMobileConfig': '00000000 00000000'
+- name: 'Enable TAAU (Sharper Experimental)'
+  options:
+    - 'r.DefaultFeature.AntiAliasing': '00000002 00000002'
+    - 'r.AntiAliasingMethod': '00000002 00000002'
+    - 'r.TemporalAA.Upsampling' : '00000001 00000001'
+    - 'r.TemporalAA.UseMobileConfig': '00000001 00000001'
+    - 'r.PostProcessAAQuality': '00000003 00000003'
+    - 'r.TemporalAA.Algorithm': '00000001 00000001'
+    - 'r.TemporalAA.Quality': '00000002 00000002'
+    - 'r.TemporalAACurrentFrameWeight': '3E99999A 3E99999A'
+    - 'r.TemporalAASamples': '00000002 00000002'
+    - 'r.TemporalAACatmullRom': '00000001 00000001'
+
+MSAA:
+  - name: 'MSAA Disabled (Temporal AA Enabled)'
+    options:
+      - 'r.MSAACount': '00000000 00000000'
+  - name: 'MSAA Disabled'
+    options:
+      - 'r.MSAACount': '00000001 00000001'
+      - 'r.MSAA.CompositingSampleCount': '00000001 00000001'
+  - name: 'MSAA 2x'
+    options:
+      - 'r.MSAACount': '00000002 00000002'
+      - 'r.MSAA.CompositingSampleCount': '00000002 00000002'
+  - name: 'MSAA 4x'
+    options:
+      - 'r.MSAACount': '00000004 00000004'
+      - 'r.MSAA.CompositingSampleCount': '00000004 00000004'
+  - name: 'MSAA 8x'
+    options:
+      - 'r.MSAACount': '00000008 00000008'
+      - 'r.MSAA.CompositingSampleCount': '00000008 00000008'
 
 Anti-Aliasing Quality:
 - name: 'AA Off'

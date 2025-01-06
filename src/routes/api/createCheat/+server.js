@@ -32,7 +32,7 @@ export async function POST ({ request }) {
       // Only add the section if there are valid options
       if (setting.length > 0) {
         // Check the default values
-        const isDefault = setting.some(option => {
+        const isDefault = setting.every(option => {
           const [name, value] = Object.entries(option)[0]
           return cheat[name] && cheat[name].value === `680F0000 ${value}`
         })

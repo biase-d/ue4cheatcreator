@@ -9,14 +9,14 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 5. Download
 6. Copy to console and Enjoy 
 
-## Supported Cheats
+## Cheats Supported by the default config
 - [x] FPS - 30, 60
 - [x] Dynamic Resolution 
 - [x] Dynamic Resolution Target FPS - 30 FPS, 45 FPS, 60 FPS
 - [x] Anti Aliasing Method - Off, FXAA, TAA
 - [x] Anti Aliasing Levels - Off, Very Low, Low, Medium, High, Very High, Max
-- [x] Render Resolution Scale - 50%, 66.66%, 70%, 71.11%, 75%, 83.33%, 85%, 90%, 100%
-- [x] 2nd Render Resolution Scale - 50%, 75%, MAX
+- [x] Render Resolution Scale - 50%, 66.66%, 70%, 71.11%, 75%, 83.33%, 85%, 90%, 100%, 125%
+- [x] 2nd Render Resolution Scale - 50%, 75%, 100%, Max (Might Cause Crashes)
 - [x] Upscale Quality 
 - [x] View Distance Scale 
 - [x] Foliage 
@@ -45,29 +45,154 @@ Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
 - [ ] MSAA
 - [ ] MIN/MAX/DEFAULT GFX Settings
 
-## Disabled
-- Light Function Quality 
-- Mobile Shading Path 
-- Refraction Quality 
+### Left to implement the following based on the dump from UE4cfgdumper
+``` 
+r.TemporalAA.HistoryScreenPercentage, main_offset: 0x113B53A0 + 0x0, type: float 100.00000 / 0x42C80000
+r.TemporalAA.R11G11B10History, main_offset: 0x113B53D0 + 0x0, type: int 1 / 0x1
+r.TemporalAAFilterSize, main_offset: 0x113B5328 + 0x0, type: float 1.00000 / 0x3F800000
+- [x]r.TemporalAASamples, main_offset: 0x113C13A8 + 0x0, type: int 8 / 0x8
+- [x]r.TemporalAACatmullRom, main_offset: 0x113B5340 + 0x0, type: int 0 / 0x0
+r.TemporalAAPauseCorrect, main_offset: 0x113B5358 + 0x0, type: int 1 / 0x1
+r.TemporalAACurrentFrameWeight, main_offset: 0x113B5370 + 0x0, type: float 0.04000 / 0x3D23D70A
+- [x] r.MSAACount, main_offset: 0x113C1298 + 0x0, type: int 4 / 0x4
+r.RefractionQuality, main_offset: 0x113BC2E8 + 0x0, type: int 0 / 0x0
+- [x] r.MSAA.CompositingSampleCount, main_offset: 0x10546280 + 0x0, type: int 4 / 0x4
+r.LightFunctionQuality, main_offset: 0x10546520 + 0x0, type: int 0 / 0x0
+r.SSS.Quality, main_offset: 0x113AEF28 + 0x0, type: int 0 / 0x0
+r.SSS.Scale, main_offset: 0x113AEEF8 + 0x0, type: float 0.00000 / 0x0
+r.Mobile.ShadingPath, main_offset: 0x10545EA8 + 0x0, type: int 1 / 0x1
+r.VelocityOutputPass, main_offset: 0x113D8F28 + 0x0, type: int 0 / 0x0
+r.Velocity.EnableVertexDeformation, main_offset: 0x11444448 + 0x0, type: int 0 / 0x0
 
-## Notes
-### 45 FPS
-Use the 60FPS option and then make DR Target 45 FPS and use FPSLocker to lock the framerate  to 45
+```
 
-### TAAU 
-Some combination of AA options will make the game crash
+## How to Create Custom Configs
+All custom configs require a `config` key. This key controls global settings for the configuration and currently supports:
+
+- **`categories` (boolean):** Determines if options are grouped into categories.
+  - `true`: Enables category grouping.
+  - `false`: Disables category grouping.
+- **`defaultIndicator` (string):** Specifies the symbol or value used to mark the default option.
+
+### Example Configurations
+
+#### **With Category Support**
+When `categories` is set to `true`, options are grouped into categories. For example:
+
+```yml
+config: 
+  - categories: true
+    defaultIndicator: 'Default'
+Framerate:
+  - name: '30 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
+      - 'rhi.SyncInterval': '00000002 00000002'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '41F00000 41F00000'
+      - 'r.GTSyncType': '00000001 00000001'
+  - name: '60 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
+      - 'rhi.SyncInterval': '00000001 00000001'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '00000000 00000000'
+      - 'r.GTSyncType': '00000001 00000001'
+```
+##### Expected Output
+```
+[--SectionStart:Framerate--]
+00000000 00000000 00000000
+[30 FPS]
+580F0000 0A0CA138
+680F0000 420551EC 420551EC
+580F0000 09FC9628
+680F0000 00000002 00000002
+580F0000 090FC980
+680F0000 00000000 00000000
+580F0000 0A104AE0
+680F0000 41F00000 41F00000
+580F0000 09FD9A20
+680F0000 00000001 00000001
+[60 FPS]
+580F0000 0A0CA138
+680F0000 41855555 41855555
+580F0000 09FC9628
+680F0000 00000001 00000001
+580F0000 090FC980
+680F0000 00000000 00000000
+580F0000 0A104AE0
+680F0000 00000000 00000000
+580F0000 09FD9A20
+680F0000 00000001 00000001
+[--SectionEnd:Framerate--]
+00000000 00000000 00000000
+```
+
+#### **Without Category Support**
+If you prefer not to create categories, you can group all options under a single key (e.g., cheats) instead of naming individual categories like Framerate. This simplifies the structure while maintaining functionality
+```yml
+config: 
+  - categories: false
+    defaultIndicator: 'Default'
+cheats:
+  - name: '30 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
+      - 'rhi.SyncInterval': '00000002 00000002'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '41F00000 41F00000'
+      - 'r.GTSyncType': '00000001 00000001'
+  - name: '60 FPS'
+    options:
+      - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
+      - 'rhi.SyncInterval': '00000001 00000001'
+      - 'r.VSync': '00000000 00000000'
+      - 't.MaxFPS': '00000000 00000000'
+      - 'r.GTSyncType': '00000001 00000001'
+```
+##### Expected Output
+```
+[30 FPS]
+580F0000 0A0CA138
+680F0000 420551EC 420551EC
+580F0000 09FC9628
+680F0000 00000002 00000002
+580F0000 090FC980
+680F0000 00000000 00000000
+580F0000 0A104AE0
+680F0000 41F00000 41F00000
+580F0000 09FD9A20
+680F0000 00000001 00000001
+[60 FPS]
+580F0000 0A0CA138
+680F0000 41855555 41855555
+580F0000 09FC9628
+680F0000 00000001 00000001
+580F0000 090FC980
+680F0000 00000000 00000000
+580F0000 0A104AE0
+680F0000 00000000 00000000
+580F0000 09FD9A20
+680F0000 00000001 00000001
+```
 
 ## Progress Tracker
 ### In-Progress
-- [ ] Custom Configs (these will cover cheats order and generation of only fps or gfx options)
-- [ ] Toggle Categories
+- [ ] 
 ### Planned
 - [ ]  Toggles for cheats before creation of txt
 - [ ]  Preview cheats before downloading
 - [ ]  Download with txt in the directory atmosphere/content/[GameID]/cheats/
 - [ ]  Make cheat creation page offline-friendly
+- [ ]  Mix Categories and other cheats
 ### Done
-- [x] Show which one was the default option
+- [x] Updating UI to expose new functionality - 20250103
+- [x] Allow setting custom indicator - 20250103
+- [x] Downloading based on custom settings set by the user 20250103
+- [x] Custom Configs (these will cover cheats order and generation of only fps or gfx options) - 20250103
+- [x] Toggle Categories - 20250103
+- [x] Mark Default Values
 - [x] Create FPS codes (_r.Vsync, rhi.SyncInterval, t.MaxFPS, FixedFrameRate, CustomTimeStep_)
 - [x] Create the usual gfx cheats and their different levels
 - [x] Scaffold a UI

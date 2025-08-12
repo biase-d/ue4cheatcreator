@@ -60,7 +60,7 @@
 <div class="container mx-auto p-4 md:p-8 max-w-4xl">
   <div class="flex flex-col gap-4 md:gap-6">
     {#if !loaded}
-      <form class="card bg-base-100">
+      <form class="card">
         <div class="card-body items-center text-center">
           <div class="mb-4">
             <Icon 
@@ -71,7 +71,7 @@
           
           <label class="form-control w-full max-w-xs">
             <div class="label">
-              <span class="label-text">Upload .log file to start</span>
+              <span class="label-text">Upload <strong>.log</strong> file from <strong>UE4cfgdumper</strong> to start</span>
             </div>
             <input
               type="file"
@@ -84,33 +84,22 @@
           </label>
 
           <div class="w-full max-w-xs">
-            <button
-              class="btn w-full"
-              type="button"
-              on:click={() => (show = !show)}
-            >
-              {show ? 'Hide Custom Config' : 'Use Custom Config'}
-              <Icon icon={show ? 'mdi:chevron-up' : 'mdi:chevron-down'} />
-            </button>
-
-            {#if show}
-              <div class="mt-4 collapse collapse-arrow border border-base-300">
-                <input type="checkbox" checked />
+              <div class="mt-4 collapse collapse-arrow border border-primary">
+                <input type="checkbox" />
                 <div class="collapse-title font-medium">
-                  Custom Configuration
+                  Custom Config
                 </div>
                 <div class="collapse-content">
                   <label class="form-control">
                     <input
                       type="file"
-                      class="file-input file-input-accent file-input-sm"
+                      class="file-input file-input-primary file-input-sm"
                       bind:this={customConfig}
                       accept=".yml, .yaml"
                     />
                   </label>
                 </div>
               </div>
-            {/if}
           </div>
         </div>
       </form>

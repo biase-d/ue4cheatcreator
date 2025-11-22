@@ -1,6 +1,6 @@
 {
   "name": "ue4cheatcreator",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "vite dev --host",
@@ -27,6 +27,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@fontsource-variable/caveat": "^5.2.6"
+    "@fontsource-variable/caveat": "^5.2.6",
+    "@vercel/postgres": "^0.10.0"
   }
 }

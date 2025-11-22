@@ -439,7 +439,7 @@ Anisotropic Filtering:
     - 'r.MaxAnisotropy': '00000008 00000008'
 - name: 'Anisotropic Filtering 16x'
   options:
-    - 'r.MaxAnisotropy': '00000016 00000016'
+    - 'r.MaxAnisotropy': '00000010 00000010'
 
 Fully Load Used Textures:
 - name: 'Fully Load Textures ASAP Off'

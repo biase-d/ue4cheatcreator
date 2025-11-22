@@ -250,13 +250,13 @@
             <div class="hero-content text-center">
               <div class="max-w-xl">
                 <div class="mb-8 inline-block p-6 bg-base-100/10 backdrop-blur-md rounded-full border border-white/10 shadow-2xl">
-                  <Icon icon="mdi:nintendo-switch" class="text-8xl text-primary drop-shadow-lg" />
+                  <Icon icon="mdi:upload" class="text-8xl text-primary drop-shadow-lg" />
                 </div>
                 <h1 class="text-5xl font-black mb-6 text-white drop-shadow-md">
-                  UE4 Cheat Creator
+                  ue4cheatcreator
                 </h1>
                 <p class="py-6 text-lg text-gray-300">
-                  Drag and drop your <code>.log</code> file from <strong>UE4cfgdumper</strong> here.
+                  Drag and drop your <code>.log</code> file from <strong>UE4cfgdumper</strong> here
                 </p>
                 
                 <div class="form-control w-full max-w-md mx-auto">

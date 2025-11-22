@@ -8,7 +8,6 @@
   <div class="navbar-center">
     <a href="/" class="btn btn-ghost px-2 gap-2">
       <Icon icon="icon-park-twotone:game" width="32" class='text-primary' />
-      <span class="text-xl font-semibold hidden sm:inline-block">UE4cheatcreator</span>
     </a>
   </div>
 

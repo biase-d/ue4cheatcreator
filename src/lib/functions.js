@@ -1,28 +1,6 @@
-/*
-const isValid = {
-  titleID: (titleID) => {
-    return /^01[0-9A-Fa-f]{11}000$/.test(titleID)
-  },
-  BID: (bid) => {
-    return /^[0-9A-Fa-f]{16}$/.test(bid)
-  },
-  config: (config) => {
-    if (!config.cheatOptions || !Array.isArray(config.cheatOptions)) {
-      console.error('❌ Invalid config: missing or invalid "cheatOptions"')
-      return false
-    }
-    console.log('✅ Valid config')
-    return true
-  }
-}
-*/
-
-// Function to parse the log file (for cheat generation)
 export function parseLogFile (logFile) {
   const parsed = {}
-
   parsed.uploadedFile = 'log'
-
   logFile = logFile.trim().split(/\n+/)
   logFile.forEach((data) => {
     try {
@@ -40,22 +18,22 @@ export function parseLogFile (logFile) {
       parsed.engineVersion = data
     }
   })
-
   return parsed
 }
-// Function to generate cheats
+
 export function generateCheats (parsedLogFile, config, overrideConfig) {
   let txt = []
   const warning = []
   let configuration = {}
   const instruction = '680F0000'
 
-  for (const i of Object.keys(config)) {
+  const keys = Object.keys(config);
+
+  for (const i of keys) {
     if (i === 'config') {
       configuration = config[i][0]
       if (overrideConfig) {
-        configuration.categories = Boolean(overrideConfig.categories) || configuration.categories
-
+        configuration.categories = Boolean(overrideConfig.categories)
         configuration.defaultIndicator = overrideConfig.defaultIndicator || configuration.defaultIndicator
       }
       continue
@@ -73,41 +51,17 @@ export function generateCheats (parsedLogFile, config, overrideConfig) {
       })
 
       if (filtered.length > 0) {
-        const isDefault = filtered.every(setting => {
-          const [name, value] = Object.entries(setting)[0]
-          const parsedSetting = parsedLogFile[name]
-
-          if (!parsedSetting) {
-            console.log(`Skipped: ${name} not found in user input`)
-            return false // If a setting is missing, treat it as non-matching
-          }
-
-          switch (parsedSetting.type) {
-            case 'int': {
-              const configValue = value.slice(-parsedSetting.value.length)
-              const matches = parsedSetting.value === configValue
-              // console.log(`Comparing int for ${name}:`, { matches, parsed: parsedSetting.value, config: configValue });
-              return matches
-            }
-            case 'float': {
-              const configHex = value.split(' ')[1]
-              const matches = parsedSetting.hexValue === `0x${configHex}`
-              // console.log(`Comparing float for ${name}:`, { matches, parsed: parsedSetting.hexValue, config: `0x${configHex}` });
-              return matches
-            }
-            default:
-              console.log(`Unknown type for ${name}`)
-              return false // Unknown types are treated as non-matching
-          }
-        })
-
-        const cheatName = isDefault ? configuration.defaultIndicator + ' ' + config[i][index].name : config[i][index].name
+        const cheatName = config[i][index].name
         txt.push(`[${cheatName}]`)
+        
         filtered.forEach(options => {
           const [name, value] = Object.entries(options)[0]
+          // Value comes in as "HEX HEX" from the editor export
+          const actualHex = value.split(' ')[0]; 
+
           if (parsedLogFile[name] && parsedLogFile[name].offset) {
             txt.push(`580F0000 ${parsedLogFile[name].main_offset.split('x')[1].padStart(8, '0')}`)
-            txt.push(`${instruction} ${value.padStart(8, '0')}`)
+            txt.push(`${instruction} ${actualHex.padStart(8, '0')}`)
           }
         })
       } else {
@@ -122,7 +76,6 @@ export function generateCheats (parsedLogFile, config, overrideConfig) {
   }
 
   txt = txt.join('\n')
-
   return {
     cheats: txt,
     warning

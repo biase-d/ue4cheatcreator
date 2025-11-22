@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui" {
-  themes: black;
+  themes: night;
 };
 
 @layer base {
@@ -9,18 +9,15 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--color-gray-800, currentColor);
   }
-  
 }
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: radial-gradient(
-    gray 1px,
-    transparent 1px
-  );
-  background-size: 10rem 10rem;
+  background: transparent; 
+  overflow-x: hidden;
   z-index: 90;
 }

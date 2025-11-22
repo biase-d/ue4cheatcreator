@@ -1,162 +1,110 @@
-# ue4cheatcreator
-Create cheats FPS, GFX and more for Unreal Engine using files from ue4cfgdumper
+# ue4cheatcreator (Web)
+The ultimate web companion for ue4cfgdumper. Transform raw game logs into powerful graphics enhancing cheat codes
+<img width="1525" height="819" alt="Screenshot 2025-11-22 at 12-20-39 UE4cheatcreator for NX" src="https://github.com/user-attachments/assets/c110bce7-c1b6-46ba-8d7c-2a0f4519b379" />
+<img width="1525" height="819" alt="Screenshot 2025-11-22 at 12-22-30 UE4cheatcreator for NX" src="https://github.com/user-attachments/assets/4f772821-924a-4a7a-8d0c-4b5ec5f01af5" />
 
-## How to use 
-1. Create cfg dump using [UE4cfgdumper](https://github.com/masagrator/UE4cfgdumper)
-2. Copy the .txt file from folder with the game ID in ue4cfgdumper's directory 
-3. Visit [UE4cheatcreator](https://ue4cheatcreator.vercel.app)
-4. Upload .txt file from step 2 
-5. Download
-6. Copy to console and Enjoy 
+**[Try it out here](https://ue4cheatcreator.vercel.app)**
 
-## Cheats Supported by the Default config
-- [x] FPS - 30, 60
-- [x] Dynamic Resolution 
-- [x] Dynamic Resolution Target FPS - 30 FPS, 45 FPS, 60 FPS
-- [x] Anti Aliasing Method - Off, FXAA, TAA
-- [x] Anti Aliasing Levels - Off, Very Low, Low, Medium, High, Very High, Max
-- [x] Render Resolution Scale - 50%, 66.66%, 70%, 71.11%, 75%, 83.33%, 85%, 90%, 100%, 125%
-- [x] 2nd Render Resolution Scale - 50%, 75%, 100%, Max (Might Cause Crashes)
-- [x] Upscale Quality 
-- [x] View Distance Scale 
-- [x] Foliage 
-- [x] SSAO 
-- [x] Shadow Quality 
-- [x] Shadow Distance
-- [x] Motion Blur
-- [x] Lens Flare Quality 
-- [x] Bloom
-- [x] Chromatic Aberration 
-- [x] Depth of Field 
-- [x] Sky Lighting Quality 
-- [x] Film Grain 
-- [x] Image Sharpening 
-- [x] Filmic Tonemapper
-- [x] Vignette 
-- [x] Adaptive Exposure
-- [x] Anisotropic Filtering 
-- [x] Fog 
-- [x] Outlines 
-- [x] Fully Load Textures ASAP
-- [x] Max Quality Override 
-- [x] TAAU
-- [x] SSGI
-- [x] SSR
-- [x] MSAA
+## Features
+* **Log Parsing:** Drag & drop `.log` files from `UE4cfgdumper` to instantly analyze available game settings
+* **Quick Start:** Generate standard cheats (FPS, Resolution, AA) in one click using the built-in configuration
+* **Visual Editor:** Create custom cheat toggles without touching hex code
+* **Smart Types:** Toggle between **Hex**, **Float**, and **Integer** views for easy editing
+* **Search:** Instantly find specific CVars (e.g. `r.BloomQuality`) among thousands of lines
+* **Community Presets:** Browse and load cheat configs created by other users for your specific game
+* **Share Your Work:** Save your custom presets to the global database with your author name
 
-## How to Create Custom Configs
-All custom configs require a `config` key. This key controls global settings for the configuration and currently supports:
+## How to Use
 
-- **`categories` (boolean):** Determines if options are grouped into categories.
-  - `true`: Enables category grouping.
-  - `false`: Disables category grouping.
-- **`defaultIndicator` (string):** Specifies the symbol or value used to mark the default option.
+### Prerequisites
+You need a hacked console with **Atmosphère**.
+#### 1. **Dump the Game Config:**
+* Download [UE4cfgdumper](https://github.com/masagrator/UE4cfgdumper) (or the enhanced TUI version)
+* Run the game on your console
+* Run the dumper to generate a `.log` file (usually in `/switch/UE4cfgdumper/`)
+#### 2. **Upload to Web Tool:**
+* Visit the website
+* Drag and drop / select the `.log` file
+#### 3. **Create Cheats:**
+* **Option A (Fast):** Click **"Generate Default .txt"** to get the standard suite of cheats
+* **Option B (Custom):** Click **"Create New"** to open the Editor. Select variables, change values, and save your own options
+* **Option C (Community):** Open the **Settings Drawer** (Globe Icon) to load a preset made by someone else
 
-### Example Configurations
+#### 4. **Install:**
+* Download the generated `.txt` file
+* Place it in your SD card: `/atmosphere/contents/<TitleID>/cheats/<BuildID>.txt`
 
-#### **With Category Support**
-When `categories` is set to `true`, options are grouped into categories. For example:
+## Development & Self-Hosting
+If you want to run this locally or contribute:
+### Clone & Install
+```bash
 
-```yml
-config: 
-  - categories: true
-    defaultIndicator: 'Default'
-Framerate:
-  - name: '30 FPS'
-    options:
-      - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
-      - 'rhi.SyncInterval': '00000002 00000002'
-      - 'r.VSync': '00000000 00000000'
-      - 't.MaxFPS': '41F00000 41F00000'
-      - 'r.GTSyncType': '00000001 00000001'
-  - name: '60 FPS'
-    options:
-      - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
-      - 'rhi.SyncInterval': '00000001 00000001'
-      - 'r.VSync': '00000000 00000000'
-      - 't.MaxFPS': '00000000 00000000'
-      - 'r.GTSyncType': '00000001 00000001'
-```
-##### Expected Output
-```
-[--SectionStart:Framerate--]
-00000000 00000000 00000000
-[30 FPS]
-580F0000 0A0CA138
-680F0000 420551EC 420551EC
-580F0000 09FC9628
-680F0000 00000002 00000002
-580F0000 090FC980
-680F0000 00000000 00000000
-580F0000 0A104AE0
-680F0000 41F00000 41F00000
-580F0000 09FD9A20
-680F0000 00000001 00000001
-[60 FPS]
-580F0000 0A0CA138
-680F0000 41855555 41855555
-580F0000 09FC9628
-680F0000 00000001 00000001
-580F0000 090FC980
-680F0000 00000000 00000000
-580F0000 0A104AE0
-680F0000 00000000 00000000
-580F0000 09FD9A20
-680F0000 00000001 00000001
-[--SectionEnd:Framerate--]
-00000000 00000000 00000000
+git clone https://github.com/biase-d/ue4cheatcreator.git
+
+cd ue4cheatcreator
+
+npm install
+
 ```
 
-#### **Without Category Support**
-If you prefer not to create categories, you can group all options under a single key (e.g., cheats) instead of naming individual categories like Framerate. This simplifies the structure while maintaining functionality
-```yml
-config: 
-  - categories: false
-    defaultIndicator: 'Default'
-cheats:
-  - name: '30 FPS'
-    options:
-      - 'r.DynamicRes.FrameTimeBudget': '420551EC 420551EC'
-      - 'rhi.SyncInterval': '00000002 00000002'
-      - 'r.VSync': '00000000 00000000'
-      - 't.MaxFPS': '41F00000 41F00000'
-      - 'r.GTSyncType': '00000001 00000001'
-  - name: '60 FPS'
-    options:
-      - 'r.DynamicRes.FrameTimeBudget': '41855555 41855555'
-      - 'rhi.SyncInterval': '00000001 00000001'
-      - 'r.VSync': '00000000 00000000'
-      - 't.MaxFPS': '00000000 00000000'
-      - 'r.GTSyncType': '00000001 00000001'
-```
-##### Expected Output
-```
-[30 FPS]
-580F0000 0A0CA138
-680F0000 420551EC 420551EC
-580F0000 09FC9628
-680F0000 00000002 00000002
-580F0000 090FC980
-680F0000 00000000 00000000
-580F0000 0A104AE0
-680F0000 41F00000 41F00000
-580F0000 09FD9A20
-680F0000 00000001 00000001
-[60 FPS]
-580F0000 0A0CA138
-680F0000 41855555 41855555
-580F0000 09FC9628
-680F0000 00000001 00000001
-580F0000 090FC980
-680F0000 00000000 00000000
-580F0000 0A104AE0
-680F0000 00000000 00000000
-580F0000 09FD9A20
-680F0000 00000001 00000001
-```
+### 2. Database Setup (Vercel Postgres)
+This project uses **@vercel/postgres**. To run it locally, you need to link it to a Vercel project
 
+1. Install Vercel CLI: `npm i -g vercel`
+2. Link Project: `vercel link`
+3. Pull Env Vars: `vercel env pull .env.development.local`
+
+**Schema:**
+Run these SQL commands in your database console:
+
+```sql
+
+CREATE TABLE IF NOT EXISTS games (
+
+id SERIAL PRIMARY KEY,
+
+title_id VARCHAR(255) NOT NULL UNIQUE,
+
+game_name VARCHAR(255),
+
+generation_count INT DEFAULT 1,
+
+last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+  
+
+CREATE TABLE IF NOT EXISTS presets (
+
+id SERIAL PRIMARY KEY,
+
+game_id INT REFERENCES games(id),
+
+name VARCHAR(255) NOT NULL,
+
+author VARCHAR(255) DEFAULT 'Anonymous',
+
+config_json JSONB NOT NULL,
+
+downloads INT DEFAULT 0,
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+```
+### 3. Run Local Server
+
+```bash
+npm run dev
+```
 ## Special Thanks
+
 This project wouldn't be possible without:
-- The tutorials and documentation of UE4 cheats on the switch by Hazerou 
-- [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper) by Masagrator
+- The tutorials and documentation of UE4 cheats on the switch by Hazerou
+- Masagrator for [`UE4cfgdumper`](https://github.com/masagrator/UE4cfgdumper)
 - [Unreal Engine 5.1 Console Variables and Commands](https://framedsc.com/GeneralGuides/ue5_commands.htm)
+
+---
+*Disclaimer: This tool is for educational and single-player use only. Use responsibly*

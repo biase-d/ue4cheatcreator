@@ -71,6 +71,6 @@
   </div>
 
   <div class="text-xs text-center opacity-40 mt-auto pt-4">
-    UE4 Cheat Creator Web v1.5
+    Hi, How are you doing?
   </div>
 </div>

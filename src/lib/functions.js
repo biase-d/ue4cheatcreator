@@ -56,12 +56,9 @@ export function generateCheats (parsedLogFile, config, overrideConfig) {
         
         filtered.forEach(options => {
           const [name, value] = Object.entries(options)[0]
-          // Value comes in as "HEX HEX" from the editor export
-          const actualHex = value.split(' ')[0]; 
-
           if (parsedLogFile[name] && parsedLogFile[name].offset) {
             txt.push(`580F0000 ${parsedLogFile[name].main_offset.split('x')[1].padStart(8, '0')}`)
-            txt.push(`${instruction} ${actualHex.padStart(8, '0')}`)
+            txt.push(`${instruction} ${value}`)
           }
         })
       } else {

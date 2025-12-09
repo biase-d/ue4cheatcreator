@@ -3,7 +3,7 @@
 
   export let globalConfig;
   export let communityPresets = [];
-  export let onLoadPreset; 
+  export let onLoadPreset;
   export let onClose;
 </script>
 
@@ -36,7 +36,7 @@
         type="text" 
         bind:value={globalConfig.defaultIndicator} 
         class="input input-bordered input-sm" 
-        placeholder="e.g. Default"
+        placeholder="e.g. Default" 
       />
     </div>
   </div>
@@ -57,11 +57,17 @@
           <li>
             <button class="btn btn-outline btn-sm h-auto py-2 w-full flex flex-col items-start gap-1" on:click={() => onLoadPreset(preset)}>
               <div class="flex justify-between w-full items-center">
-                <span class="font-bold">{preset.name}</span>
+                <span class="font-bold flex items-center gap-1">
+                    {preset.name}
+                    {#if preset.is_global}
+                        <Icon icon="mdi:earth" class="text-secondary" width="14" title="Global Preset" />
+                    {/if}
+                </span>
                 <!-- <span class="badge badge-ghost badge-xs">{preset.downloads || 0} ⬇</span> -->
               </div>
-              <span class="text-[10px] opacity-60 font-normal">
-                by {preset.author || 'Anonymous'}
+              <span class="text-[10px] opacity-60 font-normal flex justify-between w-full">
+                <span>by {preset.author || 'Anonymous'}</span>
+                {#if preset.is_global}<span class="text-secondary opacity-80">Global</span>{/if}
               </span>
             </button>
           </li>

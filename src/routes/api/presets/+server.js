@@ -1,23 +1,33 @@
-import { createPool } from '@vercel/postgres';
 import { json } from '@sveltejs/kit';
 
-export async function POST({ request }) {
-  const { titleId, gameName, presetName, configJson, author } = await request.json();
-  const db = createPool();
+export async function POST({ request, platform }) {
+  if (!platform?.env?.DB) {
+    return json({ success: false, error: "Database not configured" }, { status: 500 });
+  }
+
+  const { titleId, gameName, presetName, configJson, author, isGlobal } = await request.json();
+  const db = platform.env.DB;
 
   try {
-    const gameRes = await db.query(`
-      INSERT INTO games (title_id, game_name) VALUES ($1, $2)
-      ON CONFLICT (title_id) DO UPDATE SET last_updated = NOW()
-      RETURNING id;
-    `, [titleId, gameName]);
-    
-    const gameDbId = gameRes.rows[0].id;
+    await db.prepare(`
+      INSERT INTO games (title_id, game_name) VALUES (?, ?)
+      ON CONFLICT (title_id) DO UPDATE SET last_updated = CURRENT_TIMESTAMP
+    `).bind(titleId, gameName).run();
 
-    await db.query(`
-      INSERT INTO presets (game_id, name, config_json, author)
-      VALUES ($1, $2, $3, $4)
-    `, [gameDbId, presetName, JSON.stringify(configJson), author || 'Anonymous']);
+    const game = await db.prepare(`SELECT id FROM games WHERE title_id = ?`).bind(titleId).first();
+    
+    if (!game) throw new Error("Failed to retrieve game ID");
+
+    await db.prepare(`
+      INSERT INTO presets (game_id, name, config_json, author, is_global)
+      VALUES (?, ?, ?, ?, ?)
+    `).bind(
+      game.id, 
+      presetName, 
+      JSON.stringify(configJson), 
+      author || 'Anonymous', 
+      isGlobal ? 1 : 0
+    ).run();
 
     return json({ success: true });
   } catch (error) {
@@ -26,21 +36,25 @@ export async function POST({ request }) {
   }
 }
 
-export async function GET({ url }) {
+export async function GET({ url, platform }) {
+  if (!platform?.env?.DB) {
+    return json([]);
+  }
+
   const gameName = url.searchParams.get('gameName');
-  const db = createPool();
+  const db = platform.env.DB;
   
   try {
-    const res = await db.query(`
-      SELECT p.id, p.name, p.config_json, p.downloads, p.author, p.created_at
+    const { results } = await db.prepare(`
+      SELECT p.id, p.name, p.config_json, p.downloads, p.author, p.created_at, p.is_global
       FROM presets p
       JOIN games g ON p.game_id = g.id
-      WHERE g.game_name = $1
-      ORDER BY p.created_at DESC
+      WHERE g.game_name = ? OR p.is_global = 1
+      ORDER BY p.is_global DESC, p.created_at DESC
       LIMIT 50
-    `, [gameName]);
+    `).bind(gameName).all();
 
-    return json(res.rows);
+    return json(results);
   } catch (error) {
     console.error("Fetch Presets Error:", error);
     return json([]);

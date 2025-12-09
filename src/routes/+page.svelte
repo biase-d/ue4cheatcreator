@@ -5,23 +5,26 @@
   import SettingsSidebar from '$lib/SettingsSidebar.svelte';
   import Icon from "@iconify/svelte";
 
-  let step = 0; 
+  let step = 0;
+
   let logFile = null;
   let parsedLog = null;
   let gameName = "Unknown Game";
   let titleId = null;
   
-  let presetOptions = []; 
+  let presetOptions = [];
+
   let globalConfig = { categories: false, defaultIndicator: "Default" };
   let communityPresets = [];
   
   let showEditor = false;
-  let editingIndex = -1; 
+  let editingIndex = -1;
+
   let editorInitialData = null;
   let isDrawerOpen = false;
 
   let saveModalOpen = false;
-  let saveForm = { name: "", author: "" };
+  let saveForm = { name: "", author: "", isGlobal: false };
   let isSaving = false;
 
   async function handleLogUpload(e) {
@@ -79,12 +82,14 @@
 
   function openEditorEdit(index) {
     editingIndex = index;
-    editorInitialData = JSON.parse(JSON.stringify(presetOptions[index])); 
+    editorInitialData = JSON.parse(JSON.stringify(presetOptions[index]));
+
     showEditor = true;
   }
 
   function openEditorClone(index) {
-    editingIndex = -1; 
+    editingIndex = -1;
+
     const clone = JSON.parse(JSON.stringify(presetOptions[index]));
     clone.name += " (Copy)";
     editorInitialData = clone;
@@ -114,7 +119,8 @@
   }
 
   function openSaveModal() {
-    saveForm = { name: "", author: localStorage.getItem("ue4cc_author") || "" };
+    // Reset form with isGlobal false
+    saveForm = { name: "", author: localStorage.getItem("ue4cc_author") || "", isGlobal: false };
     saveModalOpen = true;
   }
 
@@ -122,7 +128,6 @@
     if (!saveForm.name || !saveForm.author) return;
     isSaving = true;
 
-    // Save author for next time
     localStorage.setItem("ue4cc_author", saveForm.author);
 
     const presetData = {};
@@ -139,7 +144,8 @@
           gameName,
           presetName: saveForm.name,
           author: saveForm.author,
-          configJson: presetData
+          configJson: presetData,
+          isGlobal: saveForm.isGlobal
         }),
         headers: { 'content-type': 'application/json' }
       });
@@ -203,14 +209,14 @@
   <input id="settings-drawer" type="checkbox" class="drawer-toggle" bind:checked={isDrawerOpen} />
   
   <div class="drawer-content flex flex-col h-full">
-    
+
     {#if showEditor}
       <PresetEditor 
         parsedLog={parsedLog} 
-        initialData={editorInitialData} 
-        onSave={saveEditorResult} 
-        onCancel={() => showEditor = false} 
-      />
+        initialData={editorInitialData}
+        onSave={saveEditorResult}
+        onCancel={() => showEditor = false}
+       />
     {/if}
 
     {#if saveModalOpen}
@@ -228,6 +234,16 @@
             <div class="form-control w-full">
               <label class="label"><span class="label-text">Creator Name</span></label>
               <input type="text" bind:value={saveForm.author} placeholder="Your Name / Alias" class="input input-bordered w-full" />
+            </div>
+
+            <div class="form-control">
+              <label class="label cursor-pointer justify-start gap-3">
+                <input type="checkbox" bind:checked={saveForm.isGlobal} class="checkbox checkbox-sm checkbox-secondary" />
+                <div class="flex flex-col">
+                    <span class="label-text font-bold">Global Preset</span>
+                    <span class="label-text text-xs opacity-60">Visible for all games (Use for generic tweaks)</span>
+                </div>
+              </label>
             </div>
 
             <div class="card-actions justify-end mt-4">
@@ -262,10 +278,10 @@
                 <div class="form-control w-full max-w-md mx-auto">
                   <input 
                     type="file" 
-                    class="file-input file-input-lg file-input-primary w-full shadow-xl bg-base-100/80" 
+                    class="file-input file-input-lg file-input-primary w-full shadow-xl bg-base-100/80"
                     accept=".log"
                     on:change={handleLogUpload} 
-                  />
+                   />
                 </div>
               </div>
             </div>
@@ -413,12 +429,12 @@
         </div>
       {/if}
     </div>
-  </div> 
+  </div>
 
   <div class="drawer-side z-50">
     <label for="settings-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
     <SettingsSidebar 
-      bind:globalConfig={globalConfig} 
+      bind:globalConfig={globalConfig}
       communityPresets={communityPresets}
       onLoadPreset={(p) => loadPresetJson(p.config_json)}
       onClose={() => isDrawerOpen = false}

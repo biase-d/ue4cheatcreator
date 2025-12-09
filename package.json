@@ -12,7 +12,7 @@
   "devDependencies": {
     "@iconify/svelte": "^4.0.2",
     "@modyfi/vite-plugin-yaml": "^1.1.0",
-    "@sveltejs/adapter-vercel": "^5.3.1",
+    "@sveltejs/adapter-cloudflare": "^7.2.4",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@tailwindcss/postcss": "^4.0.14",
@@ -27,7 +27,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@fontsource-variable/caveat": "^5.2.6",
-    "@vercel/postgres": "^0.10.0"
+    "@fontsource-variable/caveat": "^5.2.6"
   }
 }

@@ -6,12 +6,14 @@ export function parseLogFile (logFile) {
     try {
       data = data.split(', ')
       const cvar = data[0]
+      const rawHex = data[2].split(': ')[1].split(' ')[3]
+      
       data = {
         main_offset: data[1].split(': ')[1].split(' ')[0],
         offset: [data[1].split(': ')[1].split(' ')[1], data[1].split(': ')[1].split(' ')[2]],
         type: data[2].split(': ')[1].split(' ')[0],
         value: data[2].split(': ')[1].split(' ')[1],
-        hexValue: data[2].split(': ')[1].split(' ')[3]
+        hexValue: rawHex
       }
       parsed[cvar] = data
     } catch (err) {
@@ -51,7 +53,22 @@ export function generateCheats (parsedLogFile, config, overrideConfig) {
       })
 
       if (filtered.length > 0) {
-        const cheatName = config[i][index].name
+        let cheatName = config[i][index].name
+
+        const isDefault = setting.options.every(option => {
+          const [name, val] = Object.entries(option)[0]
+          if (!parsedLogFile[name]) return false;
+
+          const configHex = val.split(' ')[0].toUpperCase();
+          const logHex = parsedLogFile[name].hexValue.replace('0x', '').toUpperCase();
+
+          return configHex === logHex;
+        })
+
+        if (isDefault && configuration.defaultIndicator) {
+          cheatName = `${configuration.defaultIndicator} ${cheatName}`
+        }
+
         txt.push(`[${cheatName}]`)
         
         filtered.forEach(options => {

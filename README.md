@@ -3,7 +3,7 @@ The ultimate web companion for ue4cfgdumper. Transform raw game logs into powerf
 <img width="1525" height="819" alt="Screenshot 2025-11-22 at 12-20-39 UE4cheatcreator for NX" src="https://github.com/user-attachments/assets/c110bce7-c1b6-46ba-8d7c-2a0f4519b379" />
 <img width="1525" height="819" alt="Screenshot 2025-11-22 at 12-22-30 UE4cheatcreator for NX" src="https://github.com/user-attachments/assets/4f772821-924a-4a7a-8d0c-4b5ec5f01af5" />
 
-**[Try it out here](https://ue4cheatcreator.vercel.app)**
+**[Try it out here](https://ue4cheatcreator.pages.dev)**
 
 ## Features
 * **Log Parsing:** Drag & drop `.log` files from `UE4cfgdumper` to instantly analyze available game settings
